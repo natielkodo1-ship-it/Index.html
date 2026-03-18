@@ -23,7 +23,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--roxo-deep); color: var(--branco); overflow-x: hidden; }
 
-        /* Fundo de Cometas */
+        /* Fundo */
         .space-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at top right, #1a0b2e, #0a0414); }
         .comet { position: absolute; width: 2px; height: 2px; background: #fff; opacity: 0; animation: shoot 6s linear infinite; }
         .comet::after { content: ''; position: absolute; width: 120px; height: 1px; background: linear-gradient(90deg, #fff, transparent); }
@@ -45,14 +45,12 @@
             background: #fff; color: #000; padding: 18px 40px; font-weight: 700; font-size: 1rem;
             border-radius: 50px; position: relative; box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
-        .junior-cloud::before { content: ''; position: absolute; background: #fff; width: 45px; height: 45px; border-radius: 50%; top: -20px; left: 15%; z-index: -1; }
-        .junior-cloud::after { content: ''; position: absolute; background: #fff; width: 35px; height: 35px; border-radius: 50%; top: -12px; right: 20%; z-index: -1; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
         .typing-container { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; margin-bottom: 1rem; min-height: 1.2em; }
         .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); }
 
-        /* Animação de Entrada para os Cards */
+        /* Cards Animados */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -70,60 +68,45 @@
             max-width: 500px;
             width: 100%;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: 0.4s;
             animation: fadeInUp 1s ease backwards;
         }
-
         .card-thumbnail { animation-delay: 0.3s; }
         .card-site { animation-delay: 0.6s; }
-
-        .service-mini-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(188, 19, 254, 0.4);
-            box-shadow: 0 15px 40px rgba(188, 19, 254, 0.15);
-        }
-        .service-mini-card h2 { font-size: 0.85rem; color: var(--roxo-neon); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.8rem; }
-        .service-mini-card p { font-size: 1.05rem; line-height: 1.5; font-weight: 300; }
         
         .white-text { color: var(--branco) !important; font-weight: 700; }
 
-        /* Botão de Som Discreto */
+        /* Botão de Som */
         #musicToggle {
             position: fixed; bottom: 20px; left: 20px; z-index: 2000;
-            background: var(--vidro); border: 1px solid var(--borda-vidro);
+            background: rgba(188, 19, 254, 0.2); border: 1px solid var(--roxo-neon);
             color: white; width: 45px; height: 45px; border-radius: 50%;
             cursor: pointer; backdrop-filter: blur(10px); display: flex;
             align-items: center; justify-content: center; font-size: 1.2rem;
-            transition: 0.3s;
         }
-        #musicToggle:hover { background: var(--roxo-neon); transform: scale(1.1); }
 
-        /* Outras Seções */
-        .companies { padding: 2.5rem 0; background: var(--vidro); border-y: 1px solid var(--borda-vidro); overflow: hidden; white-space: nowrap; }
+        /* Restante das seções */
+        .companies { padding: 2.5rem 0; background: var(--vidro); overflow: hidden; white-space: nowrap; }
         .company-track { display: inline-block; animation: scroll 25s linear infinite; }
-        .company-name { display: inline-block; font-size: 1.2rem; font-weight: 500; color: rgba(255,255,255,0.3); margin: 0 40px; letter-spacing: 2px; }
+        .company-name { display: inline-block; font-size: 1.2rem; color: rgba(255,255,255,0.3); margin: 0 40px; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         .skills-section { padding: 6rem 8%; text-align: center; }
         .skills-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 2rem; }
-        .skill-item { background: var(--vidro); border: 1px solid var(--borda-vidro); padding: 25px 45px; border-radius: 20px; font-weight: 700; transition: 0.5s; backdrop-filter: blur(10px); }
-        .skill-item:hover { background: rgba(188, 19, 254, 0.1); border-color: var(--roxo-neon); transform: scale(1.05); }
+        .skill-item { background: var(--vidro); border: 1px solid var(--borda-vidro); padding: 25px 45px; border-radius: 20px; font-weight: 700; }
 
         .portfolio { padding: 4rem 8% 8rem; }
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
-        .project-card { background: var(--vidro); border: 1px solid var(--borda-vidro); border-radius: 30px; padding: 3rem; transition: 0.4s; }
-        .project-card h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--roxo-neon); }
-        .project-card p { opacity: 0.7; line-height: 1.6; }
+        .project-card { background: var(--vidro); border: 1px solid var(--borda-vidro); border-radius: 30px; padding: 3rem; }
+        .project-card h3 { color: var(--roxo-neon); margin-bottom: 1rem; }
 
-        .contact-section { padding: 8rem 8%; text-align: center; background: radial-gradient(circle at bottom, #1a0b2e, #0a0414); }
+        .contact-section { padding: 8rem 8%; text-align: center; }
         .contact-btn-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 3rem; }
-        .contact-link { text-decoration: none; color: #fff; font-weight: 700; padding: 20px 45px; border-radius: 50px; transition: 0.4s; display: flex; align-items: center; gap: 10px; }
+        .contact-link { text-decoration: none; color: #fff; font-weight: 700; padding: 20px 45px; border-radius: 50px; }
         .instagram { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
         .whatsapp { background: #25d366; }
-        .contact-link:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-        footer { padding: 3rem; text-align: center; opacity: 0.4; font-size: 0.8rem; letter-spacing: 2px; }
+        footer { padding: 3rem; text-align: center; opacity: 0.4; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -134,7 +117,7 @@
         <div class="logo">ORBIT<span>WHITE</span></div>
     </header>
 
-    <button id="musicToggle">🔈</button>
+    <button id="musicToggle" title="Clique para ativar o som">🔈</button>
 
     <section class="hero">
         <div class="junior-cloud-container">
@@ -146,24 +129,18 @@
         <p style="opacity: 0.7; margin-bottom: 0.5rem;">Especialista em criar o impossível com código.</p>
 
         <div class="service-mini-card card-thumbnail">
-            <h2>Services</h2>
-            <p>
-                <b>Thumbnail's:</b> <span class="white-text">10 por R$100</span>. <br>
-                Design incrível para destacar seus vídeos.
-            </p>
+            <h2 style="color: var(--roxo-neon); font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 0.8rem;">SERVICES</h2>
+            <p><b>Thumbnail's:</b> <span class="white-text">×10 por R$100</span>. <br> Design incrível para destacar seus vídeos.</p>
         </div>
 
         <div class="service-mini-card card-site">
-            <h2>Services</h2>
-            <p>
-                <b>Criação de Site:</b> <span class="white-text">R$300</span>. <br>
-                Seu espaço profissional na web com design moderno.
-            </p>
+            <h2 style="color: var(--roxo-neon); font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 0.8rem;">SERVICES</h2>
+            <p><b>Criação de Site:</b> <span class="white-text">R$300</span>. <br> Seu espaço profissional na web com design moderno.</p>
         </div>
     </section>
 
-    <audio id="bgMusic" loop>
-        <source src="norbitbeat.mp3" type="audio/mpeg">
+    <audio id="bgMusic" loop preload="auto">
+        <source src="./norbitbeat.mp3" type="audio/mpeg">
     </audio>
 
     <div class="companies">
@@ -172,8 +149,6 @@
             <div class="company-name">BEGAMERS</div>
             <div class="company-name">1SHOTKILL</div>
             <div class="company-name">VANGUARDA BRASIL</div>
-            <div class="company-name">BEGAMERS</div>
-            <div class="company-name">1SHOTKILL</div>
         </div>
     </div>
 
@@ -182,25 +157,16 @@
         <div class="skills-grid">
             <div class="skill-item">CRIEI BACKEND</div>
             <div class="skill-item">CRIEI INTERFACE</div>
-            <div class="skill-item">CRIEI LAYOUT ÚNICO E RESPONSIVO</div>
+            <div class="skill-item">CRIEI LAYOUT ÚNICO</div>
         </div>
     </section>
 
     <section class="portfolio">
-        <h2 style="text-align: center; margin-bottom: 4rem; font-size: 2.5rem;">Portfólio de Projetos</h2>
+        <h2 style="text-align: center; margin-bottom: 4rem;">Portfólio de Projetos</h2>
         <div class="portfolio-grid">
-            <div class="project-card">
-                <h3>Vanguarda Brasil</h3>
-                <p>Desenvolvimento de backend escalável e interfaces de alta performance.</p>
-            </div>
-            <div class="project-card">
-                <h3>BeGamers</h3>
-                <p>Plataforma gamer com design imersivo e layout focado em UX.</p>
-            </div>
-            <div class="project-card">
-                <h3>1ShotKill</h3>
-                <p>Criação de layout único e responsivo para sistemas competitivos.</p>
-            </div>
+            <div class="project-card"><h3>Vanguarda Brasil</h3><p>Backend escalável e interfaces de alta performance.</p></div>
+            <div class="project-card"><h3>BeGamers</h3><p>Plataforma gamer com design imersivo.</p></div>
+            <div class="project-card"><h3>1ShotKill</h3><p>Layout responsivo para sistemas competitivos.</p></div>
         </div>
     </section>
 
@@ -212,16 +178,16 @@
         </div>
     </section>
 
-    <footer>
-        ORBIT WHITE &copy; 2026 | CODANDO NO ESPAÇO
-    </footer>
+    <footer>ORBIT WHITE &copy; 2026 | CODANDO NO ESPAÇO</footer>
 
     <script>
-        // Efeito Digitação
+        const audio = document.getElementById('bgMusic');
+        const toggle = document.getElementById('musicToggle');
         const textElement = document.getElementById('typewriter');
+
+        // Efeito Digitação
         const phrases = ["Eu sou Programador.", "Orbit White.", "Eu crio Sites."];
         let i = 0, j = 0, isDeleting = false;
-
         function type() {
             let current = phrases[i];
             textElement.textContent = isDeleting ? current.substring(0, j - 1) : current.substring(0, j + 1);
@@ -230,42 +196,27 @@
             else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % phrases.length; }
             setTimeout(type, isDeleting ? 50 : 150);
         }
-
-        // Fundo com Cometas
-        const space = document.getElementById('space');
-        for (let k = 0; k < 15; k++) {
-            const comet = document.createElement('div');
-            comet.className = 'comet';
-            comet.style.left = Math.random() * 100 + 'vw';
-            comet.style.top = Math.random() * 50 + 'vh';
-            comet.style.animationDelay = Math.random() * 10 + 's';
-            comet.style.animationDuration = (4 + Math.random() * 4) + 's';
-            space.appendChild(comet);
-        }
         type();
 
-        // Lógica de Áudio
-        const audio = document.getElementById('bgMusic');
-        const toggle = document.getElementById('musicToggle');
-
-        function playAudio() {
+        // LOGICA DE SOM (CORRIGIDA)
+        function startAudio() {
             audio.play().then(() => {
                 toggle.textContent = "🔊";
-            }).catch(e => console.log("Aguardando interação..."));
-            // Remove os eventos após tocar
-            document.removeEventListener('click', playAudio);
-            document.removeEventListener('scroll', playAudio);
-            document.removeEventListener('touchstart', playAudio);
+                console.log("Audio tocando!");
+            }).catch(e => console.log("Bloqueio de autoplay. Aguardando clique."));
+            
+            // Remove os ouvintes para não sobrecarregar
+            window.removeEventListener('click', startAudio);
+            window.removeEventListener('touchstart', startAudio);
+            window.removeEventListener('scroll', startAudio);
         }
 
-        // Tenta tocar na primeira interação
-        document.addEventListener('click', playAudio);
-        document.addEventListener('scroll', playAudio);
-        document.addEventListener('touchstart', playAudio);
+        window.addEventListener('click', startAudio);
+        window.addEventListener('touchstart', startAudio);
+        window.addEventListener('scroll', startAudio);
 
-        // Botão manual (Garante que toque)
         toggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita conflito com o playAudio acima
+            e.stopPropagation();
             if (audio.paused) {
                 audio.play();
                 toggle.textContent = "🔊";
@@ -274,9 +225,17 @@
                 toggle.textContent = "🔈";
             }
         });
+
+        // Efeito Cometas
+        const space = document.getElementById('space');
+        for (let k = 0; k < 10; k++) {
+            const comet = document.createElement('div');
+            comet.className = 'comet';
+            comet.style.left = Math.random() * 100 + 'vw';
+            comet.style.top = Math.random() * 50 + 'vh';
+            comet.style.animationDelay = Math.random() * 8 + 's';
+            space.appendChild(comet);
+        }
     </script>
-
-    <script>(function(s){s.dataset.zone='10745110',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
 </body>
 </html>

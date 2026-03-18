@@ -2,20 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta name="monetag" content="83653431b22e24ceef4158593ed565e2">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbit White | Developer Junior</title>
-
     <link rel="icon" type="image/png" href="favicon.png">
-
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
             --roxo-deep: #0a0414;
             --roxo-vibrante: #8a2be2;
             --roxo-neon: #bc13fe;
             --branco: #ffffff;
+            --whatsapp: #25d366;
             --vidro: rgba(255, 255, 255, 0.03);
             --borda-vidro: rgba(255, 255, 255, 0.1);
         }
@@ -23,125 +22,145 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--roxo-deep); color: var(--branco); overflow-x: hidden; }
 
-        /* Fundo */
         .space-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at top right, #1a0b2e, #0a0414); }
         .comet { position: absolute; width: 2px; height: 2px; background: #fff; opacity: 0; animation: shoot 6s linear infinite; }
-        .comet::after { content: ''; position: absolute; width: 120px; height: 1px; background: linear-gradient(90deg, #fff, transparent); }
         @keyframes shoot {
             0% { transform: translate(120vw, -10vh) rotate(-45deg); opacity: 1; }
             100% { transform: translate(-20vw, 120vh) rotate(-45deg); opacity: 0; }
         }
 
-        /* Header */
         header { padding: 1.5rem 8%; display: flex; justify-content: center; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--borda-vidro); }
         .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
         .logo span { color: var(--roxo-neon); text-shadow: 0 0 10px var(--roxo-neon); }
 
-        /* Hero */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 50px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 150px 5% 50px; }
         
-        .junior-cloud-container { position: relative; margin-bottom: 2.5rem; animation: float 5s ease-in-out infinite; }
-        .junior-cloud {
-            background: #fff; color: #000; padding: 18px 40px; font-weight: 700; font-size: 1rem;
-            border-radius: 50px; position: relative; box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-        }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        /* Nave Épica */
+        .ship-badge-container { position: relative; margin-bottom: 3rem; animation: shipFloat 4s ease-in-out infinite; }
+        .ship-body { width: 250px; height: 70px; background: rgba(188, 19, 254, 0.05); border: 2px solid var(--roxo-neon); border-radius: 10px; position: relative; box-shadow: 0 0 30px rgba(188, 19, 254, 0.2); display: flex; justify-content: center; align-items: center; z-index: 2; }
+        .ship-text { color: var(--branco); font-size: 0.9rem; font-weight: 700; letter-spacing: 4px; animation: blinkText 2.5s step-end infinite; }
+        .ship-thruster { position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 100px; height: 10px; background: linear-gradient(transparent, var(--roxo-neon)); filter: blur(5px); animation: pulseThruster 1s ease-in-out infinite; }
 
-        .typing-container { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; margin-bottom: 1rem; min-height: 1.2em; }
-        .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); }
+        @keyframes shipFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes blinkText { from, to { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes pulseThruster { 0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
 
-        /* Cards Animados */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .typing-container { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; margin-bottom: 1rem; min-height: 1.2em; }
+        .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); border-right: 3px solid var(--roxo-neon); padding-right: 5px; animation: blink 0.75s step-end infinite; }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--roxo-neon); } }
 
-        .service-mini-card {
-            margin-top: 2rem;
-            padding: 1.5rem 2rem;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(188, 19, 254, 0.05) 100%);
+        /* Skills */
+        .skills-container { width: 100%; max-width: 500px; margin: 2rem 0 4rem; text-align: left; }
+        .skill-wrapper { margin-bottom: 18px; }
+        .skill-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+        .skill-bar { height: 3px; background: rgba(255,255,255,0.03); border-radius: 10px; overflow: hidden; position: relative; }
+        .skill-progress { height: 100%; background: var(--roxo-neon); width: 0; transition: width 2s ease-in-out; position: relative; }
+        .skill-progress::after { content: ''; position: absolute; right: 0; top: 0; width: 10px; height: 100%; background: var(--branco); box-shadow: 0 0 10px var(--roxo-neon); }
+
+        /* Cards Ajustados */
+        .cards-container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1000px; width: 100%; }
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--borda-vidro);
-            border-left: 4px solid var(--roxo-neon);
-            border-radius: 12px 30px 30px 12px;
-            backdrop-filter: blur(12px);
-            text-align: left;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
+            border-radius: 25px;
+            padding: 2.5rem;
+            flex: 1; min-width: 300px;
             transition: 0.4s;
-            animation: fadeInUp 1s ease backwards;
+            text-align: left;
+            text-decoration: none; /* Para o card inteiro ser clicável se desejar */
+            color: inherit;
         }
-        .card-thumbnail { animation-delay: 0.3s; }
-        .card-site { animation-delay: 0.6s; }
+        .service-card:hover { border-color: var(--roxo-neon); background: rgba(255,255,255,0.04); transform: translateY(-5px); }
         
-        .white-text { color: var(--branco) !important; font-weight: 700; }
-
-        /* Botão de Som */
-        #musicToggle {
-            position: fixed; bottom: 20px; left: 20px; z-index: 2000;
-            background: rgba(188, 19, 254, 0.2); border: 1px solid var(--roxo-neon);
-            color: white; width: 45px; height: 45px; border-radius: 50%;
-            cursor: pointer; backdrop-filter: blur(10px); display: flex;
-            align-items: center; justify-content: center; font-size: 1.2rem;
+        .price-tag { 
+            font-family: 'Share Tech Mono', monospace; 
+            font-size: 1.4rem; 
+            margin-top: 1.5rem; 
+            border-top: 1px solid var(--borda-vidro); 
+            padding-top: 1.5rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
         }
 
-        /* Restante das seções */
-        .companies { padding: 2.5rem 0; background: var(--vidro); overflow: hidden; white-space: nowrap; }
+        /* Ícone do WhatsApp nos Cards */
+        .card-whatsapp-icon {
+            color: var(--whatsapp);
+            font-size: 1.8rem;
+            animation: pulseGreen 2s infinite;
+            cursor: pointer;
+        }
+        @keyframes pulseGreen {
+            0% { transform: scale(1); text-shadow: 0 0 0 rgba(37, 211, 102, 0); }
+            50% { transform: scale(1.2); text-shadow: 0 0 15px rgba(37, 211, 102, 0.6); }
+            100% { transform: scale(1); text-shadow: 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .companies { padding: 3rem 0; background: rgba(255,255,255,0.02); overflow: hidden; white-space: nowrap; border-top: 1px solid var(--borda-vidro); border-bottom: 1px solid var(--borda-vidro); margin: 4rem 0; }
         .company-track { display: inline-block; animation: scroll 25s linear infinite; }
-        .company-name { display: inline-block; font-size: 1.2rem; color: rgba(255,255,255,0.3); margin: 0 40px; }
+        .company-name { display: inline-block; font-size: 1rem; color: rgba(255,255,255,0.2); margin: 0 60px; letter-spacing: 4px; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        .skills-section { padding: 6rem 8%; text-align: center; }
-        .skills-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 2rem; }
-        .skill-item { background: var(--vidro); border: 1px solid var(--borda-vidro); padding: 25px 45px; border-radius: 20px; font-weight: 700; }
-
-        .portfolio { padding: 4rem 8% 8rem; }
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
-        .project-card { background: var(--vidro); border: 1px solid var(--borda-vidro); border-radius: 30px; padding: 3rem; }
-        .project-card h3 { color: var(--roxo-neon); margin-bottom: 1rem; }
-
-        .contact-section { padding: 8rem 8%; text-align: center; }
+        .contact-section { padding: 4rem 8% 8rem; text-align: center; }
         .contact-btn-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 3rem; }
-        .contact-link { text-decoration: none; color: #fff; font-weight: 700; padding: 20px 45px; border-radius: 50px; }
+        .contact-link { text-decoration: none; color: #fff; font-weight: 700; padding: 20px 50px; border-radius: 50px; transition: 0.4s; letter-spacing: 2px; }
         .instagram { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
         .whatsapp { background: #25d366; }
+        .contact-link:hover { transform: scale(1.05); }
 
-        footer { padding: 3rem; text-align: center; opacity: 0.4; font-size: 0.8rem; }
+        #musicToggle { position: fixed; bottom: 25px; left: 25px; z-index: 2000; background: var(--vidro); border: 1px solid var(--borda-vidro); color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+        footer { padding: 3rem; text-align: center; opacity: 0.2; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
     <div class="space-background" id="space"></div>
-
-    <header>
-        <div class="logo">ORBIT<span>WHITE</span></div>
-    </header>
-
-    <button id="musicToggle" title="Clique para ativar o som">🔈</button>
+    <header><div class="logo">ORBIT<span>WHITE</span></div></header>
+    
+    <button id="musicToggle">🔈</button>
 
     <section class="hero">
-        <div class="junior-cloud-container">
-            <div class="junior-cloud">DEVELOPER JUNIOR</div>
+        <div class="ship-badge-container">
+            <div class="ship-body">
+                <span class="ship-text">QUALIDADES / SKILLS</span>
+                <div class="ship-thruster"></div>
+            </div>
         </div>
+        
         <div class="typing-container">
             <span class="typing-text" id="typewriter"></span>
         </div>
-        <p style="opacity: 0.7; margin-bottom: 0.5rem;">Especialista em criar o impossível com código.</p>
-
-        <div class="service-mini-card card-thumbnail">
-            <h2 style="color: var(--roxo-neon); font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 0.8rem;">SERVICES</h2>
-            <p><b>Thumbnail's:</b> <span class="white-text">×10 por R$100</span>. <br> Design incrível para destacar seus vídeos.</p>
+        
+        <div class="skills-container">
+            <div class="skill-wrapper"><div class="skill-info"><span>HTML</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
+            <div class="skill-wrapper"><div class="skill-info"><span>RAPIDEZ</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
+            <div class="skill-wrapper"><div class="skill-info"><span>SERIEDADE</span><span>100%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 100%"></div></div></div>
+            <div class="skill-wrapper"><div class="skill-info"><span>PHOTOSHOP</span><span>97%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 97%"></div></div></div>
         </div>
 
-        <div class="service-mini-card card-site">
-            <h2 style="color: var(--roxo-neon); font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 0.8rem;">SERVICES</h2>
-            <p><b>Criação de Site:</b> <span class="white-text">R$300</span>. <br> Seu espaço profissional na web com design moderno.</p>
+        <div class="cards-container">
+            <div class="service-card">
+                <h2 style="font-size: 0.7rem; color: var(--roxo-neon); letter-spacing: 3px; margin-bottom: 10px;">DESIGN</h2>
+                <h3 style="margin-bottom: 15px;">10 THUMBNAIL'S</h3>
+                <p style="opacity: 0.5; font-size: 0.9rem;">Artes de alta performance para YouTube com foco em CTR.</p>
+                <div class="price-tag">
+                    R$ 100 
+                    <a href="https://wa.me/+5521983747028" target="_blank"><i class="fab fa-whatsapp card-whatsapp-icon"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <h2 style="font-size: 0.7rem; color: var(--roxo-neon); letter-spacing: 3px; margin-bottom: 10px;">DEVELOPMENT</h2>
+                <h3 style="margin-bottom: 15px;">Criação de Site</h3>
+                <p style="opacity: 0.5; font-size: 0.9rem;">Landing pages e sistemas exclusivos de alta conversão.</p>
+                <div class="price-tag">
+                    R$ 300 
+                    <a href="https://wa.me/+5521983747028" target="_blank"><i class="fab fa-whatsapp card-whatsapp-icon"></i></a>
+                </div>
+            </div>
         </div>
     </section>
-
-    <audio id="bgMusic" loop preload="auto">
-        <source src="./norbitbeat.mp3" type="audio/mpeg">
-    </audio>
 
     <div class="companies">
         <div class="company-track">
@@ -149,91 +168,60 @@
             <div class="company-name">BEGAMERS</div>
             <div class="company-name">1SHOTKILL</div>
             <div class="company-name">VANGUARDA BRASIL</div>
+            <div class="company-name">BEGAMERS</div>
+            <div class="company-name">1SHOTKILL</div>
         </div>
     </div>
 
-    <section class="skills-section">
-        <h2>Especialidades Técnicas</h2>
-        <div class="skills-grid">
-            <div class="skill-item">CRIEI BACKEND</div>
-            <div class="skill-item">CRIEI INTERFACE</div>
-            <div class="skill-item">CRIEI LAYOUT ÚNICO</div>
-        </div>
-    </section>
-
-    <section class="portfolio">
-        <h2 style="text-align: center; margin-bottom: 4rem;">Portfólio de Projetos</h2>
-        <div class="portfolio-grid">
-            <div class="project-card"><h3>Vanguarda Brasil</h3><p>Backend escalável e interfaces de alta performance.</p></div>
-            <div class="project-card"><h3>BeGamers</h3><p>Plataforma gamer com design imersivo.</p></div>
-            <div class="project-card"><h3>1ShotKill</h3><p>Layout responsivo para sistemas competitivos.</p></div>
-        </div>
-    </section>
-
     <section class="contact-section">
-        <h2>Vamos Conversar?</h2>
+        <h2>Inicie seu projeto agora</h2>
         <div class="contact-btn-container">
             <a href="https://wa.me/+5521983747028" target="_blank" class="contact-link whatsapp">WHATSAPP</a>
             <a href="https://www.instagram.com/orbitwhite_" target="_blank" class="contact-link instagram">INSTAGRAM</a>
         </div>
     </section>
 
-    <footer>ORBIT WHITE &copy; 2026 | CODANDO NO ESPAÇO</footer>
+    <audio id="bgMusic" loop preload="auto"><source src="./norbitbeat.mp3" type="audio/mpeg"></audio>
+
+    <footer>ORBIT WHITE &copy; 2026 | BUILT IN DEEP SPACE</footer>
 
     <script>
         const audio = document.getElementById('bgMusic');
         const toggle = document.getElementById('musicToggle');
         const textElement = document.getElementById('typewriter');
 
-        // Efeito Digitação
-        const phrases = ["Eu sou Programador.", "Orbit White.", "Eu crio Sites."];
+        const phrases = ["Estou no mercado há 6 anos.", "Eu sou Programador.", "Orbit White.", "Design & Code."];
         let i = 0, j = 0, isDeleting = false;
         function type() {
             let current = phrases[i];
             textElement.textContent = isDeleting ? current.substring(0, j - 1) : current.substring(0, j + 1);
             j = isDeleting ? j - 1 : j + 1;
-            if (!isDeleting && j === current.length) setTimeout(() => isDeleting = true, 2000);
+            if (!isDeleting && j === current.length) setTimeout(() => isDeleting = true, 2500);
             else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % phrases.length; }
-            setTimeout(type, isDeleting ? 50 : 150);
+            setTimeout(type, isDeleting ? 40 : 100);
         }
         type();
 
-        // LOGICA DE SOM (CORRIGIDA)
-        function startAudio() {
-            audio.play().then(() => {
-                toggle.textContent = "🔊";
-                console.log("Audio tocando!");
-            }).catch(e => console.log("Bloqueio de autoplay. Aguardando clique."));
-            
-            // Remove os ouvintes para não sobrecarregar
-            window.removeEventListener('click', startAudio);
-            window.removeEventListener('touchstart', startAudio);
-            window.removeEventListener('scroll', startAudio);
+        function forceAudio() {
+            audio.play().then(() => { toggle.textContent = "🔊"; window.removeEventListener('click', forceAudio); window.removeEventListener('scroll', forceAudio); window.removeEventListener('touchstart', forceAudio); }).catch(() => {});
         }
-
-        window.addEventListener('click', startAudio);
-        window.addEventListener('touchstart', startAudio);
-        window.addEventListener('scroll', startAudio);
+        window.addEventListener('click', forceAudio);
+        window.addEventListener('scroll', forceAudio);
+        window.addEventListener('touchstart', forceAudio);
 
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (audio.paused) {
-                audio.play();
-                toggle.textContent = "🔊";
-            } else {
-                audio.pause();
-                toggle.textContent = "🔈";
-            }
+            if (audio.paused) { audio.play(); toggle.textContent = "🔊"; }
+            else { audio.pause(); toggle.textContent = "🔈"; }
         });
 
-        // Efeito Cometas
         const space = document.getElementById('space');
-        for (let k = 0; k < 10; k++) {
+        for (let k = 0; k < 8; k++) {
             const comet = document.createElement('div');
             comet.className = 'comet';
             comet.style.left = Math.random() * 100 + 'vw';
             comet.style.top = Math.random() * 50 + 'vh';
-            comet.style.animationDelay = Math.random() * 8 + 's';
+            comet.style.animationDelay = Math.random() * 10 + 's';
             space.appendChild(comet);
         }
     </script>

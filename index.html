@@ -15,121 +15,77 @@
             --branco: #ffffff;
             --whatsapp: #25d366;
             --borda-vidro: rgba(255, 255, 255, 0.1);
-            --nuvem-base: rgba(188, 19, 254, 0.1); /* Cor de fundo da nuvem */
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
         body { background-color: var(--roxo-deep); color: var(--branco); overflow-x: hidden; }
 
-        /* Fundo Estelar */
         .space-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at top right, #1a0b2e, #0a0414); }
-        .comet { position: absolute; width: 2px; height: 2px; background: #fff; opacity: 0; animation: shoot 6s linear infinite; }
-        @keyframes shoot {
-            0% { transform: translate(120vw, -10vh) rotate(-45deg); opacity: 1; }
-            100% { transform: translate(-20vw, 120vh) rotate(-45deg); opacity: 0; }
-        }
-
-        header { padding: 1.5rem 8%; display: flex; justify-content: center; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--borda-vidro); }
+        
+        header { padding: 1.5rem; display: flex; justify-content: center; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--borda-vidro); }
         .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
         .logo span { color: var(--roxo-neon); text-shadow: 0 0 10px var(--roxo-neon); }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 180px 5% 100px; }
         
-        /* --- NOVA SEÇÃO: NUVEM DE QUALIDADES --- */
+        /* NUVEM DE QUALIDADES */
         .cloud-badge-container {
             position: relative;
-            margin-bottom: 5rem; /* Mantendo a distância que definimos */
+            margin-bottom: 5rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: cloudFloat 5s ease-in-out infinite; /* Flutuação mais suave */
+            animation: cloudFloat 5s ease-in-out infinite;
         }
 
-        /* O corpo da Nuvem (Formas arredondadas e sobrepostas) */
         .cloud-body {
             position: relative;
-            background: var(--nuvem-base);
+            background: rgba(188, 19, 254, 0.1);
             border: 1px solid rgba(188, 19, 254, 0.2);
-            border-radius: 50px; /* Base arredondada */
+            border-radius: 50px;
             padding: 20px 60px;
-            box-shadow: 0 0 40px rgba(188, 19, 254, 0.2), inset 0 0 10px rgba(188, 19, 254, 0.1);
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.2);
             backdrop-filter: blur(5px);
             z-index: 2;
         }
 
-        /* Círculos que formam a nuvem (Pufes) */
         .cloud-body::before, .cloud-body::after {
-            content: '';
-            position: absolute;
-            background: inherit;
-            border: inherit;
-            border-radius: 50%;
-            z-index: 1;
+            content: ''; position: absolute; background: inherit; border: inherit; border-radius: 50%; z-index: 1;
         }
 
-        /* Pufe Esquerdo superior */
-        .cloud-body::before {
-            width: 80px; height: 80px;
-            top: -35px; left: 30px;
-        }
+        .cloud-body::before { width: 80px; height: 80px; top: -35px; left: 30px; }
+        .cloud-body::after { width: 100px; height: 100px; top: -50px; right: 20px; }
 
-        /* Pufe Direito superior */
-        .cloud-body::after {
-            width: 100px; height: 100px;
-            top: -50px; right: 20px;
-        }
-
-        /* O Texto dentro da nuvem (QUALIDADES) */
         .cloud-text {
-            color: var(--branco);
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 6px; /* Bem espaçado e formoso */
-            text-shadow: 0 0 10px var(--roxo-neon);
-            position: relative;
-            z-index: 3; /* Acima dos pufes */
+            color: var(--branco); font-size: 1rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 6px; text-shadow: 0 0 10px var(--roxo-neon); position: relative; z-index: 3;
         }
 
-        /* Animação de Flutuação da Nuvem */
-        @keyframes cloudFloat {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
-            50% { transform: translateY(-15px) scale(1.02); opacity: 1; }
-        }
+        @keyframes cloudFloat { 0%, 100% { transform: translateY(0); opacity: 0.9; } 50% { transform: translateY(-20px); opacity: 1; } }
 
-        /* Estilo do Texto Digitado */
-        .typing-container { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; margin-bottom: 4rem; min-height: 1.2em; }
-        .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); border-right: 3px solid var(--roxo-neon); padding-right: 5px; animation: blink 0.75s step-end infinite; }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--roxo-neon); } }
-
-        /* Skills - BARRAS MINIMALISTAS */
-        .skills-container { width: 100%; max-width: 500px; margin-bottom: 6rem; text-align: left; }
-        .skill-wrapper { margin-bottom: 20px; }
-        .skill-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+        /* TEXTO DIGITADO */
+        .typing-container { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 4rem; min-height: 1.2em; }
         
-        .skill-bar { height: 4px; background: rgba(255,255,255,0.03); border-radius: 10px; overflow: hidden; position: relative; }
-        .skill-progress { height: 100%; background: var(--roxo-neon); width: 0; transition: width 2s ease-in-out; position: relative; border-radius: 10px; }
-        .skill-progress::after {
-            content: ''; position: absolute; right: 0; top: 0; width: 10px; height: 100%;
-            background: var(--branco); box-shadow: 0 0 10px var(--branco), 0 0 20px var(--roxo-neon);
-            border-radius: 10px;
-        }
+        /* SKILLS */
+        .skills-container { width: 100%; max-width: 450px; margin-bottom: 6rem; }
+        .skill-wrapper { margin-bottom: 20px; text-align: left; }
+        .skill-info { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 8px; opacity: 0.8; }
+        .skill-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden; }
+        .skill-progress { height: 100%; background: var(--roxo-neon); box-shadow: 0 0 10px var(--roxo-neon); transition: width 2s ease-in-out; }
 
-        /* Cards de Anúncio */
-        .cards-container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; max-width: 1000px; width: 100%; }
+        /* CARDS ANÚNCIOS */
+        .cards-container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 950px; }
         .service-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--borda-vidro);
-            border-radius: 25px;
-            padding: 2.5rem;
-            flex: 1; min-width: 300px;
-            transition: 0.4s;
-            text-align: left;
+            border-radius: 20px;
+            padding: 2.5rem; flex: 1; min-width: 300px;
+            transition: 0.3s; text-align: left;
         }
-        .service-card:hover { border-color: var(--roxo-neon); background: rgba(255,255,255,0.04); transform: translateY(-5px); }
+        .service-card:hover { border-color: var(--roxo-neon); transform: translateY(-8px); background: rgba(255, 255, 255, 0.05); }
         
-        .card-category { font-size: 0.7rem; color: var(--roxo-neon); letter-spacing: 3px; font-weight: 700; text-transform: uppercase; }
-        .card-title { font-size: 1.6rem; margin: 12px 0; font-weight: 700; }
+        .card-category { font-size: 0.65rem; color: var(--roxo-neon); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
+        .card-title { font-size: 1.6rem; margin: 12px 0; font-weight: 700; color: #fff; }
         .card-desc { font-size: 0.9rem; opacity: 0.6; line-height: 1.5; margin-bottom: 20px; }
 
         .price-tag { 
@@ -139,33 +95,29 @@
         }
 
         .btn-whatsapp-card {
-            color: var(--whatsapp);
-            font-size: 2.3rem;
-            animation: pulseGreen 1.5s infinite;
-            text-decoration: none;
+            color: var(--whatsapp); font-size: 2.3rem; animation: pulseGreen 1.5s infinite; text-decoration: none;
         }
+
         @keyframes pulseGreen {
             0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--whatsapp)); }
             50% { transform: scale(1.1); filter: drop-shadow(0 0 12px var(--whatsapp)); }
             100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--whatsapp)); }
         }
 
-        /* Marquee */
         .companies { padding: 3rem 0; background: rgba(255,255,255,0.02); overflow: hidden; white-space: nowrap; border-top: 1px solid var(--borda-vidro); border-bottom: 1px solid var(--borda-vidro); margin: 6rem 0; }
-        .company-track { display: inline-block; animation: scroll 25s linear infinite; }
+        .company-track { display: inline-block; animation: scroll 20s linear infinite; }
         .company-name { display: inline-block; font-size: 1rem; color: rgba(255,255,255,0.2); margin: 0 60px; letter-spacing: 4px; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        #musicToggle { position: fixed; bottom: 20px; left: 20px; z-index: 2000; background: var(--vidro); border: 1px solid var(--borda-vidro); color: white; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
+        #musicToggle { position: fixed; bottom: 20px; left: 20px; z-index: 2000; background: rgba(255,255,255,0.05); border: 1px solid var(--borda-vidro); color: white; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
 
-        footer { padding: 3rem; text-align: center; opacity: 0.2; font-size: 0.7rem; letter-spacing: 2px; }
+        footer { padding: 3rem; text-align: center; opacity: 0.3; font-size: 0.7rem; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <div class="space-background" id="space"></div>
+    <div class="space-background"></div>
     <header><div class="logo">ORBIT<span>WHITE</span></div></header>
-    
     <button id="musicToggle">🔈</button>
 
     <section class="hero">
@@ -175,9 +127,7 @@
             </div>
         </div>
         
-        <div class="typing-container">
-            <span class="typing-text" id="typewriter"></span>
-        </div>
+        <div class="typing-container"><span id="typewriter"></span></div>
         
         <div class="skills-container">
             <div class="skill-wrapper"><div class="skill-info"><span>HTML</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
@@ -191,19 +141,13 @@
                 <span class="card-category">DESIGN</span>
                 <h3 class="card-title">10 THUMBNAIL'S</h3>
                 <p class="card-desc">Artes de alta performance para YouTube com foco total em taxa de clique (CTR).</p>
-                <div class="price-tag">
-                    R$ 100
-                    <a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a>
-                </div>
+                <div class="price-tag">R$ 100<a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a></div>
             </div>
             <div class="service-card">
                 <span class="card-category">DEVELOPMENT</span>
                 <h3 class="card-title">Criação de Site</h3>
                 <p class="card-desc">Landing Pages e Sites profissionais com design futurista e carregamento instantâneo.</p>
-                <div class="price-tag">
-                    R$ 300
-                    <a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a>
-                </div>
+                <div class="price-tag">R$ 300<a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a></div>
             </div>
         </div>
     </section>
@@ -243,16 +187,9 @@
             if (audio.paused) { audio.play(); toggle.textContent = "🔊"; }
             else { audio.pause(); toggle.textContent = "🔈"; }
         };
-
-        const space = document.getElementById('space');
-        for (let k = 0; k < 8; k++) {
-            const comet = document.createElement('div');
-            comet.className = 'comet';
-            comet.style.left = Math.random() * 100 + 'vw';
-            comet.style.top = Math.random() * 50 + 'vh';
-            comet.style.animationDelay = Math.random() * 10 + 's';
-            space.appendChild(comet);
-        }
     </script>
+
+    <script>(function(s){s.dataset.zone='10745110',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
 </body>
 </html>

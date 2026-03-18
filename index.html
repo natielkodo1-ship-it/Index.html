@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbit White | Developer Junior</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,7 +38,7 @@
         .logo span { color: var(--roxo-neon); text-shadow: 0 0 10px var(--roxo-neon); }
 
         /* Hero */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 5% 50px; }
         
         .junior-cloud-container { position: relative; margin-bottom: 2.5rem; animation: float 5s ease-in-out infinite; }
         .junior-cloud {
@@ -49,54 +52,68 @@
         .typing-container { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; margin-bottom: 1rem; min-height: 1.2em; }
         .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); }
 
-        /* Aba Explicativa Minimalista */
-        .aba-simples {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            border-left: 3px solid var(--roxo-neon);
-            background: var(--vidro);
-            backdrop-filter: blur(10px);
-            border-radius: 0 15px 15px 0;
-            text-align: left;
-            max-width: 450px;
-            transition: 0.3s;
+        /* Aba de Serviços - Animação de Entrada */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .aba-simples:hover { background: rgba(255, 255, 255, 0.06); }
-        .aba-simples h2 { font-size: 1rem; color: var(--roxo-neon); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
-        .aba-simples p { font-size: 0.95rem; opacity: 0.9; line-height: 1.4; }
 
-        /* Listra Passando */
+        .service-mini-card {
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(188, 19, 254, 0.05) 100%);
+            border: 1px solid var(--borda-vidro);
+            border-left: 4px solid var(--roxo-neon);
+            border-radius: 12px 30px 30px 12px;
+            backdrop-filter: blur(12px);
+            text-align: left;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: 0.4s;
+            animation: fadeInUp 0.8s ease backwards; /* Animação aqui */
+        }
+
+        .card-thumbnail { animation-delay: 0.5s; } /* Aparece primeiro */
+        .card-site { animation-delay: 0.8s; }      /* Aparece logo depois */
+
+        .service-mini-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(188, 19, 254, 0.4);
+            box-shadow: 0 15px 40px rgba(188, 19, 254, 0.15);
+        }
+        .service-mini-card h2 { 
+            font-size: 0.85rem; 
+            color: var(--roxo-neon); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin-bottom: 0.8rem;
+        }
+        .service-mini-card p { font-size: 1.05rem; line-height: 1.5; font-weight: 300; }
+        
+        .white-text { color: var(--branco) !important; font-weight: 700; }
+
+        /* Resto do Design */
         .companies { padding: 2.5rem 0; background: var(--vidro); border-y: 1px solid var(--borda-vidro); overflow: hidden; white-space: nowrap; }
         .company-track { display: inline-block; animation: scroll 25s linear infinite; }
         .company-name { display: inline-block; font-size: 1.2rem; font-weight: 500; color: rgba(255,255,255,0.3); margin: 0 40px; letter-spacing: 2px; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* Skills */
         .skills-section { padding: 6rem 8%; text-align: center; }
         .skills-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 2rem; }
-        .skill-item { 
-            background: var(--vidro); border: 1px solid var(--borda-vidro); padding: 25px 45px; border-radius: 20px;
-            font-weight: 700; transition: 0.5s; backdrop-filter: blur(10px);
-        }
+        .skill-item { background: var(--vidro); border: 1px solid var(--borda-vidro); padding: 25px 45px; border-radius: 20px; font-weight: 700; transition: 0.5s; backdrop-filter: blur(10px); }
         .skill-item:hover { background: rgba(188, 19, 254, 0.1); border-color: var(--roxo-neon); transform: scale(1.05); }
 
-        /* Portfólio */
         .portfolio { padding: 4rem 8% 8rem; }
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
-        .project-card { 
-            background: var(--vidro); border: 1px solid var(--borda-vidro); border-radius: 30px;
-            padding: 3rem; transition: 0.4s;
-        }
+        .project-card { background: var(--vidro); border: 1px solid var(--borda-vidro); border-radius: 30px; padding: 3rem; transition: 0.4s; }
         .project-card h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--roxo-neon); }
         .project-card p { opacity: 0.7; line-height: 1.6; }
 
-        /* Contato */
         .contact-section { padding: 8rem 8%; text-align: center; background: radial-gradient(circle at bottom, #1a0b2e, #0a0414); }
         .contact-btn-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 3rem; }
-        .contact-link { 
-            text-decoration: none; color: #fff; font-weight: 700; padding: 20px 45px; 
-            border-radius: 50px; transition: 0.4s; display: flex; align-items: center; gap: 10px;
-        }
+        .contact-link { text-decoration: none; color: #fff; font-weight: 700; padding: 20px 45px; border-radius: 50px; transition: 0.4s; display: flex; align-items: center; gap: 10px; }
         .instagram { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
         .whatsapp { background: #25d366; }
         .contact-link:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -119,16 +136,28 @@
         <div class="typing-container">
             <span class="typing-text" id="typewriter"></span>
         </div>
-        <p style="opacity: 0.7; margin-bottom: 1rem;">Especialista em criar o impossível com código.</p>
+        <p style="opacity: 0.7; margin-bottom: 0.5rem;">Especialista em criar o impossível com código.</p>
 
-        <div class="aba-simples">
-            <h2>Criação de Sites</h2>
+        <div class="service-mini-card card-thumbnail">
+            <h2>Services</h2>
             <p>
-                Desenvolvo sites <span style="color: var(--roxo-neon); font-weight: bold;">simples e bonitos</span>. 
-                Design moderno, limpo e focado em resultados para o seu projeto.
+                <b>Thumbnail's:</b> <span class="white-text">×10 por R$100</span>. <br>
+                Design incrível para destacar seus vídeos.
+            </p>
+        </div>
+
+        <div class="service-mini-card card-site">
+            <h2>Services</h2>
+            <p>
+                <b>Criação de Site:</b> <span class="white-text">R$300</span>. <br>
+                Seu espaço profissional na web com design moderno.
             </p>
         </div>
     </section>
+
+    <audio id="bgMusic" loop>
+        <source src="norbitbeat.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="companies">
         <div class="company-track">
@@ -144,8 +173,8 @@
     <section class="skills-section">
         <h2>Especialidades Técnicas</h2>
         <div class="skills-grid">
-            <div class="skill-item">CRIEI BACKEND</div>
-            <div class="skill-item">CRIEI INTERFACE</div>
+            <div class="skill-item">PROGRAMAÇÃO EM HTML</div>
+            <div class="skill-item">CRIAÇÃO  DE INTERFACE</div>
             <div class="skill-item">CRIEI LAYOUT ÚNICO E RESPONSIVO</div>
         </div>
     </section>
@@ -205,6 +234,20 @@
             space.appendChild(comet);
         }
         type();
+
+        function startMusic() {
+            const audio = document.getElementById('bgMusic');
+            audio.play().catch(e => console.log("Aguardando clique..."));
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('scroll', startMusic);
+            document.removeEventListener('touchstart', startMusic);
+        }
+        document.addEventListener('click', startMusic);
+        document.addEventListener('scroll', startMusic);
+        document.addEventListener('touchstart', startMusic);
     </script>
+
+    <script>(function(s){s.dataset.zone='10745110',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
 </body>
 </html>

@@ -38,7 +38,7 @@
         .logo span { color: var(--roxo-neon); text-shadow: 0 0 10px var(--roxo-neon); }
 
         /* Hero */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 5% 50px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 50px; }
         
         .junior-cloud-container { position: relative; margin-bottom: 2.5rem; animation: float 5s ease-in-out infinite; }
         .junior-cloud {
@@ -52,9 +52,9 @@
         .typing-container { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; margin-bottom: 1rem; min-height: 1.2em; }
         .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); }
 
-        /* Aba de Serviços - Animação de Entrada */
+        /* Animação de Entrada para os Cards */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -72,29 +72,34 @@
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: 0.4s;
-            animation: fadeInUp 0.8s ease backwards; /* Animação aqui */
+            animation: fadeInUp 1s ease backwards;
         }
 
-        .card-thumbnail { animation-delay: 0.5s; } /* Aparece primeiro */
-        .card-site { animation-delay: 0.8s; }      /* Aparece logo depois */
+        .card-thumbnail { animation-delay: 0.3s; }
+        .card-site { animation-delay: 0.6s; }
 
         .service-mini-card:hover {
             transform: translateY(-5px);
             border-color: rgba(188, 19, 254, 0.4);
             box-shadow: 0 15px 40px rgba(188, 19, 254, 0.15);
         }
-        .service-mini-card h2 { 
-            font-size: 0.85rem; 
-            color: var(--roxo-neon); 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            margin-bottom: 0.8rem;
-        }
+        .service-mini-card h2 { font-size: 0.85rem; color: var(--roxo-neon); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.8rem; }
         .service-mini-card p { font-size: 1.05rem; line-height: 1.5; font-weight: 300; }
         
         .white-text { color: var(--branco) !important; font-weight: 700; }
 
-        /* Resto do Design */
+        /* Botão de Som Discreto */
+        #musicToggle {
+            position: fixed; bottom: 20px; left: 20px; z-index: 2000;
+            background: var(--vidro); border: 1px solid var(--borda-vidro);
+            color: white; width: 45px; height: 45px; border-radius: 50%;
+            cursor: pointer; backdrop-filter: blur(10px); display: flex;
+            align-items: center; justify-content: center; font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        #musicToggle:hover { background: var(--roxo-neon); transform: scale(1.1); }
+
+        /* Outras Seções */
         .companies { padding: 2.5rem 0; background: var(--vidro); border-y: 1px solid var(--borda-vidro); overflow: hidden; white-space: nowrap; }
         .company-track { display: inline-block; animation: scroll 25s linear infinite; }
         .company-name { display: inline-block; font-size: 1.2rem; font-weight: 500; color: rgba(255,255,255,0.3); margin: 0 40px; letter-spacing: 2px; }
@@ -129,6 +134,8 @@
         <div class="logo">ORBIT<span>WHITE</span></div>
     </header>
 
+    <button id="musicToggle">🔈</button>
+
     <section class="hero">
         <div class="junior-cloud-container">
             <div class="junior-cloud">DEVELOPER JUNIOR</div>
@@ -141,7 +148,7 @@
         <div class="service-mini-card card-thumbnail">
             <h2>Services</h2>
             <p>
-                <b>Thumbnail's:</b> <span class="white-text">×10 por R$100</span>. <br>
+                <b>Thumbnail's:</b> <span class="white-text">10 por R$100</span>. <br>
                 Design incrível para destacar seus vídeos.
             </p>
         </div>
@@ -173,8 +180,8 @@
     <section class="skills-section">
         <h2>Especialidades Técnicas</h2>
         <div class="skills-grid">
-            <div class="skill-item">PROGRAMAÇÃO EM HTML</div>
-            <div class="skill-item">CRIAÇÃO  DE INTERFACE</div>
+            <div class="skill-item">CRIEI BACKEND</div>
+            <div class="skill-item">CRIEI INTERFACE</div>
             <div class="skill-item">CRIEI LAYOUT ÚNICO E RESPONSIVO</div>
         </div>
     </section>
@@ -210,6 +217,7 @@
     </footer>
 
     <script>
+        // Efeito Digitação
         const textElement = document.getElementById('typewriter');
         const phrases = ["Eu sou Programador.", "Orbit White.", "Eu crio Sites."];
         let i = 0, j = 0, isDeleting = false;
@@ -223,6 +231,7 @@
             setTimeout(type, isDeleting ? 50 : 150);
         }
 
+        // Fundo com Cometas
         const space = document.getElementById('space');
         for (let k = 0; k < 15; k++) {
             const comet = document.createElement('div');
@@ -235,16 +244,36 @@
         }
         type();
 
-        function startMusic() {
-            const audio = document.getElementById('bgMusic');
-            audio.play().catch(e => console.log("Aguardando clique..."));
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('scroll', startMusic);
-            document.removeEventListener('touchstart', startMusic);
+        // Lógica de Áudio
+        const audio = document.getElementById('bgMusic');
+        const toggle = document.getElementById('musicToggle');
+
+        function playAudio() {
+            audio.play().then(() => {
+                toggle.textContent = "🔊";
+            }).catch(e => console.log("Aguardando interação..."));
+            // Remove os eventos após tocar
+            document.removeEventListener('click', playAudio);
+            document.removeEventListener('scroll', playAudio);
+            document.removeEventListener('touchstart', playAudio);
         }
-        document.addEventListener('click', startMusic);
-        document.addEventListener('scroll', startMusic);
-        document.addEventListener('touchstart', startMusic);
+
+        // Tenta tocar na primeira interação
+        document.addEventListener('click', playAudio);
+        document.addEventListener('scroll', playAudio);
+        document.addEventListener('touchstart', playAudio);
+
+        // Botão manual (Garante que toque)
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita conflito com o playAudio acima
+            if (audio.paused) {
+                audio.play();
+                toggle.textContent = "🔊";
+            } else {
+                audio.pause();
+                toggle.textContent = "🔈";
+            }
+        });
     </script>
 
     <script>(function(s){s.dataset.zone='10745110',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>

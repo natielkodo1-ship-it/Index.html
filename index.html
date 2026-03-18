@@ -11,17 +11,17 @@
     <style>
         :root {
             --roxo-deep: #0a0414;
-            --roxo-vibrante: #8a2be2;
             --roxo-neon: #bc13fe;
             --branco: #ffffff;
             --whatsapp: #25d366;
-            --vidro: rgba(255, 255, 255, 0.03);
             --borda-vidro: rgba(255, 255, 255, 0.1);
+            --nuvem-base: rgba(188, 19, 254, 0.1); /* Cor de fundo da nuvem */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--roxo-deep); color: var(--branco); overflow-x: hidden; }
 
+        /* Fundo Estelar */
         .space-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at top right, #1a0b2e, #0a0414); }
         .comet { position: absolute; width: 2px; height: 2px; background: #fff; opacity: 0; animation: shoot 6s linear infinite; }
         @keyframes shoot {
@@ -33,32 +33,90 @@
         .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
         .logo span { color: var(--roxo-neon); text-shadow: 0 0 10px var(--roxo-neon); }
 
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 150px 5% 50px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 180px 5% 100px; }
         
-        /* Nave Épica */
-        .ship-badge-container { position: relative; margin-bottom: 3rem; animation: shipFloat 4s ease-in-out infinite; }
-        .ship-body { width: 250px; height: 70px; background: rgba(188, 19, 254, 0.05); border: 2px solid var(--roxo-neon); border-radius: 10px; position: relative; box-shadow: 0 0 30px rgba(188, 19, 254, 0.2); display: flex; justify-content: center; align-items: center; z-index: 2; }
-        .ship-text { color: var(--branco); font-size: 0.9rem; font-weight: 700; letter-spacing: 4px; animation: blinkText 2.5s step-end infinite; }
-        .ship-thruster { position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 100px; height: 10px; background: linear-gradient(transparent, var(--roxo-neon)); filter: blur(5px); animation: pulseThruster 1s ease-in-out infinite; }
+        /* --- NOVA SEÇÃO: NUVEM DE QUALIDADES --- */
+        .cloud-badge-container {
+            position: relative;
+            margin-bottom: 5rem; /* Mantendo a distância que definimos */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: cloudFloat 5s ease-in-out infinite; /* Flutuação mais suave */
+        }
 
-        @keyframes shipFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        @keyframes blinkText { from, to { opacity: 1; } 50% { opacity: 0.3; } }
-        @keyframes pulseThruster { 0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
+        /* O corpo da Nuvem (Formas arredondadas e sobrepostas) */
+        .cloud-body {
+            position: relative;
+            background: var(--nuvem-base);
+            border: 1px solid rgba(188, 19, 254, 0.2);
+            border-radius: 50px; /* Base arredondada */
+            padding: 20px 60px;
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.2), inset 0 0 10px rgba(188, 19, 254, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 2;
+        }
 
-        .typing-container { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; margin-bottom: 1rem; min-height: 1.2em; }
+        /* Círculos que formam a nuvem (Pufes) */
+        .cloud-body::before, .cloud-body::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            border: inherit;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Pufe Esquerdo superior */
+        .cloud-body::before {
+            width: 80px; height: 80px;
+            top: -35px; left: 30px;
+        }
+
+        /* Pufe Direito superior */
+        .cloud-body::after {
+            width: 100px; height: 100px;
+            top: -50px; right: 20px;
+        }
+
+        /* O Texto dentro da nuvem (QUALIDADES) */
+        .cloud-text {
+            color: var(--branco);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 6px; /* Bem espaçado e formoso */
+            text-shadow: 0 0 10px var(--roxo-neon);
+            position: relative;
+            z-index: 3; /* Acima dos pufes */
+        }
+
+        /* Animação de Flutuação da Nuvem */
+        @keyframes cloudFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+            50% { transform: translateY(-15px) scale(1.02); opacity: 1; }
+        }
+
+        /* Estilo do Texto Digitado */
+        .typing-container { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; margin-bottom: 4rem; min-height: 1.2em; }
         .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); border-right: 3px solid var(--roxo-neon); padding-right: 5px; animation: blink 0.75s step-end infinite; }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--roxo-neon); } }
 
-        /* Skills */
-        .skills-container { width: 100%; max-width: 500px; margin: 2rem 0 4rem; text-align: left; }
-        .skill-wrapper { margin-bottom: 18px; }
-        .skill-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
-        .skill-bar { height: 3px; background: rgba(255,255,255,0.03); border-radius: 10px; overflow: hidden; position: relative; }
-        .skill-progress { height: 100%; background: var(--roxo-neon); width: 0; transition: width 2s ease-in-out; position: relative; }
-        .skill-progress::after { content: ''; position: absolute; right: 0; top: 0; width: 10px; height: 100%; background: var(--branco); box-shadow: 0 0 10px var(--roxo-neon); }
+        /* Skills - BARRAS MINIMALISTAS */
+        .skills-container { width: 100%; max-width: 500px; margin-bottom: 6rem; text-align: left; }
+        .skill-wrapper { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+        
+        .skill-bar { height: 4px; background: rgba(255,255,255,0.03); border-radius: 10px; overflow: hidden; position: relative; }
+        .skill-progress { height: 100%; background: var(--roxo-neon); width: 0; transition: width 2s ease-in-out; position: relative; border-radius: 10px; }
+        .skill-progress::after {
+            content: ''; position: absolute; right: 0; top: 0; width: 10px; height: 100%;
+            background: var(--branco); box-shadow: 0 0 10px var(--branco), 0 0 20px var(--roxo-neon);
+            border-radius: 10px;
+        }
 
-        /* Cards Ajustados */
-        .cards-container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1000px; width: 100%; }
+        /* Cards de Anúncio */
+        .cards-container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; max-width: 1000px; width: 100%; }
         .service-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--borda-vidro);
@@ -67,50 +125,40 @@
             flex: 1; min-width: 300px;
             transition: 0.4s;
             text-align: left;
-            text-decoration: none; /* Para o card inteiro ser clicável se desejar */
-            color: inherit;
         }
         .service-card:hover { border-color: var(--roxo-neon); background: rgba(255,255,255,0.04); transform: translateY(-5px); }
         
+        .card-category { font-size: 0.7rem; color: var(--roxo-neon); letter-spacing: 3px; font-weight: 700; text-transform: uppercase; }
+        .card-title { font-size: 1.6rem; margin: 12px 0; font-weight: 700; }
+        .card-desc { font-size: 0.9rem; opacity: 0.6; line-height: 1.5; margin-bottom: 20px; }
+
         .price-tag { 
-            font-family: 'Share Tech Mono', monospace; 
-            font-size: 1.4rem; 
-            margin-top: 1.5rem; 
-            border-top: 1px solid var(--borda-vidro); 
-            padding-top: 1.5rem; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+            margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--borda-vidro);
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Share Tech Mono', monospace; font-size: 1.6rem; color: #fff;
         }
 
-        /* Ícone do WhatsApp nos Cards */
-        .card-whatsapp-icon {
+        .btn-whatsapp-card {
             color: var(--whatsapp);
-            font-size: 1.8rem;
-            animation: pulseGreen 2s infinite;
-            cursor: pointer;
+            font-size: 2.3rem;
+            animation: pulseGreen 1.5s infinite;
+            text-decoration: none;
         }
         @keyframes pulseGreen {
-            0% { transform: scale(1); text-shadow: 0 0 0 rgba(37, 211, 102, 0); }
-            50% { transform: scale(1.2); text-shadow: 0 0 15px rgba(37, 211, 102, 0.6); }
-            100% { transform: scale(1); text-shadow: 0 0 0 rgba(37, 211, 102, 0); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--whatsapp)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 12px var(--whatsapp)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--whatsapp)); }
         }
 
-        .companies { padding: 3rem 0; background: rgba(255,255,255,0.02); overflow: hidden; white-space: nowrap; border-top: 1px solid var(--borda-vidro); border-bottom: 1px solid var(--borda-vidro); margin: 4rem 0; }
+        /* Marquee */
+        .companies { padding: 3rem 0; background: rgba(255,255,255,0.02); overflow: hidden; white-space: nowrap; border-top: 1px solid var(--borda-vidro); border-bottom: 1px solid var(--borda-vidro); margin: 6rem 0; }
         .company-track { display: inline-block; animation: scroll 25s linear infinite; }
         .company-name { display: inline-block; font-size: 1rem; color: rgba(255,255,255,0.2); margin: 0 60px; letter-spacing: 4px; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        .contact-section { padding: 4rem 8% 8rem; text-align: center; }
-        .contact-btn-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 3rem; }
-        .contact-link { text-decoration: none; color: #fff; font-weight: 700; padding: 20px 50px; border-radius: 50px; transition: 0.4s; letter-spacing: 2px; }
-        .instagram { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
-        .whatsapp { background: #25d366; }
-        .contact-link:hover { transform: scale(1.05); }
+        #musicToggle { position: fixed; bottom: 20px; left: 20px; z-index: 2000; background: var(--vidro); border: 1px solid var(--borda-vidro); color: white; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
 
-        #musicToggle { position: fixed; bottom: 25px; left: 25px; z-index: 2000; background: var(--vidro); border: 1px solid var(--borda-vidro); color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-
-        footer { padding: 3rem; text-align: center; opacity: 0.2; font-size: 0.7rem; }
+        footer { padding: 3rem; text-align: center; opacity: 0.2; font-size: 0.7rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -121,10 +169,9 @@
     <button id="musicToggle">🔈</button>
 
     <section class="hero">
-        <div class="ship-badge-container">
-            <div class="ship-body">
-                <span class="ship-text">QUALIDADES / SKILLS</span>
-                <div class="ship-thruster"></div>
+        <div class="cloud-badge-container">
+            <div class="cloud-body">
+                <span class="cloud-text">QUALIDADES</span>
             </div>
         </div>
         
@@ -141,22 +188,21 @@
 
         <div class="cards-container">
             <div class="service-card">
-                <h2 style="font-size: 0.7rem; color: var(--roxo-neon); letter-spacing: 3px; margin-bottom: 10px;">DESIGN</h2>
-                <h3 style="margin-bottom: 15px;">10 THUMBNAIL'S</h3>
-                <p style="opacity: 0.5; font-size: 0.9rem;">Artes de alta performance para YouTube com foco em CTR.</p>
+                <span class="card-category">DESIGN</span>
+                <h3 class="card-title">10 THUMBNAIL'S</h3>
+                <p class="card-desc">Artes de alta performance para YouTube com foco total em taxa de clique (CTR).</p>
                 <div class="price-tag">
-                    R$ 100 
-                    <a href="https://wa.me/+5521983747028" target="_blank"><i class="fab fa-whatsapp card-whatsapp-icon"></i></a>
+                    R$ 100
+                    <a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-
             <div class="service-card">
-                <h2 style="font-size: 0.7rem; color: var(--roxo-neon); letter-spacing: 3px; margin-bottom: 10px;">DEVELOPMENT</h2>
-                <h3 style="margin-bottom: 15px;">Criação de Site</h3>
-                <p style="opacity: 0.5; font-size: 0.9rem;">Landing pages e sistemas exclusivos de alta conversão.</p>
+                <span class="card-category">DEVELOPMENT</span>
+                <h3 class="card-title">Criação de Site</h3>
+                <p class="card-desc">Landing Pages e Sites profissionais com design futurista e carregamento instantâneo.</p>
                 <div class="price-tag">
-                    R$ 300 
-                    <a href="https://wa.me/+5521983747028" target="_blank"><i class="fab fa-whatsapp card-whatsapp-icon"></i></a>
+                    R$ 300
+                    <a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
@@ -164,25 +210,12 @@
 
     <div class="companies">
         <div class="company-track">
-            <div class="company-name">VANGUARDA BRASIL</div>
-            <div class="company-name">BEGAMERS</div>
-            <div class="company-name">1SHOTKILL</div>
-            <div class="company-name">VANGUARDA BRASIL</div>
-            <div class="company-name">BEGAMERS</div>
-            <div class="company-name">1SHOTKILL</div>
+            <div class="company-name">VANGUARDA BRASIL</div><div class="company-name">BEGAMERS</div><div class="company-name">1SHOTKILL</div>
+            <div class="company-name">VANGUARDA BRASIL</div><div class="company-name">BEGAMERS</div><div class="company-name">1SHOTKILL</div>
         </div>
     </div>
 
-    <section class="contact-section">
-        <h2>Inicie seu projeto agora</h2>
-        <div class="contact-btn-container">
-            <a href="https://wa.me/+5521983747028" target="_blank" class="contact-link whatsapp">WHATSAPP</a>
-            <a href="https://www.instagram.com/orbitwhite_" target="_blank" class="contact-link instagram">INSTAGRAM</a>
-        </div>
-    </section>
-
     <audio id="bgMusic" loop preload="auto"><source src="./norbitbeat.mp3" type="audio/mpeg"></audio>
-
     <footer>ORBIT WHITE &copy; 2026 | BUILT IN DEEP SPACE</footer>
 
     <script>
@@ -202,18 +235,14 @@
         }
         type();
 
-        function forceAudio() {
-            audio.play().then(() => { toggle.textContent = "🔊"; window.removeEventListener('click', forceAudio); window.removeEventListener('scroll', forceAudio); window.removeEventListener('touchstart', forceAudio); }).catch(() => {});
-        }
-        window.addEventListener('click', forceAudio);
-        window.addEventListener('scroll', forceAudio);
-        window.addEventListener('touchstart', forceAudio);
+        function startAudio() { audio.play().then(() => toggle.textContent = "🔊").catch(()=>{}); }
+        window.onclick = startAudio; window.onscroll = startAudio;
 
-        toggle.addEventListener('click', (e) => {
+        toggle.onclick = (e) => {
             e.stopPropagation();
             if (audio.paused) { audio.play(); toggle.textContent = "🔊"; }
             else { audio.pause(); toggle.textContent = "🔈"; }
-        });
+        };
 
         const space = document.getElementById('space');
         for (let k = 0; k < 8; k++) {

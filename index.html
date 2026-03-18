@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta name="monetag" content="83653431b22e24ceef4158593ed565e2">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbit White | Developer Junior</title>
@@ -33,7 +35,7 @@
         .logo span { color: var(--roxo-neon); text-shadow: 0 0 10px var(--roxo-neon); }
 
         /* Hero */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; }
         
         .junior-cloud-container { position: relative; margin-bottom: 2.5rem; animation: float 5s ease-in-out infinite; }
         .junior-cloud {
@@ -44,13 +46,29 @@
         .junior-cloud::after { content: ''; position: absolute; background: #fff; width: 35px; height: 35px; border-radius: 50%; top: -12px; right: 20%; z-index: -1; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-        .typing-container { font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; margin-bottom: 2rem; }
+        .typing-container { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; margin-bottom: 1rem; min-height: 1.2em; }
         .typing-text { color: var(--branco); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); }
+
+        /* Aba Explicativa Minimalista */
+        .aba-simples {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-left: 3px solid var(--roxo-neon);
+            background: var(--vidro);
+            backdrop-filter: blur(10px);
+            border-radius: 0 15px 15px 0;
+            text-align: left;
+            max-width: 450px;
+            transition: 0.3s;
+        }
+        .aba-simples:hover { background: rgba(255, 255, 255, 0.06); }
+        .aba-simples h2 { font-size: 1rem; color: var(--roxo-neon); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
+        .aba-simples p { font-size: 0.95rem; opacity: 0.9; line-height: 1.4; }
 
         /* Listra Passando */
         .companies { padding: 2.5rem 0; background: var(--vidro); border-y: 1px solid var(--borda-vidro); overflow: hidden; white-space: nowrap; }
         .company-track { display: inline-block; animation: scroll 25s linear infinite; }
-        .company-name { display: inline-block; font-size: 1.2rem; font-weight: 500; color: rgba(255,255,255,0.5); margin: 0 40px; letter-spacing: 2px; }
+        .company-name { display: inline-block; font-size: 1.2rem; font-weight: 500; color: rgba(255,255,255,0.3); margin: 0 40px; letter-spacing: 2px; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* Skills */
@@ -101,7 +119,15 @@
         <div class="typing-container">
             <span class="typing-text" id="typewriter"></span>
         </div>
-        <p style="opacity: 0.6;">Especialista em criar o impossível com código.</p>
+        <p style="opacity: 0.7; margin-bottom: 1rem;">Especialista em criar o impossível com código.</p>
+
+        <div class="aba-simples">
+            <h2>Criação de Sites</h2>
+            <p>
+                Desenvolvo sites <span style="color: var(--roxo-neon); font-weight: bold;">simples e bonitos</span>. 
+                Design moderno, limpo e focado em resultados para o seu projeto.
+            </p>
+        </div>
     </section>
 
     <div class="companies">
@@ -151,7 +177,7 @@
     </section>
 
     <footer>
-        ORBIT WHITE &copy; 2024 | CODANDO NO ESPAÇO
+        ORBIT WHITE &copy; 2026 | CODANDO NO ESPAÇO
     </footer>
 
     <script>
@@ -181,5 +207,4 @@
         type();
     </script>
 </body>
-    </html>
-    
+</html>

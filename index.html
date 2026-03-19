@@ -1,195 +1,183 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta name="monetag" content="83653431b22e24ceef4158593ed565e2">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orbit White | Developer Junior</title>
+    <title>Orbit Store | Hardware de Elite</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --roxo-deep: #0a0414;
-            --roxo-neon: #bc13fe;
+            --bg-body: #f4f4f4; /* Fundo cinza claro estilo ML/Amazon */
+            --bg-card: #ffffff;
+            --roxo-pichau: #bc13fe;
+            --roxo-glow: rgba(188, 19, 254, 0.4);
             --branco: #ffffff;
-            --whatsapp: #25d366;
-            --borda-vidro: rgba(255, 255, 255, 0.1);
+            --texto-dark: #333333;
+            --texto-cinza: #777777;
+            --sucesso: #00a650; /* Verde Mercado Livre */
+            --borda: rgba(0, 0, 0, 0.06);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
-        body { background-color: var(--roxo-deep); color: var(--branco); overflow-x: hidden; }
-
-        .space-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at top right, #1a0b2e, #0a0414); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
-        header { padding: 1.5rem; display: flex; justify-content: center; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--borda-vidro); }
-        .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
-        .logo span { color: var(--roxo-neon); text-shadow: 0 0 10px var(--roxo-neon); }
+        /* Evitar rolar para o lado */
+        html, body { width: 100%; overflow-x: hidden; background-color: var(--bg-body); color: var(--texto-dark); }
 
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 180px 5% 100px; }
+        /* HEADER ESTILO SUPER BARRA (ML/AMAZON) */
+        header { background: #0a0414; padding: 12px 0; border-bottom: 3px solid var(--roxo-pichau); position: sticky; top: 0; z-index: 1000; width: 100%; }
+        .nav-container { max-width: 1300px; margin: 0 auto; padding: 0 15px; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
         
-        /* NUVEM DE QUALIDADES */
-        .cloud-badge-container {
-            position: relative;
-            margin-bottom: 5rem;
+        .logo { font-size: 1.3rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: -1px; text-decoration: none; }
+        .logo span { color: var(--roxo-pichau); text-shadow: 0 0 15px var(--roxo-glow); }
+
+        .search-bar { flex: 1; position: relative; max-width: 600px; }
+        .search-bar input { width: 100%; padding: 12px 18px; border-radius: 6px; border: none; background: rgba(255,255,255,0.08); color: white; font-size: 0.9rem; outline: none; }
+        .search-bar input::placeholder { color: rgba(255,255,255,0.3); }
+        .search-bar i { position: absolute; right: 15px; top: 12px; color: var(--roxo-pichau); cursor: pointer; }
+
+        .nav-icons { display: flex; gap: 20px; color: #fff; font-size: 0.9rem; align-items: center; }
+        .nav-icons i { cursor: pointer; transition: 0.3s; }
+        .nav-icons i:hover { color: var(--roxo-pichau); }
+        /* Esconde ícones no celular para não bagunçar */
+        @media (max-width: 768px) { .nav-icons { display: none; } }
+
+        /* --- NOVA SEÇÃO: BARRA DE CATEGORIAS ORGANIZADA (OUTRO JEITO) --- */
+        .sub-nav {
+            background: rgba(10, 4, 20, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 12px 0;
+            margin-top: -3px; /* Cola no header */
+            width: 100%;
+        }
+        
+        .sub-nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 15px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: cloudFloat 5s ease-in-out infinite;
+            gap: 25px;
+            overflow-x: auto; /* Scroll lateral se houver muitas categorias */
+            white-space: nowrap; /* Não quebra linha */
         }
-
-        .cloud-body {
-            position: relative;
-            background: rgba(188, 19, 254, 0.1);
-            border: 1px solid rgba(188, 19, 254, 0.2);
-            border-radius: 50px;
-            padding: 20px 60px;
-            box-shadow: 0 0 40px rgba(188, 19, 254, 0.2);
-            backdrop-filter: blur(5px);
-            z-index: 2;
-        }
-
-        .cloud-body::before, .cloud-body::after {
-            content: ''; position: absolute; background: inherit; border: inherit; border-radius: 50%; z-index: 1;
-        }
-
-        .cloud-body::before { width: 80px; height: 80px; top: -35px; left: 30px; }
-        .cloud-body::after { width: 100px; height: 100px; top: -50px; right: 20px; }
-
-        .cloud-text {
-            color: var(--branco); font-size: 1rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 6px; text-shadow: 0 0 10px var(--roxo-neon); position: relative; z-index: 3;
-        }
-
-        @keyframes cloudFloat { 0%, 100% { transform: translateY(0); opacity: 0.9; } 50% { transform: translateY(-20px); opacity: 1; } }
-
-        /* TEXTO DIGITADO */
-        .typing-container { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 4rem; min-height: 1.2em; }
         
-        /* SKILLS */
-        .skills-container { width: 100%; max-width: 450px; margin-bottom: 6rem; }
-        .skill-wrapper { margin-bottom: 20px; text-align: left; }
-        .skill-info { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 8px; opacity: 0.8; }
-        .skill-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden; }
-        .skill-progress { height: 100%; background: var(--roxo-neon); box-shadow: 0 0 10px var(--roxo-neon); transition: width 2s ease-in-out; }
+        /* Esconde a barra de rolagem lateral nas categorias */
+        .sub-nav-container::-webkit-scrollbar { display: none; }
 
-        /* CARDS ANÚNCIOS */
-        .cards-container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 950px; }
-        .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--borda-vidro);
-            border-radius: 20px;
-            padding: 2.5rem; flex: 1; min-width: 300px;
-            transition: 0.3s; text-align: left;
+        .sub-nav-item {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s ease;
+            cursor: pointer;
         }
-        .service-card:hover { border-color: var(--roxo-neon); transform: translateY(-8px); background: rgba(255, 255, 255, 0.05); }
+
+        .sub-nav-item:hover {
+            color: var(--roxo-pichau);
+            transform: translateY(-2px);
+        }
+
+        /* BANNER */
+        .hero { width: 100%; height: 280px; background: linear-gradient(135deg, #120626 0%, #050208 100%); display: flex; align-items: center; justify-content: center; text-align: center; border-bottom: 1px solid var(--roxo-pichau); margin-bottom: 40px; }
+        .hero h1 { font-size: 2rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 800; color: #fff; }
+        .hero p { color: var(--roxo-pichau); font-size: 0.9rem; font-weight: 700; margin-top: 5px; }
+
+        /* GRID */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 15px 100px; }
+        .section-title { font-size: 1.2rem; margin-bottom: 25px; color: var(--texto-dark); font-weight: 600; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
+
+        /* CARD PRODUTO (LIMPO) */
+        .card { background: var(--bg-card); border: 1px solid var(--borda); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; transition: 0.3s ease; position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--roxo-pichau); transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        .img-box { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #1a1126; overflow: hidden; }
+        .img-box i { opacity: 0.5; }
         
-        .card-category { font-size: 0.65rem; color: var(--roxo-neon); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
-        .card-title { font-size: 1.6rem; margin: 12px 0; font-weight: 700; color: #fff; }
-        .card-desc { font-size: 0.9rem; opacity: 0.6; line-height: 1.5; margin-bottom: 20px; }
+        .badge { position: absolute; top: 10px; left: 10px; background: var(--sucesso); color: #000; font-size: 9px; font-weight: 900; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }
 
-        .price-tag { 
-            margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--borda-vidro);
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: 'Share Tech Mono', monospace; font-size: 1.6rem; color: #fff;
-        }
+        .name { font-size: 0.85rem; font-weight: 500; color: var(--texto-dark); margin-bottom: 12px; height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+        
+        .price-box { margin-top: auto; }
+        .price-current { font-size: 1.5rem; font-weight: 800; color: #333; display: block; margin: 3px 0; }
+        .price-pix { font-size: 0.75rem; color: var(--sucesso); font-weight: 700; margin-bottom: 15px; display: block; }
 
-        .btn-whatsapp-card {
-            color: var(--whatsapp); font-size: 2.3rem; animation: pulseGreen 1.5s infinite; text-decoration: none;
-        }
+        .btn-buy { background: var(--roxo-pichau); color: white; text-align: center; padding: 12px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; border: none; width: 100%; cursor: pointer; }
+        .btn-buy:hover { background: #a30fe0; box-shadow: 0 0 20px var(--roxo-glow); }
 
-        @keyframes pulseGreen {
-            0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--whatsapp)); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 12px var(--whatsapp)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--whatsapp)); }
-        }
-
-        .companies { padding: 3rem 0; background: rgba(255,255,255,0.02); overflow: hidden; white-space: nowrap; border-top: 1px solid var(--borda-vidro); border-bottom: 1px solid var(--borda-vidro); margin: 6rem 0; }
-        .company-track { display: inline-block; animation: scroll 20s linear infinite; }
-        .company-name { display: inline-block; font-size: 1rem; color: rgba(255,255,255,0.2); margin: 0 60px; letter-spacing: 4px; }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        #musicToggle { position: fixed; bottom: 20px; left: 20px; z-index: 2000; background: rgba(255,255,255,0.05); border: 1px solid var(--borda-vidro); color: white; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
-
-        footer { padding: 3rem; text-align: center; opacity: 0.3; font-size: 0.7rem; letter-spacing: 1px; }
+        footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--borda); color: #888; font-size: 0.75rem; }
     </style>
 </head>
 <body>
 
-    <div class="space-background"></div>
-    <header><div class="logo">ORBIT<span>WHITE</span></div></header>
-    <button id="musicToggle">🔈</button>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">ORBIT<span>WHITE</span></a>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar Xbox...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-icons">
+                <div><i class="far fa-user"></i> Entrar</div>
+                <div><i class="fas fa-shopping-cart"></i> Carrinho</div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="sub-nav">
+        <div class="sub-nav-container">
+            <a href="#" class="sub-nav-item">Processadores</a>
+            <a href="#" class="sub-nav-item">Placas de Vídeo</a>
+            <a href="#" class="sub-nav-item">Periféricos</a>
+            <a href="#" class="sub-nav-item">Setup Gamer</a>
+            <a href="#" class="sub-nav-item">Orbit Design</a>
+            <a href="#" class="sub-nav-item">Contato</a>
+        </div>
+    </nav>
 
     <section class="hero">
-        <div class="cloud-badge-container">
-            <div class="cloud-body">
-                <span class="cloud-text">QUALIDADES</span>
-            </div>
-        </div>
-        
-        <div class="typing-container"><span id="typewriter"></span></div>
-        
-        <div class="skills-container">
-            <div class="skill-wrapper"><div class="skill-info"><span>HTML</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
-            <div class="skill-wrapper"><div class="skill-info"><span>RAPIDEZ</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
-            <div class="skill-wrapper"><div class="skill-info"><span>SERIEDADE</span><span>100%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 100%"></div></div></div>
-            <div class="skill-wrapper"><div class="skill-info"><span>PHOTOSHOP</span><span>97%</span></div><div class="skill-bar"><div class="skill-progress" style="width: 97%"></div></div></div>
-        </div>
-
-        <div class="cards-container">
-            <div class="service-card">
-                <span class="card-category">DESIGN</span>
-                <h3 class="card-title">10 THUMBNAIL'S</h3>
-                <p class="card-desc">Artes de alta performance para YouTube com foco total em taxa de clique (CTR).</p>
-                <div class="price-tag">R$ 100<a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a></div>
-            </div>
-            <div class="service-card">
-                <span class="card-category">DEVELOPMENT</span>
-                <h3 class="card-title">Criação de Site</h3>
-                <p class="card-desc">Landing Pages e Sites profissionais com design futurista e carregamento instantâneo.</p>
-                <div class="price-tag">R$ 300<a href="https://wa.me/+5521983747028" target="_blank" class="btn-whatsapp-card"><i class="fab fa-whatsapp"></i></a></div>
-            </div>
+        <div>
+            <h1>HARDWARE DE ELITE</h1>
+            <p>AS MELHORES OFERTAS DO ESPAÇO PROFUNDO</p>
         </div>
     </section>
 
-    <div class="companies">
-        <div class="company-track">
-            <div class="company-name">VANGUARDA BRASIL</div><div class="company-name">BEGAMERS</div><div class="company-name">1SHOTKILL</div>
-            <div class="company-name">VANGUARDA BRASIL</div><div class="company-name">BEGAMERS</div><div class="company-name">1SHOTKILL</div>
-        </div>
+    <div class="container">
+        <h2 class="section-title">Inspirado no seu último histórico</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <span class="badge">DESTAQUE</span>
+                <div class="img-box"><i class="fas fa-microchip"></i></div>
+                <div class="name">Processador High-End Orbit Pro - Dropshipping Global</div>
+                <div class="price-box">
+                    <span class="price-current">R$ 799,90</span>
+                    <span class="price-pix"><i class="fas fa-bolt"></i> no PIX</span>
+                    <a href="https://pag.ae/81BGjYH4o" target="_blank" class="btn-buy">
+                        <i class="fas fa-shopping-cart"></i> Comprar Agora
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="badge">MAIS VENDIDO</span>
+                <div class="img-box"><i class="fas fa-keyboard"></i></div>
+                <div class="name">Teclado Mecânico RGB Orbit G-Edition Pro</div>
+                <div class="price-box">
+                    <span class="price-current">R$ 249,00</span>
+                    <span class="price-pix"><i class="fas fa-bolt"></i> no PIX</span>
+                    <a href="#" class="btn-buy">Comprar Agora</a>
+                </div>
+            </div>
+            
+            </div>
     </div>
 
-    <audio id="bgMusic" loop preload="auto"><source src="./norbitbeat.mp3" type="audio/mpeg"></audio>
-    <footer>ORBIT WHITE &copy; 2026 | BUILT IN DEEP SPACE</footer>
-
-    <script>
-        const audio = document.getElementById('bgMusic');
-        const toggle = document.getElementById('musicToggle');
-        const textElement = document.getElementById('typewriter');
-
-        const phrases = ["Estou no ramo há 6 anos.", "Eu sou Programador.", "Orbit White.", "Design & Code."];
-        let i = 0, j = 0, isDeleting = false;
-        function type() {
-            let current = phrases[i];
-            textElement.textContent = isDeleting ? current.substring(0, j - 1) : current.substring(0, j + 1);
-            j = isDeleting ? j - 1 : j + 1;
-            if (!isDeleting && j === current.length) setTimeout(() => isDeleting = true, 2500);
-            else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % phrases.length; }
-            setTimeout(type, isDeleting ? 40 : 100);
-        }
-        type();
-
-        function startAudio() { audio.play().then(() => toggle.textContent = "🔊").catch(()=>{}); }
-        window.onclick = startAudio; window.onscroll = startAudio;
-
-        toggle.onclick = (e) => {
-            e.stopPropagation();
-            if (audio.paused) { audio.play(); toggle.textContent = "🔊"; }
-            else { audio.pause(); toggle.textContent = "🔈"; }
-        };
-    </script>
-
-    <script>(function(s){s.dataset.zone='10745110',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <footer>ORBIT STORE &copy; 2026</footer>
 
 </body>
 </html>

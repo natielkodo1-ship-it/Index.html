@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado | Orbit Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #050208;
+            --bg-card: rgba(15, 8, 26, 0.6); /* Vidro Fosco */
+            --roxo-pichau: #bc13fe;
+            --roxo-glow: rgba(188, 19, 254, 0.5);
+            --sucesso: #00c853;
+            --sucesso-glow: rgba(0, 200, 83, 0.5);
+            --branco: #ffffff;
+            --texto-cinza: #a0a0a0;
+            --borda: rgba(255, 255, 255, 0.08);
+            --wpp: #25d366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: var(--bg-body); 
+            color: var(--branco); 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+            padding: 20px;
+            overflow: hidden; /* Para o fundo espacial */
+            position: relative;
+        }
+
+        /* --- FUNDO ESPACIAL ANIMADO --- */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at top right, #1a0b2e, #0a0414);
+        }
+
+        .comet {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            opacity: 0;
+            animation: shoot 6s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% { transform: translate(120vw, -10vh) rotate(-45deg); opacity: 1; }
+            100% { transform: translate(-20vw, 120vh) rotate(-45deg); opacity: 0; }
+        }
+
+        /* --- CARTÃO HOLOGRÁFICO DE SUCESSO --- */
+        .success-card {
+            max-width: 550px;
+            width: 100%;
+            padding: 50px 30px;
+            background: var(--bg-card);
+            backdrop-filter: blur(15px); /* Efeito Vidro */
+            border: 1px solid var(--borda);
+            border-radius: 25px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(188, 19, 254, 0.1);
+            animation: cardAppear 0.6s ease-out;
+            overflow: hidden;
+        }
+
+        /* Borda Neon Pulsante Interna */
+        .success-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--roxo-pichau), transparent);
+            animation: borderPulse 3s linear infinite;
+        }
+
+        @keyframes cardAppear { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes borderPulse { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        /* Ícone de Check com Glow Intenso */
+        .icon-box {
+            font-size: 5rem;
+            color: var(--sucesso);
+            margin-bottom: 25px;
+            display: inline-block;
+            position: relative;
+        }
+        .icon-box i {
+            filter: drop-shadow(0 0 15px var(--sucesso-glow)) drop-shadow(0 0 30px var(--sucesso));
+            animation: iconPop 0.8s ease-out;
+        }
+        @keyframes iconPop { 0% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
+
+        h1 { 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            margin-bottom: 15px; 
+            background: linear-gradient(to right, #fff, #b0b0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h1 span { color: var(--roxo-pichau); -webkit-text-fill-color: var(--roxo-pichau); text-shadow: 0 0 15px var(--roxo-glow); }
+
+        .lead-text { color: var(--texto-cinza); font-size: 1rem; line-height: 1.6; margin-bottom: 40px; font-weight: 300; }
+
+        /* --- LINHA DO TEMPO DO PEDIDO --- */
+        .timeline {
+            text-align: left;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        /* Linha Vertical Conectora */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 30px;
+            width: 2px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .timeline-item:last-child::before { display: none; }
+
+        .timeline-icon {
+            width: 26px;
+            height: 26px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--borda);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--roxo-pichau);
+            font-size: 0.8rem;
+            box-shadow: 0 0 10px rgba(188, 19, 254, 0.2);
+        }
+        
+        .timeline-content { flex: 1; }
+        .timeline-title { font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+        .timeline-desc { font-size: 0.75rem; color: var(--texto-cinza); }
+
+        /* --- BOTÃO "VOLTAR" ESTILO VIDRO NEON --- */
+        .btn-orbit {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--roxo-pichau);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-orbit:hover { 
+            background: var(--roxo-pichau);
+            box-shadow: 0 0 30px var(--roxo-pichau);
+            transform: translateY(-3px);
+        }
+
+        /* --- BOTÃO WHATSAPP FLUTUANTE PULSANTE --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--wpp);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            transition: 0.3s;
+            animation: pulseWpp 2s infinite;
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #1eb954; }
+
+        @keyframes pulseWpp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="space-background" id="space"></div>
+
+    <div class="success-card">
+        <div class="icon-box">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        
+        <h1>PEDIDO <span>CONFIRMADO</span></h1>
+        
+        <p class="lead-text">Obrigado pela confiança! Seu pagamento foi aprovado e agora nossa equipe de elite está cuidando do seu hardware.</p>
+
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-icon"><i class="fas fa-envelope"></i></div>
+                <div class="timeline-content">
+                    <h4 class="timeline-title">Confirmação por E-mail</h4>
+                    <p class="timeline-desc">Você receberá o resumo do pedido em instantes.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon"><i class="fas fa-box-open"></i></div>
+                <div class="timeline-content">
+                    <h4 class="timeline-title">Processamento do Pedido</h4>
+                    <p class="timeline-desc">Preparando para envio </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon"><i class="fas fa-truck"></i></div>
+                <div class="timeline-content">
+                    <h4 class="timeline-title">Código de Rastreio</h4>
+                    <p class="timeline-desc">Enviaremos o código para você em até 3 dias úteis.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="index.html" class="btn-orbit">Voltar para a Loja</a>
+    </div>
+
+    <a href="https://wa.me/5521983747028?text=Oi!%20Acabei%20de%20comprar%20na%20Orbit%20Store%20e%20queria%20confirmar%20o%20prazo." 
+       class="whatsapp-float" 
+       target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const space = document.getElementById('space');
+        // Cria 5 cometas aleatórios
+        for (let i = 0; i < 5; i++) {
+            const comet = document.createElement('div');
+            comet.className = 'comet';
+            comet.style.left = Math.random() * 100 + 'vw';
+            comet.style.top = Math.random() * 50 + 'vh';
+            comet.style.animationDelay = Math.random() * 10 + 's';
+            space.appendChild(comet);
+        }
+    </script>
+
+</body>
+</html>

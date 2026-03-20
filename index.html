@@ -58,19 +58,11 @@
             flex-shrink: 0;
         }
 
-        .logo-text span {
-            color: var(--roxo);
-        }
+        .logo-text span { color: var(--roxo); }
 
         @keyframes logoPulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 0px rgba(188, 19, 254, 0));
-            }
-            50% {
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 10px rgba(188, 19, 254, 0.7));
-            }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(188, 19, 254, 0)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(188, 19, 254, 0.7)); }
         }
         
         @media (max-width: 768px) {
@@ -96,7 +88,6 @@
 
         .categories-container { padding: 20px 10px; }
         .categories-scroll { display: flex; gap: 15px; overflow-x: auto; padding: 10px; scrollbar-width: none; justify-content: center; }
-        @media (max-width: 768px) { .categories-scroll { justify-content: flex-start; } }
         .cat-item { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; cursor: pointer; }
         .cat-icon { width: 60px; height: 60px; background: #f9f9f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #444; border: 1px solid #eee; font-size: 1.2rem; transition: 0.3s; }
         .cat-item.active .cat-icon { background: var(--roxo); color: white; border-color: var(--roxo); }
@@ -119,13 +110,11 @@
         .card-info { background: var(--cinza-claro); padding: 20px; border-top: 1px solid var(--borda); flex-grow: 1; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
         .card p { font-size: 0.9rem; font-weight: 700; height: 45px; margin-bottom: 10px; color: #333; overflow: hidden; }
         .price { font-size: 1.4rem; font-weight: 900; color: var(--dark); display: block; margin-bottom: 15px; }
-        .btn-buy-card { background: var(--sucesso); color: white; padding: 14px; border-radius: 50px; border: none; font-weight: 800; width: 100%; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        .btn-buy-card:hover { filter: brightness(1.1); }
+        .btn-buy-card { background: var(--sucesso); color: white; padding: 14px; border-radius: 50px; border: none; font-weight: 800; width: 100%; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; }
 
         footer { background: var(--dark); color: #fff; padding: 50px 20px; text-align: center; border-top: 4px solid var(--roxo); }
         .footer-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--roxo); margin-bottom: 20px; letter-spacing: 2px; }
         .payment-icons { display: flex; justify-content: center; align-items: center; gap: 25px; font-size: 28px; margin-bottom: 40px; opacity: 0.9; flex-wrap: wrap; }
-        .payment-icons i { color: #fff; }
         .pix-text { font-weight: 900; font-size: 1.5rem; color: #fff; }
         
         .trust-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
@@ -135,21 +124,22 @@
         .cnpj-text { opacity: 0.4; font-size: 0.7rem; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
         .btn-whatsapp-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 3000; text-decoration: none; }
-        .btn-whatsapp { width: 60px; height: 60px; background: var(--whatsapp-verde); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: 0.3s; }
-        .btn-whatsapp:hover { transform: scale(1.1); }
+        .btn-whatsapp { width: 60px; height: 60px; background: var(--whatsapp-verde); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         
+        /* MODAL E PASSOS */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal-content { background: white; padding: 30px; border-radius: 25px; max-width: 350px; width: 90%; text-align: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 25px; max-width: 400px; width: 90%; text-align: center; }
         .modal-input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin: 20px 0; outline: none; text-align: center; font-weight: 600; }
+        .step { display: none; }
+        .step.active { display: block; }
+        #productDescription { margin: 15px 0; font-size: 0.9rem; color: #666; text-align: left; line-height: 1.5; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <div class="logo-text" onclick="location.reload()">
-                Orbit <span>White</span>
-            </div>
+            <div class="logo-text" onclick="location.reload()">Orbit <span>White</span></div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="O que você procura?" onkeyup="buscar()">
@@ -199,18 +189,9 @@
 
         <div class="footer-title">Segurança</div>
         <div class="trust-badges">
-            <div class="badge">
-                <i class="fas fa-shield-alt"></i>
-                <span>SITE 100%<br>SEGURO</span>
-            </div>
-            <div class="badge">
-                <i class="fas fa-lock"></i>
-                <span>SSL<br>CRIPTOGRAFADO</span>
-            </div>
-            <div class="badge">
-                <i class="fas fa-truck"></i>
-                <span>ENVIO RÁPIDO<br>E SEGURO</span>
-            </div>
+            <div class="badge"><i class="fas fa-shield-alt"></i><span>SITE 100%<br>SEGURO</span></div>
+            <div class="badge"><i class="fas fa-lock"></i><span>SSL<br>CRIPTOGRAFADO</span></div>
+            <div class="badge"><i class="fas fa-truck"></i><span>ENVIO RÁPIDO<br>E SEGURO</span></div>
         </div>
 
         <div class="cnpj-text">
@@ -225,21 +206,36 @@
 
     <div id="descModal" class="modal">
         <div class="modal-content">
-            <img id="modalImg" style="width:120px; margin-bottom:20px; object-fit: contain;" src="">
-            <h3 id="modalName" style="font-weight:800;"></h3>
-            <input type="email" id="userEmail" class="modal-input" placeholder="Seu e-mail aqui" required>
-            <button id="confirmBuy" style="background:var(--sucesso); color:white; padding:18px; border-radius:50px; border:none; width:100%; font-weight:800; cursor:pointer; text-transform: uppercase;">Finalizar Compra</button>
+            <div id="step1" class="step active">
+                <img id="modalImg" style="width:120px; margin-bottom:20px; object-fit: contain;" src="">
+                <h3 id="modalName" style="font-weight:800;"></h3>
+                <div id="productDescription"></div>
+                <button onclick="proximoPasso()" style="background:var(--roxo); color:white; padding:18px; border-radius:50px; border:none; width:100%; font-weight:800; cursor:pointer; text-transform: uppercase;">Comprar Agora</button>
+            </div>
+
+            <div id="step2" class="step">
+                <h3 style="font-weight:800;">QUASE LÁ!</h3>
+                <p style="font-size: 0.8rem; color:#666; margin-top:10px;">Insira seu e-mail para continuar.</p>
+                <form id="purchaseForm" action="https://formspree.io/f/xnjbwvkd" method="POST">
+                    <input type="hidden" name="produto" id="formProduto">
+                    <input type="hidden" name="preco" id="formPreco">
+                    <input type="email" name="email" id="userEmail" class="modal-input" placeholder="Seu e-mail aqui" required>
+                    <button type="submit" style="background:var(--sucesso); color:white; padding:18px; border-radius:50px; border:none; width:100%; font-weight:800; cursor:pointer; text-transform: uppercase;">Finalizar Compra</button>
+                </form>
+            </div>
             <p style="margin-top:20px; cursor:pointer; color:#999; font-weight: 600;" onclick="fecharModal()">Voltar</p>
         </div>
     </div>
 
     <script>
         const produtos = [
-            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS', preco: 'R$ 21,00', img: 'fonebluetooth.png', link: 'https://pag.ae/81BP3rmb2' },
-            { id: 'suporte', categoria: 'energia', nome: 'Base Carregador PS5', preco: 'R$ 60,00', img: 'basecarregadorps5.png', link: 'https://pag.ae/81BP5Hupo' },
-            { id: 'controle', categoria: 'controles', nome: 'Controle Dualshock 4', preco: 'R$ 70,00', img: 'controleps4.png', link: 'https://pag.ae/81BP4FXb2' },
-            { id: 'gamesir', categoria: 'controles', nome: 'Gamesir G7 SE', preco: 'R$ 300,00', img: 'controlegamesirg7.png', link: 'https://pag.ae/81BP42Mjo' }
+            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS', preco: 'R$ 21,00', img: 'fonebluetooth.png', desc: 'Fone de ouvido com tecnologia OWS, som cristalino e conexão estável bluetooth 5.3.', link: 'https://pag.ae/81BP3rmb2' },
+            { id: 'suporte', categoria: 'energia', nome: 'Base Carregador PS5', preco: 'R$ 60,00', img: 'basecarregadorps5.png', desc: 'Base de carregamento rápido para dois controles de PS5 simultaneamente.', link: 'https://pag.ae/81BP5Hupo' },
+            { id: 'controle', categoria: 'controles', nome: 'Controle Dualshock 4', preco: 'R$ 70,00', img: 'controleps4.png', desc: 'Controle compatível com PS4 e PC, alta precisão e vibração imersiva.', link: 'https://pag.ae/81BP4FXb2' },
+            { id: 'gamesir', categoria: 'controles', nome: 'Gamesir G7 SE', preco: 'R$ 300,00', img: 'controlegamesirg7.png', desc: 'Controle profissional com Hall Effect, ideal para Xbox e PC.', link: 'https://pag.ae/81BP42Mjo' }
         ];
+
+        let produtoSelecionado = null;
 
         function renderizar(lista) {
             const grid = document.getElementById('productGrid');
@@ -254,17 +250,34 @@
         }
 
         function abrirModal(id) {
-            const p = produtos.find(item => item.id === id);
-            document.getElementById('modalImg').src = p.img;
-            document.getElementById('modalName').innerText = p.nome;
-            document.getElementById('confirmBuy').onclick = function() {
-                const email = document.getElementById('userEmail').value;
-                if(!email.includes('@')) { alert('E-mail inválido!'); return; }
-                window.open(p.link, '_blank');
-                fecharModal();
-            };
+            produtoSelecionado = produtos.find(item => item.id === id);
+            document.getElementById('modalImg').src = produtoSelecionado.img;
+            document.getElementById('modalName').innerText = produtoSelecionado.nome;
+            document.getElementById('productDescription').innerText = produtoSelecionado.desc;
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step2').classList.remove('active');
             document.getElementById('descModal').style.display = 'flex';
         }
+
+        function proximoPasso() {
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+            document.getElementById('formProduto').value = produtoSelecionado.nome;
+            document.getElementById('formPreco').value = produtoSelecionado.preco;
+        }
+
+        document.getElementById('purchaseForm').onsubmit = function(e) {
+            e.preventDefault();
+            const form = this;
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).finally(() => {
+                window.open(produtoSelecionado.link, '_blank');
+                window.location.href = "obrigado.html";
+            });
+        };
 
         function fecharModal() { document.getElementById('descModal').style.display = 'none'; }
         

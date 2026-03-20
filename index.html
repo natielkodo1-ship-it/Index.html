@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Orbit White | Hardware & Tech Premium</title>
     
+    <meta name="description" content="Orbit White - A melhor seleção de Hardware e Tech Premium. Controles, Áudio e Energia com envio para todo o Brasil.">
+    <meta name="keywords" content="Hardware, Tech, PS5, Gamesir, Orbit White, Tecnologia, Dualshock 4, Fone Bluetooth, Carregador">
+    <meta name="author" content="Orbit White">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Orbit White | Hardware & Tech Premium">
+    <meta property="og:description" content="Turbine seu setup com os melhores acessórios tech. Envio para todo o Brasil.">
+    <meta property="og:image" content="https://suadominio.com.br/banner.png"> 
+    <meta property="og:url" content="https://suadominio.com.br">
+    
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,171 +25,179 @@
             --dark: #0a0414; 
             --sucesso: #00a650; 
             --whatsapp-verde: #25d366; 
-            --bg: #f4f4f4; 
-            --borda: #dddddd; 
+            --bg-lateral: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%); 
+            --borda: #eeeeee; 
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg); color: #333; overflow-x: hidden; }
-
-        /* HEADER */
-        header { background: var(--dark); padding: 15px; border-bottom: 2px solid var(--roxo); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 15px; }
-        .logo-box { display: flex; flex-direction: column; line-height: 0.9; cursor: pointer; min-width: fit-content; }
-        .logo-main { color: white; font-weight: 800; font-size: 1.2rem; }
-        .logo-sub { color: var(--roxo); font-weight: 800; font-size: 1.1rem; }
         
-        .search-box { flex-grow: 1; position: relative; max-width: 500px; }
-        .search-box input { 
-            width: 100%; padding: 12px 15px 12px 45px; border-radius: 50px; 
-            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.15); 
-            color: white; font-size: 0.85rem; outline: none; backdrop-filter: blur(5px);
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background: var(--bg-lateral); color: #333; overflow-x: hidden; min-height: 100vh; }
+
+        header { background: var(--dark); padding: 12px 15px; border-bottom: 2px solid var(--roxo); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 15px; }
+        .logo-box { display: flex; flex-direction: column; line-height: 0.8; cursor: pointer; min-width: fit-content; }
+        .logo-main { color: white; font-weight: 900; font-size: 1.1rem; }
+        .logo-sub { color: var(--roxo); font-weight: 900; font-size: 0.9rem; }
+        
+        .search-box { flex-grow: 1; position: relative; max-width: 500px; margin-left: auto; }
+        .search-box input { width: 100%; padding: 10px 15px 10px 40px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.15); color: white; font-size: 0.85rem; outline: none; transition: 0.3s; }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--roxo); font-size: 0.9rem; }
+
+        .container-central { max-width: 1100px; margin: 0 auto; background: #fff; box-shadow: 0 0 50px rgba(0,0,0,0.05); }
+
+        .slider-section { padding: 15px; background: #fff; }
+        .slider-container { position: relative; border-radius: 20px; overflow: hidden; background: #000; max-height: 380px; }
+        .slider-wrapper { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+        .slider-wrapper::-webkit-scrollbar { display: none; }
+        .slider-item { min-width: 100%; scroll-snap-align: start; flex-shrink: 0; }
+        .slider-item img { width: 100%; height: 380px; display: block; object-fit: cover; }
+
+        @media (max-width: 768px) {
+            .slider-container, .slider-item img { height: 200px; }
+            .container-central { box-shadow: none; }
         }
-        .search-box i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--roxo); }
 
-        /* WHATSAPP */
-        .btn-whatsapp {
-            position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
-            background-color: var(--whatsapp-verde); color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 3000; text-decoration: none;
-            animation: pulsarVerde 1.5s infinite;
-        }
-        @keyframes pulsarVerde {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
+        .categories-container { padding: 20px 10px; background: #fff; }
+        .categories-scroll { display: flex; gap: 20px; overflow-x: auto; padding: 10px; scrollbar-width: none; justify-content: flex-start; }
+        .categories-scroll::-webkit-scrollbar { display: none; }
+        @media (min-width: 768px) { .categories-scroll { justify-content: center; } }
 
-        /* SLIDER */
-        .slider-section { padding: 10px; max-width: 1200px; margin: 0 auto; position: relative; }
-        .slider-container { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #000; }
-        .slider-wrapper { display: flex; overflow-x: hidden; scroll-behavior: smooth; }
-        .slider-item { min-width: 100%; width: 100%; flex-shrink: 0; }
-        .slider-item img { width: 100%; height: auto; display: block; object-fit: cover; }
-        .dots-container { position: absolute; bottom: 12px; width: 100%; display: flex; justify-content: center; gap: 6px; z-index: 5; }
-        .dot { width: 6px; height: 6px; background: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
-        .dot.active { background: var(--roxo); width: 18px; border-radius: 10px; }
+        .cat-item { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 90px; cursor: pointer; transition: 0.3s; }
+        .cat-icon { width: 65px; height: 65px; background: #f9f9f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #444; border: 1px solid var(--borda); font-size: 1.4rem; transition: 0.3s; }
+        .cat-item.active .cat-icon { background: var(--roxo); color: white; border-color: var(--roxo); box-shadow: 0 5px 15px rgba(188, 19, 254, 0.3); }
+        .cat-item span { font-size: 0.7rem; font-weight: 800; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* CATEGORIAS */
-        .categories-container { max-width: 1200px; margin: 0 auto; padding: 20px 10px 10px 10px; }
-        .categories-scroll { display: flex; justify-content: center; gap: 15px; overflow-x: auto; scrollbar-width: none; }
-        .cat-item { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 75px; cursor: pointer; }
-        .cat-icon { width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--roxo); border: 1px solid var(--borda); font-size: 1.1rem; }
-        .cat-item.active .cat-icon { background: var(--roxo); color: white; border-color: var(--roxo); }
-        .cat-item span { font-size: 0.6rem; font-weight: 700; color: #666; text-transform: uppercase; }
+        .main-content { padding: 20px 15px 50px; background: #fff; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
 
-        /* CTA */
-        .cta-call { text-align: center; padding: 15px 10px 25px 10px; }
-        .cta-call h2 { font-weight: 900; font-size: 1.3rem; color: var(--dark); letter-spacing: -1px; }
-        .cta-call .roxo-text { color: var(--roxo); }
-
-        /* GRID */
-        .main-content { max-width: 1200px; margin: 0 auto; padding: 10px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
-        .card { background: white; border-radius: 12px; padding: 12px; border: 1px solid var(--borda); text-align: center; display: flex; flex-direction: column; transition: transform 0.2s; cursor: pointer; }
-        .card:hover { transform: translateY(-5px); }
-        .img-box { width: 100%; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+        .card { background: white; border-radius: 18px; padding: 20px; border: 1px solid var(--borda); text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: rgba(188, 19, 254, 0.2); }
+        
+        .img-box { width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .card p { font-size: 0.7rem; font-weight: 700; height: 32px; overflow: hidden; margin-bottom: 4px; color: #333; }
-        .price { font-size: 1rem; font-weight: 800; margin: 5px 0; color: var(--dark); }
-        .btn-buy-card { background: var(--sucesso); color: white; padding: 10px; border-radius: 20px; border: none; font-weight: 800; width: 100%; cursor: pointer; font-size: 0.65rem; text-transform: uppercase; }
 
-        /* FOOTER */
-        footer { background: var(--dark); color: #fff; padding: 40px 20px; text-align: center; border-top: 3px solid var(--roxo); margin-top: 40px; }
-        .footer-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; color: var(--roxo); }
-        .payment-row { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        .payment-row img { height: 32px; width: auto; }
-        .trust-seals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 400px; margin: 0 auto; }
-        .seal-item { display: flex; align-items: center; gap: 8px; text-align: left; background: rgba(188, 19, 254, 0.08); padding: 10px; border-radius: 8px; border: 1px solid rgba(188, 19, 254, 0.2); }
-        .seal-item i { font-size: 1rem; color: var(--roxo); }
-        .seal-text b { font-size: 0.55rem; display: block; }
-        .seal-text span { font-size: 0.45rem; color: rgba(255,255,255,0.4); }
+        .card p { font-size: 0.8rem; font-weight: 700; height: 40px; margin-bottom: 10px; overflow: hidden; color: #444; }
+        .price { font-size: 1.25rem; font-weight: 900; margin-bottom: 15px; display: block; color: var(--dark); }
+        .btn-buy-card { background: var(--sucesso); color: white; padding: 14px; border-radius: 50px; border: none; font-weight: 800; width: 100%; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
 
-        /* MODAL */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .modal-content { background: white; padding: 25px; border-radius: 20px; max-width: 380px; width: 90%; text-align: center; }
-        .modal-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; outline: none; margin: 15px 0; font-size: 0.9rem; text-align: center; }
+        footer { background: var(--dark); color: #fff; padding: 50px 20px; text-align: center; border-top: 4px solid var(--roxo); }
+        .payment-row { display: flex; align-items: center; justify-content: center; gap: 25px; margin-bottom: 35px; opacity: 0.7; flex-wrap: wrap; }
+        .payment-row i, .payment-row em { font-size: 24px; color: #fff; font-style: normal; font-weight: 900; }
+        .trust-seals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 500px; margin: 0 auto; }
+        .seal-item { display: flex; align-items: center; gap: 10px; text-align: left; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid rgba(188, 19, 254, 0.15); }
+        .seal-item i { font-size: 1.2rem; color: var(--roxo); }
+        .seal-text b { font-size: 0.65rem; display: block; color: #fff; }
+        .seal-text span { font-size: 0.55rem; color: #aaa; }
+        .cnpj-text { opacity: 0.4; font-size: 0.7rem; margin-top: 30px; letter-spacing: 0.5px; }
+
+        /* WHATSAPP PULSANDO + SUPORTE */
+        .btn-whatsapp-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 3000; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .whatsapp-label { background: white; color: #333; padding: 8px 15px; border-radius: 50px; font-weight: 800; font-size: 0.7rem; text-transform: uppercase; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        
+        .btn-whatsapp { 
+            width: 60px; height: 60px; background: var(--whatsapp-verde); color: white; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-size: 32px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+            animation: pulse-green 2s infinite; 
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal-content { background: white; padding: 30px; border-radius: 25px; max-width: 380px; width: 90%; text-align: center; }
+        .modal-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #eee; margin: 15px 0; outline: none; text-align: center; }
+        .roxo-text { color: var(--roxo); }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/55SEUNUMERO" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/55SEUNUMERO" class="btn-whatsapp-wrapper" target="_blank">
+        <span class="whatsapp-label">Suporte</span>
+        <div class="btn-whatsapp"><i class="fab fa-whatsapp"></i></div>
+    </a>
 
     <header>
         <div class="nav-container">
             <div class="logo-box" onclick="location.reload()"><span class="logo-main">ORBIT</span><span class="logo-sub">WHITE</span></div>
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="buscar por fones, controles..." onkeyup="buscar()">
-            </div>
+            <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="O que você busca?" onkeyup="buscar()"></div>
         </div>
     </header>
 
-    <section class="slider-section">
-        <div class="slider-container">
-            <div class="slider-wrapper" id="slider">
-                <div class="slider-item"><img src="banner.png"></div>
-                <div class="slider-item"><img src="banner1.png"></div>
-                <div class="slider-item"><img src="banner2.png"></div>
-                <div class="slider-item"><img src="banner3.png"></div>
+    <div class="container-central">
+        <section class="slider-section">
+            <div class="slider-container">
+                <div class="slider-wrapper" id="slider">
+                    <div class="slider-item"><img src="banner.png" alt="Banner 1"></div>
+                    <div class="slider-item"><img src="banner1.png" alt="Banner 2"></div>
+                    <div class="slider-item"><img src="banner2.png" alt="Banner 3"></div>
+                    <div class="slider-item"><img src="banner3.png" alt="Banner 4"></div>
+                </div>
             </div>
-            <div class="dots-container" id="dots"></div>
-        </div>
-    </section>
+        </section>
 
-    <div class="categories-container">
-        <div class="categories-scroll">
-            <div class="cat-item active" onclick="filtrarProdutos('todos', this)"><div class="cat-icon"><i class="fas fa-border-all"></i></div><span>Todos</span></div>
-            <div class="cat-item" onclick="filtrarProdutos('audio', this)"><div class="cat-icon"><i class="fas fa-headphones"></i></div><span>Áudio</span></div>
-            <div class="cat-item" onclick="filtrarProdutos('controles', this)"><div class="cat-icon"><i class="fas fa-gamepad"></i></div><span>Controles</span></div>
-            <div class="cat-item" onclick="filtrarProdutos('energia', this)"><div class="cat-icon"><i class="fas fa-bolt"></i></div><span>Energia</span></div>
+        <div class="categories-container">
+            <div class="categories-scroll">
+                <div class="cat-item active" onclick="filtrarProdutos('todos', this)"><div class="cat-icon"><i class="fas fa-th-large"></i></div><span>Todos</span></div>
+                <div class="cat-item" onclick="filtrarProdutos('audio', this)"><div class="cat-icon"><i class="fas fa-headphones"></i></div><span>Áudio</span></div>
+                <div class="cat-item" onclick="filtrarProdutos('controles', this)"><div class="cat-icon"><i class="fas fa-gamepad"></i></div><span>Controles</span></div>
+                <div class="cat-item" onclick="filtrarProdutos('energia', this)"><div class="cat-icon"><i class="fas fa-bolt"></i></div><span>Energia</span></div>
+            </div>
         </div>
+
+        <div class="cta-call" style="text-align: center; padding: 20px 10px; background: #fff;">
+            <h2 style="font-weight: 900; font-size: 1.3rem; letter-spacing: -0.5px;">E AÍ, O QUE VOCÊ <span class="roxo-text">VAI QUERER</span> HOJE?</h2>
+        </div>
+
+        <main class="main-content"><div class="grid" id="productGrid"></div></main>
+
+        <footer>
+            <p style="font-size: 0.8rem; font-weight: 800; color: var(--roxo); margin-bottom: 20px; text-transform: uppercase;">Pague com segurança</p>
+            <div class="payment-row">
+                <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-google-pay"></i><i class="fab fa-apple-pay"></i><em>PIX</em>
+            </div>
+            <div class="trust-seals">
+                <div class="seal-item"><i class="fas fa-lock"></i><div class="seal-text"><b>PAGBANK</b><span>SEGURO</span></div></div>
+                <div class="seal-item"><i class="fas fa-shield-alt"></i><div class="seal-text"><b>SSL</b><span>PROTEGIDO</span></div></div>
+                <div class="seal-item"><i class="fab fa-google"></i><div class="seal-text"><b>GOOGLE</b><span>VERIFICADO</span></div></div>
+                <div class="seal-item"><i class="fas fa-truck"></i><div class="seal-text"><b>ENVIO</b><span>CORREIOS</span></div></div>
+            </div>
+            <div class="cnpj-text">&copy; 2026 Orbit White - CNPJ: 60.726.256/0001-02</div>
+        </footer>
     </div>
-
-    <div class="cta-call">
-        <h2>E AÍ, O QUE VOCÊ <span class="roxo-text">VAI QUERER</span> HOJE?</h2>
-    </div>
-
-    <main class="main-content">
-        <div class="grid" id="productGrid"></div>
-    </main>
-
-    <footer>
-        <p class="footer-title">Pague com segurança</p>
-        <div class="payment-row">
-            <img src="pagamentos.png" alt="Cartões"><img src="pix.png" alt="Pix">
-        </div>
-        <div class="trust-seals">
-            <div class="seal-item"><i class="fas fa-lock"></i><div class="seal-text"><b>PAGBANK</b><span>CHECKOUT SEGURO</span></div></div>
-            <div class="seal-item"><i class="fas fa-shield-alt"></i><div class="seal-text"><b>SSL SEGURO</b><span>DADOS PROTEGIDOS</span></div></div>
-            <div class="seal-item"><i class="fab fa-google"></i><div class="seal-text"><b>GOOGLE</b><span>SITE SEGURO</span></div></div>
-            <div class="seal-item"><i class="fas fa-truck"></i><div class="seal-text"><b>ENTREGA</b><span>VIA CORREIOS</span></div></div>
-        </div>
-        <p style="font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 25px;">Orbit White &copy; 2026 - CNPJ: 60.726.256/0001-02</p>
-    </footer>
 
     <div id="descModal" class="modal">
         <div class="modal-content">
-            <img id="modalImg" style="width:120px; margin-bottom:15px;" src="">
-            <h3 id="modalName" style="font-weight:800; color:var(--dark);"></h3>
-            <p id="modalDesc" style="font-size:0.85rem; color:#666; margin: 10px 0;"></p>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-            <p style="font-size: 0.7rem; font-weight: 800; color: var(--roxo);">DADOS DE ENTREGA</p>
-            <input type="email" id="userEmail" class="modal-input" placeholder="Seu e-mail para acompanhar o pedido" required>
-            <button id="confirmBuy" style="background:var(--sucesso); color:white; padding:16px; border-radius:30px; border:none; font-weight:800; width:100%; cursor:pointer; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,166,80,0.3);">PAGAR AGORA</button>
-            <button style="background:none; border:none; margin-top:15px; color:#999; cursor:pointer; font-size: 0.8rem; font-weight: 600;" onclick="fecharModal()">CANCELAR</button>
+            <img id="modalImg" style="width:140px; margin-bottom:15px; object-fit: contain;" src="">
+            <h3 id="modalName" style="font-weight:800; color:var(--dark); margin-bottom: 10px;"></h3>
+            <input type="email" id="userEmail" class="modal-input" placeholder="Seu melhor e-mail" required>
+            <button id="confirmBuy" style="background:var(--sucesso); color:white; padding:18px; border-radius:50px; border:none; font-weight:800; width:100%; cursor:pointer; text-transform: uppercase;">CONCLUIR AGORA</button>
+            <button style="background:none; border:none; margin-top:20px; color:#999; cursor:pointer;" onclick="fecharModal()">VOLTAR</button>
         </div>
     </div>
 
     <script>
         const produtos = [
-            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS', descricao: 'Som imersivo com tecnologia OWS de condução aberta.', preco: 'R$ 21,00', img: 'fonebluetooth.png', link: 'https://pag.ae/81BP3rmb2' },
-            { id: 'suporte', categoria: 'energia', nome: 'Base Carregador PS5', descricao: 'Carregamento duplo simultâneo para DualSense.', preco: 'R$ 60,00', img: 'basecarregadorps5.png', link: 'https://pag.ae/81BP5Hupo' },
-            { id: 'controle', categoria: 'controles', nome: 'Controle Dualshock 4', descricao: 'Controle de alta precisão compatível com PS4 e PC.', preco: 'R$ 70,00', img: 'controleps4.png', link: 'https://pag.ae/81BP4FXb2' },
-            { id: 'gamesir', categoria: 'controles', nome: 'Gamesir G7 SE', descricao: 'Tecnologia Hall Effect oficial Xbox anti-drift.', preco: 'R$ 300,00', img: 'controlegamesirg7.png', link: 'https://pag.ae/81BP42Mjo' }
+            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS', preco: 'R$ 21,00', img: 'fonebluetooth.png', link: 'https://pag.ae/81BP3rmb2' },
+            { id: 'suporte', categoria: 'energia', nome: 'Base Carregador PS5', preco: 'R$ 60,00', img: 'basecarregadorps5.png', link: 'https://pag.ae/81BP5Hupo' },
+            { id: 'controle', categoria: 'controles', nome: 'Controle Dualshock 4', preco: 'R$ 70,00', img: 'controleps4.png', link: 'https://pag.ae/81BP4FXb2' },
+            { id: 'gamesir', categoria: 'controles', nome: 'Gamesir G7 SE', preco: 'R$ 300,00', img: 'controlegamesirg7.png', link: 'https://pag.ae/81BP42Mjo' }
         ];
+
+        const slider = document.getElementById('slider');
+        let currentSlide = 0;
+        function startAutoSlider() {
+            setInterval(() => {
+                currentSlide++;
+                if (currentSlide >= 4) currentSlide = 0;
+                slider.scrollTo({ left: slider.offsetWidth * currentSlide, behavior: 'smooth' });
+            }, 5000);
+        }
+        startAutoSlider();
 
         function renderizar(lista) {
             const grid = document.getElementById('productGrid');
@@ -187,14 +205,9 @@
             lista.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                // Define o clique no card inteiro para abrir os detalhes
-                card.setAttribute('onclick', `abrirModal('${p.id}')`);
-                card.innerHTML = `
-                    <div class="img-box"><img src="${p.img}"></div>
-                    <p>${p.nome}</p>
-                    <span class="price">${p.preco}</span>
-                    <button class="btn-buy-card">COMPRAR</button>
-                `;
+                card.onclick = () => abrirModal(p.id);
+                // SEO: Adicionado atributo alt="p.nome - Orbit White" dinamicamente na tag img abaixo
+                card.innerHTML = `<div class="img-box"><img src="${p.img}" alt="${p.nome} - Orbit White"></div><p>${p.nome}</p><b class="price">${p.preco}</b><button class="btn-buy-card">COMPRAR AGORA</button>`;
                 grid.appendChild(card);
             });
         }
@@ -203,78 +216,32 @@
             const p = produtos.find(item => item.id === id);
             document.getElementById('modalImg').src = p.img;
             document.getElementById('modalName').innerText = p.nome;
-            document.getElementById('modalDesc').innerText = p.descricao;
-            document.getElementById('userEmail').value = ""; // Limpa campo
-            
-            // Atribui a função ao botão do modal
             document.getElementById('confirmBuy').onclick = function() {
                 const email = document.getElementById('userEmail').value;
-                if(!email || !email.includes('@')) { 
-                    alert('Por favor, insira um e-mail válido para continuar.'); 
-                    return; 
-                }
-
-                // Envia para o Formspree
+                if(!email.includes('@')) { alert('E-mail inválido!'); return; }
                 fetch("https://formspree.io/f/xnjbwvkd", {
                     method: "POST",
-                    body: JSON.stringify({ email: email, produto: p.nome, data: new Date().toLocaleString() }),
+                    body: JSON.stringify({ email: email, produto: p.nome }),
                     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
                 }).finally(() => {
-                    // Independente de sucesso ou erro no Formspree, segue o fluxo
                     window.open(p.link, '_blank');
                     window.location.href = 'obrigado.html';
                 });
             };
-
             document.getElementById('descModal').style.display = 'flex';
         }
 
-        function fecharModal() { 
-            document.getElementById('descModal').style.display = 'none'; 
-        }
-
+        function fecharModal() { document.getElementById('descModal').style.display = 'none'; }
         function filtrarProdutos(cat, el) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
             el.classList.add('active');
             renderizar(cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat));
         }
-
         function buscar() {
             const t = document.getElementById('searchInput').value.toLowerCase();
             renderizar(produtos.filter(p => p.nome.toLowerCase().includes(t)));
         }
-
-        // SLIDER
-        const slider = document.getElementById('slider');
-        const dotsContainer = document.getElementById('dots');
-        const slides = document.querySelectorAll('.slider-item');
-        let currentIndex = 0;
-
-        slides.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.className = i === 0 ? 'dot active' : 'dot';
-            dot.onclick = () => { currentIndex = i; updateSlider(); };
-            dotsContainer.appendChild(dot);
-        });
-
-        function updateSlider() {
-            slider.scrollTo({ left: slider.offsetWidth * currentIndex, behavior: 'smooth' });
-            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentIndex));
-        }
-
-        setInterval(() => { 
-            currentIndex = (currentIndex + 1) % slides.length; 
-            updateSlider(); 
-        }, 5000);
-
-        // Inicializa a vitrine
         renderizar(produtos);
-
-        // Fecha modal se clicar fora dele
-        window.onclick = function(event) {
-            const modal = document.getElementById('descModal');
-            if (event.target == modal) { fecharModal(); }
-        }
     </script>
 </body>
 </html>

@@ -3,160 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
     <title>Orbit White | Hardware & Tech Premium</title>
-    <meta name="description" content="Fones Bluetooth, Controles de PS4, Suportes de Carregamento e Eletrônicos Premium. O melhor em tecnologia para seu setup na Orbit White.">
+    
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <meta property="og:title" content="Orbit White | Hardware & Tech Premium">
+    <meta property="og:description" content="As melhores ofertas em hardware e tech premium.">
+    <meta property="og:image" content="logo.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        :root { --roxo: #bc13fe; --dark: #0a0414; --sucesso: #00a650; --bg: #f4f4f4; --borda: #dddddd; --online: #ff0000; }
+        :root { 
+            --roxo: #bc13fe; 
+            --dark: #0a0414; 
+            --sucesso: #00a650; 
+            --whatsapp-verde: #25d366; 
+            --bg: #f4f4f4; 
+            --borda: #dddddd; 
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--bg); color: #333; overflow-x: hidden; }
 
         /* HEADER */
-        header { background: var(--dark); padding: 8px 12px; border-bottom: 2px solid var(--roxo); position: sticky; top: 0; z-index: 1000; }
+        header { background: var(--dark); padding: 15px; border-bottom: 2px solid var(--roxo); position: sticky; top: 0; z-index: 1000; }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 15px; }
-        .logo-box { display: flex; flex-direction: column; line-height: 0.9; text-decoration: none; cursor: pointer; }
+        .logo-box { display: flex; flex-direction: column; line-height: 0.9; cursor: pointer; min-width: fit-content; }
         .logo-main { color: white; font-weight: 800; font-size: 1.2rem; }
         .logo-sub { color: var(--roxo); font-weight: 800; font-size: 1.1rem; }
         
-        .search-box { flex-grow: 1; position: relative; max-width: 500px; display: flex; align-items: center; }
-        .search-box input { width: 100%; padding: 10px 12px 10px 38px; border-radius: 20px; border: none; background: rgba(255,255,255,0.12); color: white; font-size: 0.85rem; outline: none; }
-        .search-box i { position: absolute; left: 14px; color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+        .search-box { flex-grow: 1; position: relative; max-width: 500px; }
+        .search-box input { 
+            width: 100%; padding: 12px 15px 12px 45px; border-radius: 50px; 
+            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.15); 
+            color: white; font-size: 0.85rem; outline: none; backdrop-filter: blur(5px);
+        }
+        .search-box i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--roxo); }
+
+        /* WHATSAPP PISCANTE */
+        .btn-whatsapp {
+            position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
+            background-color: var(--whatsapp-verde); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 3000; text-decoration: none;
+            animation: pulsarVerde 1.5s infinite;
+        }
+        @keyframes pulsarVerde {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
         /* SLIDER */
         .slider-section { padding: 10px; max-width: 1200px; margin: 0 auto; position: relative; }
-        .slider-container { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .slider-wrapper { display: flex; overflow-x: auto; snap-type: x mandatory; scroll-behavior: smooth; }
-        .slider-wrapper::-webkit-scrollbar { display: none; }
-        .slider-item { min-width: 100%; width: 100%; snap-align: start; flex-shrink: 0; }
-        .slider-item img { width: 100%; height: auto; display: block; }
-        
-        .btn-prev, .btn-next { 
-            position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none;
-            cursor: pointer; z-index: 10; color: white; font-size: 2rem; text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-            transition: 0.3s; opacity: 0.5; padding: 10px;
+        .slider-container { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #000; }
+        .slider-wrapper { display: flex; overflow-x: hidden; scroll-behavior: smooth; }
+        .slider-item { min-width: 100%; width: 100%; flex-shrink: 0; }
+        .slider-item img { width: 100%; height: auto; display: block; object-fit: cover; }
+        .dots-container { position: absolute; bottom: 12px; width: 100%; display: flex; justify-content: center; gap: 6px; z-index: 5; }
+        .dot { width: 6px; height: 6px; background: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: var(--roxo); width: 18px; border-radius: 10px; }
+
+        /* CATEGORIAS ALINHADAS */
+        .categories-container { max-width: 1200px; margin: 0 auto; padding: 20px 10px 10px 10px; }
+        .categories-scroll { 
+            display: flex; 
+            justify-content: center; /* Centraliza as categorias */
+            gap: 15px; 
+            overflow-x: auto; 
+            scrollbar-width: none; 
         }
-        .btn-prev:hover, .btn-next:hover { opacity: 1; }
-        .btn-prev { left: 5px; } .btn-next { right: 5px; }
+        .cat-item { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 75px; cursor: pointer; }
+        .cat-icon { width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--roxo); border: 1px solid var(--borda); font-size: 1.1rem; transition: 0.3s; }
+        .cat-item.active .cat-icon { background: var(--roxo); color: white; border-color: var(--roxo); }
+        .cat-item span { font-size: 0.6rem; font-weight: 700; color: #666; text-transform: uppercase; }
 
-        .dots-container { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; cursor: pointer; transition: 0.3s; }
-        .dot.active { background: var(--roxo); width: 20px; border-radius: 4px; }
+        /* CTA SECTION */
+        .cta-call { text-align: center; padding: 15px 10px 25px 10px; }
+        .cta-call h2 { font-weight: 900; font-size: 1.3rem; color: var(--dark); letter-spacing: -1px; }
+        .cta-call .roxo-text { color: var(--roxo); }
 
-        /* CATEGORIAS */
-        .categories-scroll { display: flex; gap: 15px; overflow-x: auto; padding: 20px 10px; max-width: 1200px; margin: 0 auto; scrollbar-width: none; }
-        .categories-scroll::-webkit-scrollbar { display: none; }
-        .cat-item { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; cursor: pointer; transition: 0.3s; }
-        .cat-icon { width: 55px; height: 55px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--roxo); box-shadow: 0 3px 10px rgba(0,0,0,0.05); border: 1px solid var(--borda); transition: 0.3s; }
-        .cat-item:hover .cat-icon, .cat-item.active .cat-icon { background: var(--roxo); color: white; transform: translateY(-3px); }
-        .cat-item span { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: #666; }
-        .cat-item.active span { color: var(--roxo); }
-
-        /* CTA EM UMA LINHA */
-        .cta-text-section { text-align: center; padding: 20px 15px; max-width: 1200px; margin: 0 auto; }
-        .cta-text-section h2 { 
-            font-size: clamp(1.1rem, 4vw, 1.6rem);
-            font-weight: 900; color: var(--dark); 
-            text-transform: uppercase; letter-spacing: -1px; line-height: 1.2;
-            white-space: nowrap;
-        }
-        .cta-text-section p { font-size: 0.8rem; color: #777; margin-top: 4px; font-weight: 400; }
-
-        /* GRID E CARDS */
-        .main-content { max-width: 1200px; margin: 0 auto; padding: 10px; min-height: 400px; }
+        /* GRID */
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 10px; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
-        
-        .card { background: white; border-radius: 15px; padding: 15px; border: 1px solid var(--borda); text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .card.hidden { display: none; }
-        .card:hover { border-color: var(--roxo); transform: translateY(-3px); }
-        .img-box { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .card { background: white; border-radius: 12px; padding: 12px; border: 1px solid var(--borda); text-align: center; display: flex; flex-direction: column; }
+        .img-box { width: 100%; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .name { font-size: 0.75rem; font-weight: 600; height: 36px; overflow: hidden; color: #333; margin-bottom: 5px; }
-        .price { font-size: 1.1rem; font-weight: 800; color: #222; margin-bottom: 10px; }
-        .btn-buy-card { background: var(--sucesso); color: white; padding: 12px; border-radius: 25px; border: none; font-weight: 800; font-size: 0.7rem; text-transform: uppercase; width: 100%; cursor: pointer; }
+        .card p { font-size: 0.7rem; font-weight: 700; height: 32px; overflow: hidden; margin-bottom: 4px; color: #333; }
+        .price { font-size: 1rem; font-weight: 800; margin: 5px 0; color: var(--dark); }
+        .btn-buy-card { background: var(--sucesso); color: white; padding: 10px; border-radius: 20px; border: none; font-weight: 800; width: 100%; cursor: pointer; font-size: 0.65rem; text-transform: uppercase; }
 
-        /* FOOTER */
-        footer { background: var(--dark); color: #fff; padding: 40px 20px; text-align: center; border-top: 3px solid var(--roxo); margin-top: 40px; }
-        .contact-footer { font-size: 0.75rem; color: #aaa; margin-bottom: 20px; }
-        .footer-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px; font-size: 0.75rem; }
+        /* FOOTER & SEALS */
+        footer { background: var(--dark); color: #fff; padding: 40px 20px; text-align: center; border-top: 3px solid var(--roxo); margin-top: 30px; }
+        .footer-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; color: var(--roxo); }
+        .payment-row { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .payment-row img { height: 32px; width: auto; }
+        .trust-seals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 400px; margin: 0 auto; }
+        .seal-item { display: flex; align-items: center; gap: 8px; text-align: left; background: rgba(188, 19, 254, 0.08); padding: 10px; border-radius: 8px; border: 1px solid rgba(188, 19, 254, 0.2); }
+        .seal-item i { font-size: 1rem; color: var(--roxo); }
+        .seal-text b { font-size: 0.55rem; display: block; }
+        .seal-text span { font-size: 0.45rem; color: rgba(255,255,255,0.4); }
 
-        /* WHATSAPP */
-        .wpp-container { position: fixed; bottom: 20px; right: 20px; z-index: 1500; }
-        .wpp-btn { background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-        .status-on { position: absolute; top: 2px; right: 2px; width: 14px; height: 14px; background: var(--online); border: 2px solid white; border-radius: 50%; animation: pulse-red 2s infinite; }
-
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 8px rgba(255, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-        }
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-content { background: white; padding: 25px; border-radius: 20px; max-width: 380px; width: 90%; text-align: center; }
     </style>
 </head>
 <body>
 
+    <a href="https://wa.me/55SEUNUMERO" class="btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <header>
         <div class="nav-container">
-            <div class="logo-box" onclick="filtrarProdutos('todos')">
-                <span class="logo-main">ORBIT</span>
-                <span class="logo-sub">WHITE</span>
+            <div class="logo-box" onclick="location.reload()">
+                <span class="logo-main">ORBIT</span><span class="logo-sub">WHITE</span>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Buscar fones, controles..." onkeyup="buscar()">
+                <input type="text" id="searchInput" placeholder="buscar produtos..." onkeyup="buscar()">
             </div>
         </div>
     </header>
 
     <section class="slider-section">
         <div class="slider-container">
-            <button class="btn-prev" onclick="moveSlider(-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="slider-wrapper" id="slider">
                 <div class="slider-item"><img src="banner.png"></div>
                 <div class="slider-item"><img src="banner1.png"></div>
                 <div class="slider-item"><img src="banner2.png"></div>
                 <div class="slider-item"><img src="banner3.png"></div>
             </div>
-            <button class="btn-next" onclick="moveSlider(1)"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="dots-container" id="dots">
-            <div class="dot active" onclick="goSlide(0)"></div>
-            <div class="dot" onclick="goSlide(1)"></div>
-            <div class="dot" onclick="goSlide(2)"></div>
-            <div class="dot" onclick="goSlide(3)"></div>
+            <div class="dots-container" id="dots"></div>
         </div>
     </section>
 
-    <div class="categories-scroll">
-        <div class="cat-item" onclick="filtrarProdutos('todos')">
-            <div class="cat-icon"><i class="fas fa-border-all"></i></div>
-            <span>Todos</span>
-        </div>
-        <div class="cat-item" onclick="filtrarProdutos('audio')">
-            <div class="cat-icon"><i class="fas fa-headphones"></i></div>
-            <span>Áudio</span>
-        </div>
-        <div class="cat-item" onclick="filtrarProdutos('controles')">
-            <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
-            <span>Controles</span>
-        </div>
-        <div class="cat-item" onclick="filtrarProdutos('energia')">
-            <div class="cat-icon"><i class="fas fa-bolt"></i></div>
-            <span>Energia</span>
-        </div>
-        <div class="cat-item" onclick="filtrarProdutos('setup')">
-            <div class="cat-icon"><i class="fas fa-keyboard"></i></div>
-            <span>Setup</span>
+    <div class="categories-container">
+        <div class="categories-scroll">
+            <div class="cat-item active" onclick="filtrarProdutos('todos', this)"><div class="cat-icon"><i class="fas fa-border-all"></i></div><span>Todos</span></div>
+            <div class="cat-item" onclick="filtrarProdutos('audio', this)"><div class="cat-icon"><i class="fas fa-headphones"></i></div><span>Áudio</span></div>
+            <div class="cat-item" onclick="filtrarProdutos('controles', this)"><div class="cat-icon"><i class="fas fa-gamepad"></i></div><span>Controles</span></div>
+            <div class="cat-item" onclick="filtrarProdutos('energia', this)"><div class="cat-icon"><i class="fas fa-bolt"></i></div><span>Energia</span></div>
         </div>
     </div>
 
-    <div class="cta-text-section">
-        <h2 id="ctaTitle">E AÍ, VAI COMPRAR O QUE HOJE?</h2>
-        <p>Periféricos novos você acha aqui na orbit store.</p>
+    <div class="cta-call">
+        <h2>E AÍ, O QUE VOCÊ <span class="roxo-text">VAI QUERER</span> HOJE?</h2>
     </div>
 
     <main class="main-content">
@@ -164,104 +160,100 @@
     </main>
 
     <footer>
-        <div class="contact-footer">
-            <p>neneltrofeu@gmail.com | (21) 9 8374-7028</p>
-            <p>Rio de Janeiro, Belford Roxo, Brasil</p>
+        <p class="footer-title">Pague com segurança</p>
+        <div class="payment-row">
+            <img src="pagamentos.png" alt="Cartões">
+            <img src="pix.png" alt="Pix">
         </div>
-        <div class="footer-badge">
-            <i class="fas fa-user-shield"></i> <b>COMPRA SEGURA</b>
+        <div class="trust-seals">
+            <div class="seal-item"><i class="fas fa-lock"></i><div class="seal-text"><b>PAGBANK</b><span>CHECKOUT SEGURO</span></div></div>
+            <div class="seal-item"><i class="fas fa-shield-alt"></i><div class="seal-text"><b>SSL SEGURO</b><span>DADOS PROTEGIDOS</span></div></div>
+            <div class="seal-item"><i class="fab fa-google"></i><div class="seal-text"><b>GOOGLE</b><span>SITE SEGURO</span></div></div>
+            <div class="seal-item"><i class="fas fa-truck"></i><div class="seal-text"><b>ENTREGA</b><span>VIA CORREIOS</span></div></div>
         </div>
-        <p style="font-size: 0.65rem; color: #666; margin-top: 10px;">
-            &copy; Orbit White | CNPJ: 60.726.256/0001-02
-        </p>
+        <p style="font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 25px;">Orbit White &copy; 2026 - CNPJ: 60.726.256/0001-02</p>
     </footer>
 
-    <div class="wpp-container">
-        <a href="https://wa.me/5521983747028" class="wpp-btn" target="_blank">
-            <div class="status-on"></div>
-            <i class="fab fa-whatsapp"></i>
-        </a>
+    <div id="descModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImg" style="width:120px; margin-bottom:15px;" src="">
+            <h3 id="modalName" style="font-weight:800;"></h3>
+            <p id="modalDesc" style="font-size:0.8rem; color:#666; margin: 15px 0;"></p>
+            <button id="confirmBuy" style="background:var(--sucesso); color:white; padding:15px; border-radius:30px; border:none; font-weight:800; width:100%; cursor:pointer; text-transform: uppercase;">PAGAR AGORA</button>
+            <button style="background:none; border:none; margin-top:15px; color:#999; cursor:pointer;" onclick="fecharModal()">VOLTAR</button>
+        </div>
     </div>
 
     <script>
-        // ADICIONEI O CAMPO 'categoria' EM CADA PRODUTO
+        // Mantenha o mesmo script anterior de produtos e funções...
         const produtos = [
-            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS - Premium', preco: 'R$ 21,00', img: 'fonebluetooth.png', link: 'https://pag.ae/81BP3rmb2' },
-            { id: 'suporte', categoria: 'energia', nome: 'Base Carregador para Controle PS5', preco: 'R$ 60,00', img: 'basecarregadorps5.png', link: 'https://pag.ae/81BP5Hupo' },
-            { id: 'controle', categoria: 'controles', nome: 'Controle Sem Fio Dualshock 4', preco: 'R$ 70,00', img: 'controleps4.png', link: 'https://pag.ae/81BP4FXb2' },
-            { id: 'gamesir', categoria: 'controles', nome: 'Controle Gamesir G7 SE - Hall Effect', preco: 'R$ 300,00', img: 'controlegamesirg7.png', link: 'https://pag.ae/81BP42Mjo' }
+            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS', descricao: 'Som imersivo com tecnologia OWS de condução aberta.', preco: 'R$ 21,00', img: 'fonebluetooth.png', link: 'https://pag.ae/81BP3rmb2' },
+            { id: 'suporte', categoria: 'energia', nome: 'Base Carregador PS5', descricao: 'Carregamento duplo simultâneo para DualSense.', preco: 'R$ 60,00', img: 'basecarregadorps5.png', link: 'https://pag.ae/81BP5Hupo' },
+            { id: 'controle', categoria: 'controles', nome: 'Controle Dualshock 4', descricao: 'Controle de alta precisão compatível com PS4 e PC.', preco: 'R$ 70,00', img: 'controleps4.png', link: 'https://pag.ae/81BP4FXb2' },
+            { id: 'gamesir', categoria: 'controles', nome: 'Gamesir G7 SE', descricao: 'Tecnologia Hall Effect oficial Xbox anti-drift.', preco: 'R$ 300,00', img: 'controlegamesirg7.png', link: 'https://pag.ae/81BP42Mjo' }
         ];
 
-        const grid = document.getElementById('productGrid');
+        const slider = document.getElementById('slider');
+        const dotsContainer = document.getElementById('dots');
+        const slides = document.querySelectorAll('.slider-item');
+        let currentIndex = 0;
 
-        // Renderização Inicial
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = i === 0 ? 'dot active' : 'dot';
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        function goToSlide(index) {
+            currentIndex = index;
+            slider.scrollTo({ left: slider.offsetWidth * index, behavior: 'smooth' });
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+        }
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            goToSlide(currentIndex);
+        }, 5000);
+
         function renderizar(lista) {
+            const grid = document.getElementById('productGrid');
             grid.innerHTML = "";
             lista.forEach(p => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.innerHTML = `<div class="img-box"><img src="${p.img}"></div><h3 class="name">${p.nome}</h3><span class="price">${p.preco}</span><button class="btn-buy-card" onclick="window.location.href='${p.link}'">COMPRAR</button>`;
+                card.onclick = (e) => { if(e.target.tagName !== 'BUTTON') abrirModal(p.id); };
+                card.innerHTML = `<div class="img-box"><img src="${p.img}"></div><p>${p.nome}</p><span class="price">${p.preco}</span><button class="btn-buy-card">COMPRAR</button>`;
                 grid.appendChild(card);
             });
         }
 
-        renderizar(produtos);
+        function abrirModal(id) {
+            const p = produtos.find(item => item.id === id);
+            document.getElementById('modalImg').src = p.img;
+            document.getElementById('modalName').innerText = p.nome;
+            document.getElementById('modalDesc').innerText = p.descricao;
+            document.getElementById('confirmBuy').onclick = function() {
+                window.open(p.link, '_blank');
+                window.location.href = 'obrigado.html';
+            };
+            document.getElementById('descModal').style.display = 'flex';
+        }
 
-        // FUNÇÃO DE FILTRO POR CATEGORIA
-        function filtrarProdutos(cat) {
-            // Remove destaque de todas as categorias e coloca na clicada
+        function fecharModal() { document.getElementById('descModal').style.display = 'none'; }
+        
+        function filtrarProdutos(cat, el) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            if(cat === 'todos') {
-                renderizar(produtos);
-                document.getElementById('ctaTitle').innerText = "E AÍ, VAI COMPRAR O QUE HOJE?";
-            } else {
-                const filtrados = produtos.filter(p => p.categoria === cat);
-                renderizar(filtrados);
-                document.getElementById('ctaTitle').innerText = "CATEGORIA: " + cat.toUpperCase();
-            }
-            
-            // Scroll suave para a seção de produtos ao filtrar
-            window.scrollTo({ top: document.querySelector('.cta-text-section').offsetTop - 100, behavior: 'smooth' });
+            el.classList.add('active');
+            renderizar(cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat));
         }
 
-        // Busca simples
         function buscar() {
-            const termo = document.getElementById('searchInput').value.toLowerCase();
-            const resultado = produtos.filter(p => p.nome.toLowerCase().includes(termo));
-            renderizar(resultado);
+            const t = document.getElementById('searchInput').value.toLowerCase();
+            renderizar(produtos.filter(p => p.nome.toLowerCase().includes(t)));
         }
 
-        // Lógica do Slider
-        const slider = document.getElementById('slider');
-        const dots = document.querySelectorAll('.dot');
-        let currentSlide = 0;
-
-        function updateDots() {
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
-        }
-
-        function moveSlider(dir) {
-            const total = 4;
-            currentSlide = (currentSlide + dir + total) % total;
-            slider.scrollTo({ left: currentSlide * slider.offsetWidth, behavior: 'smooth' });
-            updateDots();
-        }
-
-        function goSlide(index) {
-            currentSlide = index;
-            slider.scrollTo({ left: currentSlide * slider.offsetWidth, behavior: 'smooth' });
-            updateDots();
-        }
-
-        slider.addEventListener('scroll', () => {
-            const index = Math.round(slider.scrollLeft / slider.offsetWidth);
-            if(index !== currentSlide) {
-                currentSlide = index;
-                updateDots();
-            }
-        });
+        renderizar(produtos);
     </script>
 </body>
 </html>

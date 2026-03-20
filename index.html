@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Orbit White | Hardware & Tech Premium</title>
+    <title>Orbit White | Hardware & Eletrônicos</title>
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="apple-touch-icon" href="https://www.orbitwhite.com.br/logo.png">
     
-    <meta property="og:title" content="Orbit White | Hardware & Eletrônicos">
-    <meta property="og:description" content="Temos fone, controle de ps4, controle de pc, Gamesir G7, Suporte de control...">
-    <meta property="og:image" content="logo.png">
-    <meta property="og:image:type" content="image/png">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="logo.png">
+    <meta property="og:url" content="https://www.orbitwhite.com.br/">
+    <meta property="og:title" content="Orbit White | Hardware & Eletrônicos">
+    <meta property="og:description" content="Temos fone, controle de ps4, controle de pc, Gamesir G7, Suporte de controle...">
+    <meta property="og:image" content="https://www.orbitwhite.com.br/logo.png">
+    <meta property="og:image:type" content="image/png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     
     <style>
         :root { 
@@ -34,7 +34,7 @@
 
         header { 
             background: var(--dark); 
-            padding: 20px 15px; /* Aumentado para dar espaço à logo gigante */
+            padding: 35px 15px 20px 15px; 
             border-bottom: 2px solid var(--roxo); 
             position: sticky; 
             top: 0; 
@@ -42,77 +42,101 @@
             width: 100%; 
         }
 
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 20px; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
         
-        /* LOGO AINDA MAIOR */
-        .logo-img { 
-            height: 85px; /* Aumentado de 60px para 85px */
-            width: auto; 
-            cursor: pointer; 
-            display: block;
-            transition: transform 0.3s;
+        .logo-text {
+            font-family: 'Audiowide', cursive;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            line-height: 1;
+            animation: logoPulse 4s infinite ease-in-out;
+            transition: color 0.3s;
+            flex-shrink: 0;
         }
-        .logo-img:hover { transform: scale(1.05); }
-        
-        @media (max-width: 768px) {
-            header { padding: 15px 10px; }
-            .logo-img {
-                height: 65px; /* No celular fica um pouco menor para não quebrar o layout */
+
+        .logo-text span {
+            color: var(--roxo);
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0px rgba(188, 19, 254, 0));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 10px rgba(188, 19, 254, 0.7));
             }
         }
         
-        .search-box { flex-grow: 1; position: relative; max-width: 450px; margin-left: auto; }
+        @media (max-width: 768px) {
+            header { padding: 25px 10px 15px 10px; }
+            .logo-text { font-size: 1.6rem; }
+            .nav-container { flex-direction: column; gap: 15px; text-align: center; }
+            .search-box { width: 100%; max-width: 100%; }
+        }
+        
+        .search-box { position: relative; width: 100%; max-width: 450px; }
         .search-box input { width: 100%; padding: 12px 15px 12px 45px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.15); color: white; font-size: 0.9rem; outline: none; }
         .search-box i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--roxo); }
 
         .container-central { max-width: 1100px; margin: 0 auto; background: #fff; width: 100%; display: flex; flex-direction: column; }
 
         .slider-section { padding: 15px 15px 0 15px; width: 100%; }
-        .slider-container { position: relative; border-radius: 20px; overflow: hidden; background: #000; width: 100%; height: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .slider-container { position: relative; border-radius: 20px; overflow: hidden; background: #000; width: 100%; height: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .slider-wrapper { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
         .slider-wrapper::-webkit-scrollbar { display: none; }
         .slider-item { min-width: 100%; height: 100%; scroll-snap-align: start; flex-shrink: 0; }
         .slider-item img { width: 100%; height: 100%; display: block; object-fit: cover; }
-
         @media (max-width: 768px) { .slider-container { height: 180px; } }
 
         .categories-container { padding: 20px 10px; }
         .categories-scroll { display: flex; gap: 15px; overflow-x: auto; padding: 10px; scrollbar-width: none; justify-content: center; }
         @media (max-width: 768px) { .categories-scroll { justify-content: flex-start; } }
-
         .cat-item { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; cursor: pointer; }
         .cat-icon { width: 60px; height: 60px; background: #f9f9f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #444; border: 1px solid #eee; font-size: 1.2rem; transition: 0.3s; }
         .cat-item.active .cat-icon { background: var(--roxo); color: white; border-color: var(--roxo); }
         .cat-item span { font-size: 0.65rem; font-weight: 800; color: #555; text-transform: uppercase; }
 
         .cta-section { text-align: center; padding: 40px 15px; background: #fff; }
-        .cta-section h2 { font-weight: 900; font-size: 2rem; letter-spacing: -1px; }
+        .cta-section h2 { font-weight: 900; font-size: 2.5rem; letter-spacing: -1px; }
         .cta-section .roxo { color: var(--roxo); }
         .cta-section p { font-size: 1rem; color: #777; margin-top: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
 
         .main-content { padding: 0 15px 60px; }
         .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } }
 
-        .card { background: #ffffff; border-radius: 18px; border: 1px solid var(--borda); transition: 0.4s; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
+        .card { background: #ffffff; border-radius: 18px; border: 1px solid var(--borda); transition: 0.4s; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; height: 100%; }
         .card:hover { transform: translateY(-8px); border-color: var(--roxo); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-        .img-box { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .img-box { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .card-info { background: var(--cinza-claro); padding: 20px; border-top: 1px solid var(--borda); flex-grow: 1; text-align: center; }
-        .card p { font-size: 0.8rem; font-weight: 700; height: 40px; margin-bottom: 10px; color: #333; overflow: hidden; }
-        .price { font-size: 1.3rem; font-weight: 900; color: var(--dark); display: block; margin-bottom: 15px; }
-        .btn-buy-card { background: var(--sucesso); color: white; padding: 12px; border-radius: 50px; border: none; font-weight: 800; width: 100%; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; }
+        .card-info { background: var(--cinza-claro); padding: 20px; border-top: 1px solid var(--borda); flex-grow: 1; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+        .card p { font-size: 0.9rem; font-weight: 700; height: 45px; margin-bottom: 10px; color: #333; overflow: hidden; }
+        .price { font-size: 1.4rem; font-weight: 900; color: var(--dark); display: block; margin-bottom: 15px; }
+        .btn-buy-card { background: var(--sucesso); color: white; padding: 14px; border-radius: 50px; border: none; font-weight: 800; width: 100%; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .btn-buy-card:hover { filter: brightness(1.1); }
 
         footer { background: var(--dark); color: #fff; padding: 50px 20px; text-align: center; border-top: 4px solid var(--roxo); }
-        .payment-icons { display: flex; justify-content: center; gap: 25px; font-size: 24px; margin-bottom: 30px; opacity: 0.9; }
-        .trust-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .badge { background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 10px; border: 1px solid rgba(188, 19, 254, 0.2); display: flex; align-items: center; gap: 8px; }
-        .badge i { color: var(--roxo); font-size: 1rem; }
-        .badge span { font-size: 0.6rem; font-weight: 700; text-align: left; }
-        .cnpj-text { opacity: 0.3; font-size: 0.65rem; margin-top: 30px; }
+        .footer-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--roxo); margin-bottom: 20px; letter-spacing: 2px; }
+        .payment-icons { display: flex; justify-content: center; align-items: center; gap: 25px; font-size: 28px; margin-bottom: 40px; opacity: 0.9; flex-wrap: wrap; }
+        .payment-icons i { color: #fff; }
+        .pix-text { font-weight: 900; font-size: 1.5rem; color: #fff; }
+        
+        .trust-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+        .badge { background: rgba(255,255,255,0.05); padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(188, 19, 254, 0.3); display: flex; align-items: center; gap: 10px; min-width: 160px; }
+        .badge i { color: var(--roxo); font-size: 1.2rem; }
+        .badge span { font-size: 0.7rem; font-weight: 700; text-align: left; line-height: 1.2; }
+        .cnpj-text { opacity: 0.4; font-size: 0.7rem; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
         .btn-whatsapp-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 3000; text-decoration: none; }
-        .btn-whatsapp { width: 60px; height: 60px; background: var(--whatsapp-verde); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .btn-whatsapp { width: 60px; height: 60px; background: var(--whatsapp-verde); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: 0.3s; }
+        .btn-whatsapp:hover { transform: scale(1.1); }
         
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(8px); }
         .modal-content { background: white; padding: 30px; border-radius: 25px; max-width: 350px; width: 90%; text-align: center; }
@@ -123,7 +147,9 @@
 
     <header>
         <div class="nav-container">
-            <img src="logo.png" alt="Orbit White" class="logo-img" onclick="location.reload()">
+            <div class="logo-text" onclick="location.reload()">
+                Orbit <span>White</span>
+            </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="O que você procura?" onkeyup="buscar()">
@@ -163,20 +189,37 @@
     </div>
 
     <footer>
+        <div class="footer-title">Formas de Pagamento</div>
         <div class="payment-icons">
-            <i class="fab fa-cc-visa"></i>
-            <i class="fab fa-cc-mastercard"></i>
-            <span style="font-weight: 900; font-size: 1.3rem;">PIX</span>
-            <i class="fas fa-barcode"></i>
+            <i class="fab fa-cc-visa" title="Visa"></i>
+            <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+            <span class="pix-text">PIX</span>
+            <i class="fas fa-barcode" title="Boleto"></i>
         </div>
+
+        <div class="footer-title">Segurança</div>
         <div class="trust-badges">
-            <div class="badge"><i class="fas fa-shield-alt"></i><span>SITE SEGURO</span></div>
-            <div class="badge"><i class="fas fa-truck"></i><span>ENVIO RÁPIDO</span></div>
+            <div class="badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>SITE 100%<br>SEGURO</span>
+            </div>
+            <div class="badge">
+                <i class="fas fa-lock"></i>
+                <span>SSL<br>CRIPTOGRAFADO</span>
+            </div>
+            <div class="badge">
+                <i class="fas fa-truck"></i>
+                <span>ENVIO RÁPIDO<br>E SEGURO</span>
+            </div>
         </div>
-        <div class="cnpj-text">&copy; 2026 Orbit White - CNPJ: 60.726.256/0001-02</div>
+
+        <div class="cnpj-text">
+            &copy; 2026 Orbit White - Todos os direitos reservados.<br>
+            CNPJ: 60.726.256/0001-02
+        </div>
     </footer>
 
-    <a href="https://wa.me/55SEUNUMERO" class="btn-whatsapp-wrapper" target="_blank">
+    <a href="https://wa.me/5521983747028" class="btn-whatsapp-wrapper" target="_blank">
         <div class="btn-whatsapp"><i class="fab fa-whatsapp"></i></div>
     </a>
 
@@ -224,11 +267,13 @@
         }
 
         function fecharModal() { document.getElementById('descModal').style.display = 'none'; }
+        
         function filtrarProdutos(cat, el) {
             document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
             renderizar(cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat));
         }
+
         function buscar() {
             const t = document.getElementById('searchInput').value.toLowerCase();
             renderizar(produtos.filter(p => p.nome.toLowerCase().includes(t)));
@@ -241,7 +286,7 @@
         setInterval(() => {
             slideIndex = (slideIndex + 1) % 4;
             slider.scrollTo({ left: slider.clientWidth * slideIndex, behavior: 'smooth' });
-        }, 2000);
+        }, 3000);
     </script>
 </body>
 </html>

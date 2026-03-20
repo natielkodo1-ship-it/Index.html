@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Orbit White | Hardware & Tech Premium</title>
     
-    <meta name="description" content="Orbit White - A melhor seleção de Hardware e Tech Premium. Controles, Áudio e Energia com envio para todo o Brasil.">
-    <meta name="keywords" content="Hardware, Tech, PS5, Gamesir, Orbit White, Tecnologia, Dualshock 4, Fone Bluetooth, Carregador">
-    <meta name="author" content="Orbit White">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta property="og:image" content="logo.png"> 
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="500">
+    <meta property="og:image:height" content="500">
+    <meta name="twitter:image" content="logo.png">
 
+    <meta name="description" content="Orbit White - A melhor seleção de Hardware e Tech Premium.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Orbit White | Hardware & Tech Premium">
-    <meta property="og:description" content="Turbine seu setup com os melhores acessórios tech. Envio para todo o Brasil.">
-    <meta property="og:image" content="https://suadominio.com.br/banner.png"> 
-    <meta property="og:url" content="https://suadominio.com.br">
     
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
@@ -25,106 +26,91 @@
             --dark: #0a0414; 
             --sucesso: #00a650; 
             --whatsapp-verde: #25d366; 
-            --bg-lateral: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%); 
-            --borda: #eeeeee; 
+            --borda: #e0e0e0; 
+            --cinza-claro: #f5f5f5; 
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { background: var(--bg-lateral); color: #333; overflow-x: hidden; min-height: 100vh; }
+        body { background: #ffffff; color: #333; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
 
-        header { background: var(--dark); padding: 12px 15px; border-bottom: 2px solid var(--roxo); position: sticky; top: 0; z-index: 1000; }
+        header { background: var(--dark); padding: 12px 15px; border-bottom: 2px solid var(--roxo); position: sticky; top: 0; z-index: 1000; width: 100%; }
         .nav-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 15px; }
+        
         .logo-box { display: flex; flex-direction: column; line-height: 0.8; cursor: pointer; min-width: fit-content; }
         .logo-main { color: white; font-weight: 900; font-size: 1.1rem; }
         .logo-sub { color: var(--roxo); font-weight: 900; font-size: 0.9rem; }
         
         .search-box { flex-grow: 1; position: relative; max-width: 500px; margin-left: auto; }
         .search-box input { width: 100%; padding: 10px 15px 10px 40px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.15); color: white; font-size: 0.85rem; outline: none; transition: 0.3s; }
-        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--roxo); font-size: 0.9rem; }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--roxo); }
 
-        .container-central { max-width: 1100px; margin: 0 auto; background: #fff; box-shadow: 0 0 50px rgba(0,0,0,0.05); }
+        .container-central { max-width: 1100px; margin: 0 auto; background: #fff; width: 100%; flex: 1; }
 
-        .slider-section { padding: 15px; background: #fff; }
-        .slider-container { position: relative; border-radius: 20px; overflow: hidden; background: #000; max-height: 380px; }
+        .slider-section { padding: 15px; }
+        .slider-container { position: relative; border-radius: 20px; overflow: hidden; background: #000; max-height: 300px; }
         .slider-wrapper { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
-        .slider-wrapper::-webkit-scrollbar { display: none; }
         .slider-item { min-width: 100%; scroll-snap-align: start; flex-shrink: 0; }
-        .slider-item img { width: 100%; height: 380px; display: block; object-fit: cover; }
+        .slider-item img { width: 100%; height: 300px; display: block; object-fit: cover; }
 
-        @media (max-width: 768px) {
-            .slider-container, .slider-item img { height: 200px; }
-            .container-central { box-shadow: none; }
-        }
+        @media (max-width: 768px) { .slider-container, .slider-item img { height: 180px; } }
 
-        .categories-container { padding: 20px 10px; background: #fff; }
-        .categories-scroll { display: flex; gap: 20px; overflow-x: auto; padding: 10px; scrollbar-width: none; justify-content: flex-start; }
-        .categories-scroll::-webkit-scrollbar { display: none; }
-        @media (min-width: 768px) { .categories-scroll { justify-content: center; } }
+        .categories-container { padding: 15px 10px; }
+        .categories-scroll { display: flex; gap: 15px; overflow-x: auto; padding: 10px; scrollbar-width: none; justify-content: center; }
+        @media (max-width: 768px) { .categories-scroll { justify-content: flex-start; } }
 
-        .cat-item { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 90px; cursor: pointer; transition: 0.3s; }
-        .cat-icon { width: 65px; height: 65px; background: #f9f9f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #444; border: 1px solid var(--borda); font-size: 1.4rem; transition: 0.3s; }
-        .cat-item.active .cat-icon { background: var(--roxo); color: white; border-color: var(--roxo); box-shadow: 0 5px 15px rgba(188, 19, 254, 0.3); }
-        .cat-item span { font-size: 0.7rem; font-weight: 800; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+        .cat-item { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; cursor: pointer; }
+        .cat-icon { width: 60px; height: 60px; background: #f9f9f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #444; border: 1px solid #eee; font-size: 1.2rem; transition: 0.3s; }
+        .cat-item.active .cat-icon { background: var(--roxo); color: white; border-color: var(--roxo); }
+        .cat-item span { font-size: 0.65rem; font-weight: 800; color: #555; text-transform: uppercase; }
 
-        .main-content { padding: 20px 15px 50px; background: #fff; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
+        /* CTA AUMENTADO */
+        .cta-section { text-align: center; padding: 35px 15px; background: #fff; }
+        .cta-section h2 { font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; white-space: nowrap; }
+        .cta-section .roxo { color: var(--roxo); }
+        .cta-section p { font-size: 0.9rem; color: #777; margin-top: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        @media (max-width: 600px) { .cta-section h2 { font-size: 1.25rem; } }
 
-        .card { background: white; border-radius: 18px; padding: 20px; border: 1px solid var(--borda); text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: rgba(188, 19, 254, 0.2); }
-        
-        .img-box { width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+        .main-content { padding: 10px 15px 50px; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } }
+
+        .card { background: #ffffff; border-radius: 18px; border: 1px solid var(--borda); transition: 0.4s; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-8px); border-color: var(--roxo); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .img-box { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; padding: 15px; background: #ffffff; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .card-info { background: var(--cinza-claro); padding: 15px; border-top: 1px solid var(--borda); flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+        .card p { font-size: 0.75rem; font-weight: 700; height: 35px; margin-bottom: 8px; color: #444; overflow: hidden; }
+        .price { font-size: 1.1rem; font-weight: 900; margin-bottom: 12px; display: block; color: var(--dark); }
+        .btn-buy-card { background: var(--sucesso); color: white; padding: 10px; border-radius: 50px; border: none; font-weight: 800; width: 100%; font-size: 0.65rem; text-transform: uppercase; cursor: pointer; }
 
-        .card p { font-size: 0.8rem; font-weight: 700; height: 40px; margin-bottom: 10px; overflow: hidden; color: #444; }
-        .price { font-size: 1.25rem; font-weight: 900; margin-bottom: 15px; display: block; color: var(--dark); }
-        .btn-buy-card { background: var(--sucesso); color: white; padding: 14px; border-radius: 50px; border: none; font-weight: 800; width: 100%; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        footer { background: var(--dark); color: #fff; padding: 40px 20px; text-align: center; border-top: 4px solid var(--roxo); margin-top: auto; }
+        .footer-title { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--roxo); margin-bottom: 15px; letter-spacing: 1px; }
+        .payment-icons { display: flex; justify-content: center; gap: 20px; font-size: 22px; margin-bottom: 25px; opacity: 0.9; }
+        .trust-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .badge { background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(188, 19, 254, 0.2); display: flex; align-items: center; gap: 6px; }
+        .badge i { color: var(--roxo); font-size: 0.9rem; }
+        .badge span { font-size: 0.55rem; font-weight: 700; text-align: left; }
+        .cnpj-text { opacity: 0.3; font-size: 0.6rem; margin-top: 25px; }
 
-        footer { background: var(--dark); color: #fff; padding: 50px 20px; text-align: center; border-top: 4px solid var(--roxo); }
-        .payment-row { display: flex; align-items: center; justify-content: center; gap: 25px; margin-bottom: 35px; opacity: 0.7; flex-wrap: wrap; }
-        .payment-row i, .payment-row em { font-size: 24px; color: #fff; font-style: normal; font-weight: 900; }
-        .trust-seals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 500px; margin: 0 auto; }
-        .seal-item { display: flex; align-items: center; gap: 10px; text-align: left; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid rgba(188, 19, 254, 0.15); }
-        .seal-item i { font-size: 1.2rem; color: var(--roxo); }
-        .seal-text b { font-size: 0.65rem; display: block; color: #fff; }
-        .seal-text span { font-size: 0.55rem; color: #aaa; }
-        .cnpj-text { opacity: 0.4; font-size: 0.7rem; margin-top: 30px; letter-spacing: 0.5px; }
-
-        /* WHATSAPP PULSANDO + SUPORTE */
-        .btn-whatsapp-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 3000; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .whatsapp-label { background: white; color: #333; padding: 8px 15px; border-radius: 50px; font-weight: 800; font-size: 0.7rem; text-transform: uppercase; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .btn-whatsapp-wrapper { position: fixed; bottom: 20px; right: 20px; z-index: 3000; text-decoration: none; }
+        .btn-whatsapp { width: 55px; height: 55px; background: var(--whatsapp-verde); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         
-        .btn-whatsapp { 
-            width: 60px; height: 60px; background: var(--whatsapp-verde); color: white; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 32px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
-            animation: pulse-green 2s infinite; 
-        }
-
-        @keyframes pulse-green {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal-content { background: white; padding: 30px; border-radius: 25px; max-width: 380px; width: 90%; text-align: center; }
-        .modal-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #eee; margin: 15px 0; outline: none; text-align: center; }
-        .roxo-text { color: var(--roxo); }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-content { background: white; padding: 25px; border-radius: 20px; max-width: 320px; width: 90%; text-align: center; }
+        .modal-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin: 15px 0; outline: none; text-align: center; }
     </style>
 </head>
 <body>
 
     <a href="https://wa.me/55SEUNUMERO" class="btn-whatsapp-wrapper" target="_blank">
-        <span class="whatsapp-label">Suporte</span>
         <div class="btn-whatsapp"><i class="fab fa-whatsapp"></i></div>
     </a>
 
     <header>
         <div class="nav-container">
             <div class="logo-box" onclick="location.reload()"><span class="logo-main">ORBIT</span><span class="logo-sub">WHITE</span></div>
-            <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="O que você busca?" onkeyup="buscar()"></div>
+            <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar no site..." onkeyup="buscar()"></div>
         </div>
     </header>
 
@@ -144,39 +130,42 @@
             <div class="categories-scroll">
                 <div class="cat-item active" onclick="filtrarProdutos('todos', this)"><div class="cat-icon"><i class="fas fa-th-large"></i></div><span>Todos</span></div>
                 <div class="cat-item" onclick="filtrarProdutos('audio', this)"><div class="cat-icon"><i class="fas fa-headphones"></i></div><span>Áudio</span></div>
-                <div class="cat-item" onclick="filtrarProdutos('controles', this)"><div class="cat-icon"><i class="fas fa-gamepad"></i></div><span>Controles</span></div>
+                <div class="cat-item" onclick="filtrarProdutos('controles', this)"><div class="cat-icon"><i class="fas fa-gamepad"></i></div><span>Games</span></div>
                 <div class="cat-item" onclick="filtrarProdutos('energia', this)"><div class="cat-icon"><i class="fas fa-bolt"></i></div><span>Energia</span></div>
             </div>
         </div>
 
-        <div class="cta-call" style="text-align: center; padding: 20px 10px; background: #fff;">
-            <h2 style="font-weight: 900; font-size: 1.3rem; letter-spacing: -0.5px;">E AÍ, O QUE VOCÊ <span class="roxo-text">VAI QUERER</span> HOJE?</h2>
-        </div>
+        <section class="cta-section">
+            <h2>E AÍ, O QUE VOCÊ VAI <span class="roxo">COMPRAR HOJE</span>?</h2>
+            <p>Envio grátis para todo o Brasil</p>
+        </section>
 
         <main class="main-content"><div class="grid" id="productGrid"></div></main>
-
-        <footer>
-            <p style="font-size: 0.8rem; font-weight: 800; color: var(--roxo); margin-bottom: 20px; text-transform: uppercase;">Pague com segurança</p>
-            <div class="payment-row">
-                <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-google-pay"></i><i class="fab fa-apple-pay"></i><em>PIX</em>
-            </div>
-            <div class="trust-seals">
-                <div class="seal-item"><i class="fas fa-lock"></i><div class="seal-text"><b>PAGBANK</b><span>SEGURO</span></div></div>
-                <div class="seal-item"><i class="fas fa-shield-alt"></i><div class="seal-text"><b>SSL</b><span>PROTEGIDO</span></div></div>
-                <div class="seal-item"><i class="fab fa-google"></i><div class="seal-text"><b>GOOGLE</b><span>VERIFICADO</span></div></div>
-                <div class="seal-item"><i class="fas fa-truck"></i><div class="seal-text"><b>ENVIO</b><span>CORREIOS</span></div></div>
-            </div>
-            <div class="cnpj-text">&copy; 2026 Orbit White - CNPJ: 60.726.256/0001-02</div>
-        </footer>
     </div>
+
+    <footer>
+        <div class="footer-title">Formas de Pagamento</div>
+        <div class="payment-icons">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <span style="font-weight: 900; font-size: 1.2rem; vertical-align: middle;">PIX</span>
+            <i class="fas fa-barcode"></i>
+        </div>
+        <div class="trust-badges">
+            <div class="badge"><i class="fas fa-shield-alt"></i><span>SITE SEGURO</span></div>
+            <div class="badge"><i class="fas fa-lock"></i><span>SSL PROTEGIDO</span></div>
+            <div class="badge"><i class="fas fa-truck"></i><span>ENVIO RÁPIDO</span></div>
+        </div>
+        <div class="cnpj-text">&copy; 2026 Orbit White - CNPJ: 60.726.256/0001-02</div>
+    </footer>
 
     <div id="descModal" class="modal">
         <div class="modal-content">
-            <img id="modalImg" style="width:140px; margin-bottom:15px; object-fit: contain;" src="">
-            <h3 id="modalName" style="font-weight:800; color:var(--dark); margin-bottom: 10px;"></h3>
+            <img id="modalImg" style="width:100px; margin-bottom:15px; object-fit: contain;" src="">
+            <h3 id="modalName" style="font-weight:800; font-size: 1rem; margin-bottom: 5px;"></h3>
             <input type="email" id="userEmail" class="modal-input" placeholder="Seu melhor e-mail" required>
-            <button id="confirmBuy" style="background:var(--sucesso); color:white; padding:18px; border-radius:50px; border:none; font-weight:800; width:100%; cursor:pointer; text-transform: uppercase;">CONCLUIR AGORA</button>
-            <button style="background:none; border:none; margin-top:20px; color:#999; cursor:pointer;" onclick="fecharModal()">VOLTAR</button>
+            <button id="confirmBuy" style="background:var(--sucesso); color:white; padding:15px; border-radius:50px; border:none; width:100%; font-weight:800; cursor:pointer; text-transform: uppercase;">Finalizar Agora</button>
+            <p style="margin-top:15px; cursor:pointer; color:#999; font-size: 0.8rem;" onclick="fecharModal()">Voltar</p>
         </div>
     </div>
 
@@ -188,17 +177,6 @@
             { id: 'gamesir', categoria: 'controles', nome: 'Gamesir G7 SE', preco: 'R$ 300,00', img: 'controlegamesirg7.png', link: 'https://pag.ae/81BP42Mjo' }
         ];
 
-        const slider = document.getElementById('slider');
-        let currentSlide = 0;
-        function startAutoSlider() {
-            setInterval(() => {
-                currentSlide++;
-                if (currentSlide >= 4) currentSlide = 0;
-                slider.scrollTo({ left: slider.offsetWidth * currentSlide, behavior: 'smooth' });
-            }, 5000);
-        }
-        startAutoSlider();
-
         function renderizar(lista) {
             const grid = document.getElementById('productGrid');
             grid.innerHTML = "";
@@ -206,8 +184,7 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.onclick = () => abrirModal(p.id);
-                // SEO: Adicionado atributo alt="p.nome - Orbit White" dinamicamente na tag img abaixo
-                card.innerHTML = `<div class="img-box"><img src="${p.img}" alt="${p.nome} - Orbit White"></div><p>${p.nome}</p><b class="price">${p.preco}</b><button class="btn-buy-card">COMPRAR AGORA</button>`;
+                card.innerHTML = `<div class="img-box"><img src="${p.img}" alt="${p.nome}"></div><div class="card-info"><p>${p.nome}</p><b class="price">${p.preco}</b><button class="btn-buy-card">COMPRAR AGORA</button></div>`;
                 grid.appendChild(card);
             });
         }
@@ -219,21 +196,15 @@
             document.getElementById('confirmBuy').onclick = function() {
                 const email = document.getElementById('userEmail').value;
                 if(!email.includes('@')) { alert('E-mail inválido!'); return; }
-                fetch("https://formspree.io/f/xnjbwvkd", {
-                    method: "POST",
-                    body: JSON.stringify({ email: email, produto: p.nome }),
-                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-                }).finally(() => {
-                    window.open(p.link, '_blank');
-                    window.location.href = 'obrigado.html';
-                });
+                window.open(p.link, '_blank');
+                fecharModal();
             };
             document.getElementById('descModal').style.display = 'flex';
         }
 
         function fecharModal() { document.getElementById('descModal').style.display = 'none'; }
         function filtrarProdutos(cat, el) {
-            document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
             renderizar(cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat));
         }
@@ -241,7 +212,16 @@
             const t = document.getElementById('searchInput').value.toLowerCase();
             renderizar(produtos.filter(p => p.nome.toLowerCase().includes(t)));
         }
+
         renderizar(produtos);
+
+        // SLIDE VELOCIDADE AUMENTADA (2000ms = 2 segundos)
+        let slideIndex = 0;
+        const slider = document.getElementById('slider');
+        setInterval(() => {
+            slideIndex = (slideIndex + 1) % 4;
+            slider.scrollTo({ left: slider.clientWidth * slideIndex, behavior: 'smooth' });
+        }, 3000);
     </script>
 </body>
 </html>

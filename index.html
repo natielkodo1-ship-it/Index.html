@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Orbit Store | Hardware & Tech</title>
     
-       <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Orbit White | Fones Bluetooth, Controles PS4 e Eletrónicos</title>
+    <meta name="description" content="As melhores ofertas em fones bluetooth GD28, controles de PS4 Dualshock e periféricos premium. Entrega rápida e compra segura na Orbit White.">
+    <meta name="keywords" content="fone bluetooth, controle ps4, dualshock 4, fone gd28, fone ows, eletronicos, hardware">
+    
+    <meta property="og:title" content="Orbit White | Hardware & Tech Premium">
+    <meta property="og:description" content="Confira nossa linha de fones bluetooth e controles com os melhores preços.">
+    <meta property="og:image" content="logo.png"> 
+    <meta property="og:type" content="website">
+
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?v=1.1">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --roxo: #bc13fe;
@@ -73,7 +82,8 @@
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
 
-        .card { background: white; border-radius: 8px; padding: 15px; border: 1px solid var(--borda); cursor: pointer; text-align: center; display: flex; flex-direction: column; height: 100%; }
+        .card { background: white; border-radius: 8px; padding: 15px; border: 1px solid var(--borda); cursor: pointer; text-align: center; display: flex; flex-direction: column; height: 100%; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--roxo); }
         .img-box { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .name { font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; height: 38px; overflow: hidden; }
@@ -89,7 +99,7 @@
 
         /* MODAIS */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: white; width: 100%; max-width: 450px; border-radius: 12px; padding: 25px; position: relative; }
+        .modal-content { background: white; width: 100%; max-width: 450px; border-radius: 12px; padding: 25px; position: relative; color: #333; }
         .close-modal { position: absolute; top: 12px; right: 15px; font-size: 1.5rem; cursor: pointer; border: none; background: none; color: #999; }
         
         /* WHATSAPP SUPORTE */
@@ -106,7 +116,7 @@
         <div class="nav-container">
             <a onclick="location.reload()" class="logo">ORBIT <span>WHITE</span></a>
             <div class="search-box">
-                <input type="text" placeholder="Buscar por Fones, Controles...">
+                <input type="text" placeholder="Buscar fones, controles...">
                 <i class="fas fa-search"></i>
             </div>
         </div>
@@ -125,8 +135,8 @@
         <div class="slider-container">
             <button class="btn-prev" onclick="moveSlider(-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="slider-wrapper" id="slider">
-                <div class="slider-item"><img src="banner.png"></div>
-                <div class="slider-item"><img src="banner1.png"></div>
+                <div class="slider-item"><img src="banner.png" alt="Promoção Eletrónicos Orbit White"></div>
+                <div class="slider-item"><img src="banner1.png" alt="Novidades em Tecnologia Orbit White"></div>
             </div>
             <button class="btn-next" onclick="moveSlider(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
@@ -139,15 +149,15 @@
     <main class="main-content">
         <div class="grid">
             <div class="card" onclick="openModal('foneModal')">
-                <div class="img-box"><img src="fonebluetooth.png"></div>
-                <h3 class="name">Fone Bluetooth GD28 OWS</h3>
+                <div class="img-box"><img src="fonebluetooth.png" alt="Fone Bluetooth GD28 OWS Premium"></div>
+                <h3 class="name">Fone Bluetooth GD28 OWS - Premium</h3>
                 <span class="price">R$ 21,00</span>
                 <button class="btn-buy" onclick="event.stopPropagation(); openEmailModal('fone')">COMPRAR AGORA</button>
                 <span class="ver-detalhes">Ver Detalhes</span>
             </div>
 
             <div class="card" onclick="openModal('controleModal')">
-                <div class="img-box"><img src="controleps4.png"></div>
+                <div class="img-box"><img src="controleps4.png" alt="Controle PS4 Sem Fio Dualshock 4"></div>
                 <h3 class="name">Controle PS4 Sem Fio Dualshock 4</h3>
                 <span class="price">R$ 70,00</span>
                 <button class="btn-buy" onclick="event.stopPropagation(); openEmailModal('controle')">COMPRAR AGORA</button>
@@ -159,7 +169,7 @@
     <footer>
         <div class="footer-badge">
             <i class="fas fa-shield-alt"></i> 
-            <span><b>COMPRA SEGURA</b> | Garantia Orbit</span>
+            <span><b>COMPRA SEGURA</b> | Garantia Orbit White</span>
         </div>
         <div class="cnpj-text">CNPJ: 60.726.256/0001-02</div>
         <div style="font-size: 0.75rem; color: #777;">&copy; Orbit White | TODOS OS DIREITOS RESERVADOS</div>
@@ -168,8 +178,8 @@
     <div class="modal" id="foneModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()">&times;</button>
-            <h2>Fone Bluetooth GD28</h2>
-            <p style="margin: 15px 0;">Tecnologia OWS, Bluetooth 5.3 e bateria de longa duração.</p>
+            <h2>Fone Bluetooth GD28 OWS</h2>
+            <p style="margin: 15px 0;">Tecnologia de som aberto, Bluetooth 5.3 estável e design ultra confortável para longas horas de uso.</p>
             <button class="btn-buy" onclick="openEmailModal('fone')">PAGAR</button>
         </div>
     </div>
@@ -179,9 +189,9 @@
             <button class="close-modal" onclick="closeModals()">&times;</button>
             <h2>Controle PS4 Dualshock 4</h2>
             <ul style="text-align: left; margin: 15px 0; font-size: 0.9rem; line-height: 1.6;">
-                <li>• Sensor de 6 eixos e vibração dupla</li>
-                <li>• Touchpad e barra de luz integrada</li>
-                <li>• Compatível com PS4, PC e Android</li>
+                <li>• Sensor de movimento de 6 eixos</li>
+                <li>• Vibração dupla e alto-falante integrado</li>
+                <li>• Compatível com PS4, PC e Celulares</li>
             </ul>
             <button class="btn-buy" onclick="openEmailModal('controle')">PAGAR</button>
         </div>
@@ -191,7 +201,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()">&times;</button>
             <h3>Finalizar Pedido</h3>
-            <p style="font-size: 0.8rem; margin: 10px 0;">Informe seu e-mail para prosseguir:</p>
+            <p style="font-size: 0.8rem; margin: 10px 0;">Informe seu e-mail para prosseguir com o pagamento:</p>
             <input type="email" id="uEmail" placeholder="seuemail@exemplo.com" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:6px; outline: none;">
             <input type="hidden" id="currentProductId">
             <button class="btn-buy" onclick="finalizarCompra()">PAGAR</button>
@@ -199,18 +209,22 @@
     </div>
 
     <div class="wpp-container">
-        <div class="wpp-label">Suporte</div>
+        <div class="wpp-label">Dúvidas?</div>
         <a href="https://wa.me/5521983747028" class="wpp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <script>
         const FORM_ID = "1FAIpQLScSt1hnRbhnmopD3GmUGTYmedPDz2K9paB99zr3RSAYu91cbg"; 
         const ENTRY_ID = "entry.1165431688"; 
-        const linksPagamento = { 'fone': 'https://pag.ae/81BGxXBsJ', 'controle': 'https://pag.ae/81BHy4UM2' };
+        const linksPagamento = { 
+            'fone': 'https://pag.ae/81BGxXBsJ', 
+            'controle': 'https://pag.ae/81BHy4UM2' 
+        };
 
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
 
+        // Sincroniza bolinhas ao deslizar o banner
         slider.addEventListener('scroll', () => {
             let index = Math.round(slider.scrollLeft / slider.offsetWidth);
             dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
@@ -233,11 +247,15 @@
             const prodId = document.getElementById('currentProductId').value;
             
             if(email.includes("@") && email.includes(".")) {
+                // 1. Envia para o Google Sheets
                 const formUrl = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse?${ENTRY_ID}=${encodeURIComponent(email)}&submit=Submit`;
                 fetch(formUrl, { mode: 'no-cors' });
+
+                // 2. Abre link do PagSeguro em nova aba
                 window.open(linksPagamento[prodId], '_blank');
-                const nomeProd = prodId === 'fone' ? 'Fone GD28' : 'Controle PS4';
-                window.location.href = `https://wa.me/5521983747028?text=Pedido Orbit!\nProduto: ${nomeProd}\nEmail: ${email}`;
+
+                // 3. Redireciona para obrigado.html na aba atual
+                window.location.href = "obrigado.html";
             } else { 
                 alert("Por favor, digite um e-mail válido."); 
                 emailInput.focus();

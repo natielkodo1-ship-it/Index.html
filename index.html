@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Orbit Store | Hardware & Tech</title>
+    
+       <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -29,7 +32,7 @@
             max-width: 1200px; margin: 0 auto; 
             display: flex; align-items: center; justify-content: space-between; gap: 15px; 
         }
-        .logo { color: white; font-weight: 800; text-transform: uppercase; text-decoration: none; font-size: 1.2rem; }
+        .logo { color: white; font-weight: 800; text-transform: uppercase; text-decoration: none; font-size: 1.2rem; cursor: pointer; }
         .logo span { color: var(--roxo); }
 
         .search-box { flex-grow: 1; max-width: 220px; position: relative; display: flex; align-items: center; }
@@ -42,7 +45,7 @@
         /* CATEGORIAS */
         .sub-nav { background: #1a1126; padding: 12px 0; display: flex; justify-content: center; }
         .sub-nav-container { display: flex; gap: 25px; }
-        .sub-nav-item { color: rgba(255,255,255,0.8); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; text-decoration: none; }
+        .sub-nav-item { color: rgba(255,255,255,0.8); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; text-decoration: none; cursor: pointer; }
 
         /* CARROSSEL */
         .slider-section { padding: 10px 15px; max-width: 1200px; margin: 0 auto; position: relative; }
@@ -59,6 +62,8 @@
             cursor: pointer; z-index: 10; font-size: 1rem;
         }
         .btn-prev { left: 10px; } .btn-next { right: 10px; }
+        
+        /* BOLINHAS DO BANNER */
         .dots-container { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
         .dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; transition: 0.3s; cursor: pointer; }
         .dot.active { background: var(--roxo); width: 25px; border-radius: 10px; }
@@ -77,38 +82,31 @@
         .ver-detalhes { font-size: 0.75rem; color: #777; text-decoration: underline; margin-top: 10px; display: block; }
 
         /* RODAPÉ */
-        footer { background: var(--dark); color: #fff; padding: 35px 20px; border-top: 4px solid var(--roxo); margin-top: 40px; }
-        .footer-container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        footer { background: var(--dark); color: #fff; padding: 35px 20px; border-top: 4px solid var(--roxo); margin-top: 40px; text-align: center; }
         .footer-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 30px; border: 1px solid var(--roxo); margin-bottom: 15px; }
-        .footer-badge i { color: var(--sucesso); font-size: 1.1rem; }
+        .footer-badge i { color: var(--sucesso); }
         .cnpj-text { font-size: 0.85rem; color: #ccc; margin-bottom: 10px; }
-        .footer-rights { font-size: 0.75rem; color: #777; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
 
         /* MODAIS */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: white; width: 100%; max-width: 450px; border-radius: 12px; padding: 25px; position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-modal { position: absolute; top: 12px; right: 15px; font-size: 1.5rem; cursor: pointer; color: #999; border: none; background: none; }
+        .modal-content { background: white; width: 100%; max-width: 450px; border-radius: 12px; padding: 25px; position: relative; }
+        .close-modal { position: absolute; top: 12px; right: 15px; font-size: 1.5rem; cursor: pointer; border: none; background: none; color: #999; }
         
         /* WHATSAPP SUPORTE */
         .wpp-container { position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; }
-        .wpp-label { background: white; color: var(--dark); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid var(--roxo); position: relative; animation: bounce 2s infinite; }
-        .wpp-label::after { content: ''; position: absolute; bottom: -5px; right: 20px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid white; }
+        .wpp-label { background: white; color: var(--dark); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid var(--roxo); animation: bounce 2s infinite; }
         .wpp-btn { background: #25d366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-5px);}
-            60% {transform: translateY(-3px);}
-        }
+
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-5px);} }
     </style>
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">ORBIT <span>WHITE</span></a>
+            <a onclick="location.reload()" class="logo">ORBIT <span>WHITE</span></a>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar por Fones, Controles...">
+                <input type="text" placeholder="Buscar por Fones, Controles...">
                 <i class="fas fa-search"></i>
             </div>
         </div>
@@ -116,10 +114,10 @@
 
     <nav class="sub-nav">
         <div class="sub-nav-container">
-            <a href="#" class="sub-nav-item">Lançamentos</a>
-            <a href="#" class="sub-nav-item">Áudio</a>
-            <a href="#" class="sub-nav-item">Teclados</a>
-            <a href="#" class="sub-nav-item">Mouses</a>
+            <a onclick="location.reload()" class="sub-nav-item">Lançamentos</a>
+            <a onclick="location.reload()" class="sub-nav-item">Áudio</a>
+            <a onclick="location.reload()" class="sub-nav-item">Teclados</a>
+            <a onclick="location.reload()" class="sub-nav-item">Mouses</a>
         </div>
     </nav>
 
@@ -139,7 +137,7 @@
     </section>
 
     <main class="main-content">
-        <div class="grid" id="productGrid">
+        <div class="grid">
             <div class="card" onclick="openModal('foneModal')">
                 <div class="img-box"><img src="fonebluetooth.png"></div>
                 <h3 class="name">Fone Bluetooth GD28 OWS</h3>
@@ -159,45 +157,44 @@
     </main>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-badge">
-                <i class="fas fa-shield-alt"></i>
-                <span><b>Garantia de Entrega</b> | Sua compra segura</span>
-            </div>
-            <div class="cnpj-text">
-                CNPJ: 60.726.256/0001-02
-            </div>
-            <div class="footer-rights">
-                &copy; Orbit White | TODOS OS DIREITOS ESTÃO RESERVADOS
-            </div>
+        <div class="footer-badge">
+            <i class="fas fa-shield-alt"></i> 
+            <span><b>COMPRA SEGURA</b> | Garantia Orbit</span>
         </div>
+        <div class="cnpj-text">CNPJ: 60.726.256/0001-02</div>
+        <div style="font-size: 0.75rem; color: #777;">&copy; Orbit White | TODOS OS DIREITOS RESERVADOS</div>
     </footer>
 
     <div class="modal" id="foneModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()">&times;</button>
-            <h2 style="margin-bottom:15px">Especificações Técnicas</h2>
-            <p>Bluetooth V5.3 | Bateria 50mAh | LED Digital</p>
-            <button class="btn-buy" style="margin-top:20px" onclick="openEmailModal('fone')">Pagar </button>
+            <h2>Fone Bluetooth GD28</h2>
+            <p style="margin: 15px 0;">Tecnologia OWS, Bluetooth 5.3 e bateria de longa duração.</p>
+            <button class="btn-buy" onclick="openEmailModal('fone')">PAGAR</button>
         </div>
     </div>
 
     <div class="modal" id="controleModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()">&times;</button>
-            <h2 style="margin-bottom:15px">Especificações do Controle</h2>
-            <p>Dualshock 4 | Sem fio | Compatível com PS4, PC e Android.</p>
-            <button class="btn-buy" style="margin-top:20px" onclick="openEmailModal('controle')">Pagar</button>
+            <h2>Controle PS4 Dualshock 4</h2>
+            <ul style="text-align: left; margin: 15px 0; font-size: 0.9rem; line-height: 1.6;">
+                <li>• Sensor de 6 eixos e vibração dupla</li>
+                <li>• Touchpad e barra de luz integrada</li>
+                <li>• Compatível com PS4, PC e Android</li>
+            </ul>
+            <button class="btn-buy" onclick="openEmailModal('controle')">PAGAR</button>
         </div>
     </div>
 
     <div class="modal" id="emailModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()">&times;</button>
-            <h2 style="text-align:center; margin-bottom: 10px;">Finalizar Pedido</h2>
-            <input type="email" id="uEmail" placeholder="seuemail@exemplo.com" style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ddd; border-radius:6px;">
+            <h3>Finalizar Pedido</h3>
+            <p style="font-size: 0.8rem; margin: 10px 0;">Informe seu e-mail para prosseguir:</p>
+            <input type="email" id="uEmail" placeholder="seuemail@exemplo.com" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:6px; outline: none;">
             <input type="hidden" id="currentProductId">
-            <button class="btn-buy" onclick="finalizarCompra()">CONFIRMAR E PAGAR</button>
+            <button class="btn-buy" onclick="finalizarCompra()">PAGAR</button>
         </div>
     </div>
 
@@ -207,21 +204,21 @@
     </div>
 
     <script>
+        const FORM_ID = "1FAIpQLScSt1hnRbhnmopD3GmUGTYmedPDz2K9paB99zr3RSAYu91cbg"; 
+        const ENTRY_ID = "entry.1165431688"; 
+        const linksPagamento = { 'fone': 'https://pag.ae/81BGxXBsJ', 'controle': 'https://pag.ae/81BHy4UM2' };
+
         const slider = document.getElementById('slider');
         const dots = document.querySelectorAll('.dot');
-        const zapDono = "5521983747028";
-        const linksPagamento = {
-            'fone': 'https://pag.ae/81BGxXBsJ',
-            'controle': 'https://pag.ae/81BHy4UM2'
-        };
 
-        function updateDots() {
+        slider.addEventListener('scroll', () => {
             let index = Math.round(slider.scrollLeft / slider.offsetWidth);
             dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        }
-        slider.addEventListener('scroll', updateDots);
+        });
+
         function moveSlider(dir) { slider.scrollLeft += dir * slider.offsetWidth; }
         function goSlide(index) { slider.scrollLeft = index * slider.offsetWidth; }
+        
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function openEmailModal(prodId) { 
             closeModals();
@@ -231,14 +228,20 @@
         function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
 
         function finalizarCompra() {
-            const email = document.getElementById('uEmail').value;
+            const emailInput = document.getElementById('uEmail');
+            const email = emailInput.value;
             const prodId = document.getElementById('currentProductId').value;
-            const link = linksPagamento[prodId];
-            const nomeProd = prodId === 'fone' ? 'Fone GD28 (R$21)' : 'Controle PS4 (R$70)';
-            if(email.includes("@")) {
-                window.open(link, '_blank');
-                window.location.href = `https://wa.me/${zapDono}?text=Pedido Orbit!\nEmail: ${email}\nProduto: ${nomeProd}`;
-            } else { alert("E-mail inválido."); }
+            
+            if(email.includes("@") && email.includes(".")) {
+                const formUrl = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse?${ENTRY_ID}=${encodeURIComponent(email)}&submit=Submit`;
+                fetch(formUrl, { mode: 'no-cors' });
+                window.open(linksPagamento[prodId], '_blank');
+                const nomeProd = prodId === 'fone' ? 'Fone GD28' : 'Controle PS4';
+                window.location.href = `https://wa.me/5521983747028?text=Pedido Orbit!\nProduto: ${nomeProd}\nEmail: ${email}`;
+            } else { 
+                alert("Por favor, digite um e-mail válido."); 
+                emailInput.focus();
+            }
         }
     </script>
 </body>

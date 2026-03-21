@@ -128,14 +128,14 @@
         }
         .modal-content { 
             background: #fff; color: #000; padding: 30px; border-radius: 35px; 
-            border: var(--border-main); max-width: 400px; width: 90%; text-align: center; 
-            box-shadow: 12px 12px 0px #000; position: relative;
+            border: var(--border-main); max-width: 400px; width: 95%; text-align: center; 
+            box-shadow: 12px 12px 0px #000; position: relative; max-height: 90vh; overflow-y: auto;
         }
         .step { display: none; } 
         .step.active { display: block; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        .modal-input { width: 100%; padding: 15px; border-radius: 15px; border: var(--border-main); margin: 20px 0; font-weight: 700; text-align: center; font-size: 1rem; }
+        .modal-input { width: 100%; padding: 12px; border-radius: 15px; border: var(--border-main); margin: 8px 0; font-weight: 700; text-align: center; font-size: 0.9rem; }
         .btn-modal { font-family: 'Bungee'; width: 100%; padding: 18px; border-radius: 20px; border: var(--border-main); cursor: pointer; box-shadow: 5px 5px 0px #000; font-size: 1.1rem; color: #fff; }
 
         .btn-whatsapp-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 3000; text-decoration: none; display: flex; align-items: center; gap: 10px; }
@@ -177,7 +177,7 @@
 
     <section class="cta-section">
         <h2>OFERTAS POR TEMPO LIMITADO</h2>
-        <p><i class=></i> Frete Grátis Para Todo Brasil</p>
+        <p>Frete Grátis Para Todo Brasil</p>
     </section>
 
     <main class="grid" id="productGrid"></main>
@@ -214,11 +214,18 @@
             </div>
             <div id="step2" class="step">
                 <h3 style="font-family:'Bungee'; margin-bottom:10px;">FINALIZAR PEDIDO</h3>
-                <p style="font-weight:700; color: #666; font-size:0.9rem;">Informe seu e-mail para receber o rastreio:</p>
+                <p style="font-weight:700; color: #666; font-size:0.8rem;">Dados para entrega e rastreio:</p>
                 <form id="purchaseForm" action="https://formspree.io/f/xnjbwvkd" method="POST">
                     <input type="hidden" name="produto" id="formProduto">
-                    <input type="email" name="email" class="modal-input" placeholder="seu@email.com" required>
-                    <button type="submit" class="btn-modal" style="background:var(--success-green);">CONCLUIR AGORA</button>
+                    <input type="email" name="email" class="modal-input" placeholder="Seu E-mail" required>
+                    <input type="text" name="cep" id="cep" class="modal-input" placeholder="CEP (00000-000)" required onblur="buscaCEP(this.value)">
+                    <input type="text" name="rua" id="rua" class="modal-input" placeholder="Endereço / Rua" required>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" name="numero" class="modal-input" placeholder="Nº" required style="flex: 1;">
+                        <input type="text" name="bairro" id="bairro" class="modal-input" placeholder="Bairro" required style="flex: 2;">
+                    </div>
+                    <input type="text" name="cidade_estado" id="cidade_estado" class="modal-input" placeholder="Cidade - UF" required>
+                    <button type="submit" class="btn-modal" style="background:var(--success-green); margin-top: 10px;">CONCLUIR AGORA</button>
                 </form>
             </div>
             <p onclick="fecharModal()" style="margin-top:25px; cursor:pointer; font-weight:900; color:#aaa; text-decoration:underline;">VOLTAR</p>
@@ -227,10 +234,10 @@
 
     <script>
         const produtos = [
-            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS', preco: 'R$ 21,00', img: 'fonebluetooth.png', desc: 'Tecnologia OWS para som imersivo de alta fidelidade.', link: 'https://pag.ae/81BP3rmb2' },
-            { id: 'suporte', categoria: 'games', nome: 'Base Carregador PS5', preco: 'R$ 60,00', img: 'basecarregadorps5.png', desc: 'Carregue até 2 controles DualSense simultaneamente.', link: 'https://pag.ae/81BP5Hupo' },
-            { id: 'controle', categoria: 'games', nome: 'Controle Dualshock 4', preco: 'R$ 70,00', img: 'controleps4.png', desc: 'Alta precisão e resposta rápida para PS4 e PC.', link: 'https://pag.ae/81BP4FXb2' },
-            { id: 'gamesir', categoria: 'games', nome: 'Gamesir G7 SE', preco: 'R$ 300,00', img: 'controlegamesirg7.png', desc: 'Analógicos Hall Effect que nunca dão drift.', link: 'https://pag.ae/81BP42Mjo' }
+            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth GD28 OWS', preco: 'R$ 21,00', img: 'fonebluetooth.png', desc: 'Tecnologia OWS para som imersivo de alta fidelidade.', link: 'https://pag.ae/81BWYMfun' },
+            { id: 'suporte', categoria: 'games', nome: 'Base Carregador PS5', preco: 'R$ 60,00', img: 'basecarregadorps5.png', desc: 'Carregue até 2 controles DualSense simultaneamente.', link: 'https://pag.ae/81BW-zDQn' },
+            { id: 'controle', categoria: 'games', nome: 'Controle Dualshock 4', preco: 'R$ 70,00', img: 'controleps4.png', desc: 'Alta precisão e resposta rápida para PS4 e PC.', link: 'https://pag.ae/81BW_9A2J' },
+            { id: 'gamesir', categoria: 'games', nome: 'Gamesir G7 SE', preco: 'R$ 300,00', img: 'controlegamesirg7.png', desc: 'Analógicos Hall Effect que nunca dão drift.', link: 'https://pag.ae/81BWZwvr3' }
         ];
 
         let produtoSelecionado = null;
@@ -265,6 +272,28 @@
         }
 
         function fecharModal() { document.getElementById('descModal').style.display = 'none'; }
+
+        function buscaCEP(valor) {
+            const cep = valor.replace(/\D/g, '');
+            if (cep !== "" && cep.length === 8) {
+                document.getElementById('rua').value = "...";
+                document.getElementById('bairro').value = "...";
+                document.getElementById('cidade_estado').value = "...";
+
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(res => res.json())
+                    .then(dados => {
+                        if (!("erro" in dados)) {
+                            document.getElementById('rua').value = dados.logradouro;
+                            document.getElementById('bairro').value = dados.bairro;
+                            document.getElementById('cidade_estado').value = dados.localidade + " - " + dados.uf;
+                        } else {
+                            alert("CEP não encontrado.");
+                        }
+                    })
+                    .catch(() => alert("Erro ao buscar CEP."));
+            }
+        }
 
         document.getElementById('purchaseForm').onsubmit = function(e) {
             e.preventDefault();

@@ -2,64 +2,327 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orbit VIP</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Orbit White | Geek Store</title>
+
+   <link rel="icon" href="https://www.orbitwhite.com.br/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://www.orbitwhite.com.br/favicon.ico" type="image/x-icon">
+
+
+    <meta property="og:title" content="Orbit White | Geek Store">
+    <meta property="og:description" content="Ofertas por tempo limitado! Os melhores equipamentos geek com frete grátis.">
+    <meta property="og:url" content="https://www.orbitwhite.com.br/">
+    <meta property="og:image" content="https://www.orbitwhite.com.br/logo.png">
+    <meta property="og:image:secure_url" content="https://www.orbitwhite.com.br/logo.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; margin: 0; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
-        .card { background: #0a0a0a; border: 1px solid #222; border-radius: 12px; overflow: hidden; }
-        .card img { width: 100%; height: 260px; object-fit: cover; filter: blur(15px); }
-        button { background: #ff0055; color: #fff; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; }
+        :root { 
+            --primary-purple: #6d28d9;   
+            --deep-navy: #0f172a;       
+            --accent-cyan: #22d3ee;   
+            --accent-yellow: #fde047; 
+            --success-green: #22c55e; 
+            --pink-punch: #f472b6;
+            --white: #ffffff;
+            --border-main: 3px solid #000000;
+            --shadow-main: 6px 6px 0px #000000;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body { 
+            width: 100%; 
+            background-color: #4f46e5;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-attachment: fixed;
+            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        header { 
+            background: rgba(15, 23, 42, 0.9); 
+            backdrop-filter: blur(10px);
+            padding: 15px 20px; 
+            border-bottom: var(--border-main); 
+            position: sticky; top: 0; z-index: 1000; 
+        }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        @media (min-width: 992px) { .nav-container { flex-direction: row; justify-content: space-between; } }
+
+        .logo-text { font-family: 'Bungee', cursive; display: flex; flex-direction: column; align-items: center; line-height: 0.9; cursor: pointer; text-decoration: none; }
+        .logo-text .orbit { font-size: 1.8rem; color: #fff; text-shadow: 3px 3px 0px #000; }
+        .logo-text .white { 
+            font-size: 1.4rem; color: #fff; background: var(--primary-purple); 
+            padding: 4px 15px; border-radius: 8px; border: var(--border-main); 
+            box-shadow: 4px 4px 0px #000; margin-top: 5px; 
+        }
+
+        .search-box { position: relative; width: 100%; max-width: 500px; }
+        .search-box input { 
+            width: 100%; padding: 12px 15px 12px 50px; 
+            border-radius: 15px; border: var(--border-main); 
+            background: #fff; color: #000; font-weight: 700; outline: none;
+        }
+        .search-box i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #000; }
+
+        .categories-container { padding: 25px 15px 10px; max-width: 1200px; margin: 0 auto; overflow: hidden; }
+        .categories-scroll { 
+            display: flex; 
+            gap: 20px; 
+            overflow-x: auto; 
+            padding: 10px 5px 15px; 
+            scrollbar-width: none; 
+            justify-content: flex-start;
+        }
+        @media (min-width: 768px) { .categories-scroll { justify-content: center; } }
+        .categories-scroll::-webkit-scrollbar { display: none; }
+        
+        .cat-item { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; min-width: 85px; transition: 0.3s; }
+        .cat-icon { 
+            width: 70px; height: 70px; background: #fff; border-radius: 20px; 
+            display: flex; align-items: center; justify-content: center; 
+            color: var(--deep-navy); font-size: 1.6rem; border: var(--border-main); box-shadow: 4px 4px 0px #000;
+        }
+        .cat-item.active .cat-icon { background: var(--accent-yellow); transform: translateY(-5px); box-shadow: 6px 6px 0px #000; }
+        .cat-item span { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; color: #fff; text-shadow: 2px 2px 0px #000; }
+
+        .cta-section { text-align: center; padding: 20px 15px 10px; }
+        .cta-section h2 { font-family: 'Bungee'; font-size: 2rem; color: var(--accent-yellow); text-shadow: 4px 4px 0px #000; margin-bottom: 5px; }
+        .cta-section p { font-weight: 900; background: var(--primary-purple); padding: 5px 15px; border-radius: 50px; border: 2px solid #000; display: inline-block; font-size: 0.85rem; box-shadow: 3px 3px 0px #000; }
+
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px 15px; max-width: 1100px; margin: 0 auto; }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
+        
+        .card { 
+            background: var(--white); border-radius: 25px; border: var(--border-main); 
+            box-shadow: var(--shadow-main); transition: 0.3s; cursor: pointer; overflow: hidden; 
+        }
+        .img-box { width: 100%; height: 170px; display: flex; align-items: center; justify-content: center; padding: 15px; background: #fff; border-bottom: var(--border-main); }
+        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .card-info { padding: 15px; text-align: center; background: #fff; }
+        .card-info p { color: #000; font-weight: 800; font-size: 0.9rem; margin-bottom: 10px; height: 35px; overflow: hidden; }
+        .price { font-family: 'Bungee'; font-size: 1.1rem; color: #fff; background: var(--deep-navy); border: 2px solid #000; border-radius: 12px; padding: 6px; display: block; }
+
+        footer { background: var(--deep-navy); padding: 50px 20px; text-align: center; border-top: var(--border-main); margin-top: 60px; }
+        .badge { background: #fff; color: #000; padding: 12px 20px; border-radius: 20px; border: var(--border-main); display: inline-flex; align-items: center; gap: 10px; margin: 8px; font-weight: 900; box-shadow: 4px 4px 0px var(--primary-purple); }
+        
+        .payment-section { margin-top: 40px; border-top: 2px dashed rgba(255,255,255,0.2); padding-top: 30px; }
+        .payment-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; font-size: 2.2rem; color: #fff; margin: 20px 0; }
+        .pix-icon { font-weight: 900; background: #fff; color: #32bcad; padding: 4px 12px; border-radius: 10px; border: 2px solid #000; font-size: 1.1rem; box-shadow: 3px 3px 0px #000; }
+        .copyright { margin-top: 35px; font-size: 0.8rem; font-weight: 700; opacity: 0.8; letter-spacing: 0.5px; }
+
+        .modal { 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); 
+            align-items: center; justify-content: center; backdrop-filter: blur(8px); 
+        }
+        .modal-content { 
+            background: #fff; color: #000; padding: 30px; border-radius: 35px; 
+            border: var(--border-main); max-width: 400px; width: 95%; text-align: center; 
+            box-shadow: 12px 12px 0px #000; position: relative; max-height: 90vh; overflow-y: auto;
+        }
+        .step { display: none; } 
+        .step.active { display: block; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        .modal-input { width: 100%; padding: 12px; border-radius: 15px; border: var(--border-main); margin: 8px 0; font-weight: 700; text-align: center; font-size: 0.9rem; }
+        .btn-modal { font-family: 'Bungee'; width: 100%; padding: 18px; border-radius: 20px; border: var(--border-main); cursor: pointer; box-shadow: 5px 5px 0px #000; font-size: 1.1rem; color: #fff; }
+
+        .btn-whatsapp-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 3000; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .whatsapp-text { font-family: 'Bungee'; background: var(--success-green); color: white; padding: 10px 18px; border-radius: 18px; border: var(--border-main); box-shadow: 4px 4px 0px #000; font-size: 0.8rem; }
+        .btn-whatsapp { width: 60px; height: 60px; background: var(--success-green); color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; border: var(--border-main); box-shadow: 4px 4px 0px #000; }
     </style>
 </head>
 <body>
 
-    <h1 style="color:#ff0055; padding:20px;">PREMIUM FEED</h1>
-    
-    <div id="statusMsg" style="padding: 10px; color: #888;">A carregar dados do banco...</div>
-    <div class="grid" id="modelGrid"></div>
+    <header>
+        <div class="nav-container">
+            <div class="logo-text" onclick="location.reload()">
+                <span class="orbit">Orbit</span>
+                <span class="white">White</span>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="BUSCAR EQUIPAMENTO..." onkeyup="buscar()">
+            </div>
+        </div>
+    </header>
+
+    <div class="categories-container">
+        <div class="categories-scroll">
+            <div class="cat-item active" onclick="filtrarProdutos('todos', this)">
+                <div class="cat-icon"><i class="fas fa-th-large"></i></div>
+                <span>Tudo</span>
+            </div>
+            <div class="cat-item" onclick="filtrarProdutos('audio', this)">
+                <div class="cat-icon"><i class="fas fa-headphones"></i></div>
+                <span>Áudio</span>
+            </div>
+            <div class="cat-item" onclick="filtrarProdutos('games', this)">
+                <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
+                <span>Games</span>
+            </div>
+            <div class="cat-item" onclick="filtrarProdutos('assinaturas', this)">
+                <div class="cat-icon"><i class="fas fa-key"></i></div>
+                <span>Assinaturas</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <h2>OFERTAS POR TEMPO LIMITADO</h2>
+        <p>Frete Grátis Para Todo Brasil</p>
+    </section>
+
+    <main class="grid" id="productGrid"></main>
+
+    <footer>
+        <div class="badge"><i class="fas fa-shield-alt"></i><span>SITE 100% SEGURO</span></div>
+        <div class="badge"><i class="fas fa-check-circle"></i><span>GARANTIA TOTAL</span></div>
+
+        <div class="payment-section">
+            <h4 style="font-family: 'Bungee'; font-size: 1rem; color: var(--accent-cyan);">FORMAS DE PAGAMENTO</h4>
+            <div class="payment-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-apple-pay"></i>
+                <span class="pix-icon">PIX</span>
+                <i class="fas fa-barcode"></i>
+            </div>
+        </div>
+        <p class="copyright">© 2026 Orbit White – Todos os Direitos Reservados</p>
+    </footer>
+
+    <a href="https://wa.me/5521983747028" class="btn-whatsapp-wrapper" target="_blank">
+        <div class="whatsapp-text">Suporte</div>
+        <div class="btn-whatsapp"><i class="fab fa-whatsapp"></i></div>
+    </a>
+
+    <div id="descModal" class="modal">
+        <div class="modal-content">
+            <div id="step1" class="step active">
+                <img id="modalImg" style="width:130px; margin-bottom:15px;">
+                <h3 id="modalName" style="font-family:'Bungee'; color: var(--primary-purple); margin-bottom:10px;"></h3>
+                <p id="modalDesc" style="font-size:0.95rem; font-weight:700; color:#444; margin-bottom:20px; line-height:1.4;"></p>
+                <button onclick="proximoPasso()" class="btn-modal" style="background:var(--pink-punch);">EU QUERO ESTE!</button>
+            </div>
+            <div id="step2" class="step">
+                <h3 style="font-family:'Bungee'; margin-bottom:10px;">FINALIZAR PEDIDO</h3>
+                <p style="font-weight:700; color: #666; font-size:0.8rem;">Dados para entrega e rastreio:</p>
+                <form id="purchaseForm" action="https://formspree.io/f/xnjbwvkd" method="POST">
+                    <input type="hidden" name="produto" id="formProduto">
+                    <input type="email" name="email" class="modal-input" placeholder="Seu E-mail" required>
+                    <input type="text" name="cep" id="cep" class="modal-input" placeholder="CEP (00000-000)" required onblur="buscaCEP(this.value)">
+                    <input type="text" name="rua" id="rua" class="modal-input" placeholder="Endereço / Rua" required>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" name="numero" class="modal-input" placeholder="Nº" required style="flex: 1;">
+                        <input type="text" name="bairro" id="bairro" class="modal-input" placeholder="Bairro" required style="flex: 2;">
+                    </div>
+                    <input type="text" name="cidade_estado" id="cidade_estado" class="modal-input" placeholder="Cidade - UF" required>
+                    <button type="submit" class="btn-modal" style="background:var(--success-green); margin-top: 10px;">CONCLUIR AGORA</button>
+                </form>
+            </div>
+            <p onclick="fecharModal()" style="margin-top:25px; cursor:pointer; font-weight:900; color:#aaa; text-decoration:underline;">VOLTAR</p>
+        </div>
+    </div>
 
     <script>
-        // Chaves que tu mandaste
-        const URL = 'https://gmqcboqqephsczkgpata.supabase.co';
-        const KEY = 'sb_publishable_jE-zvcCRdKEIx1gYdGxthA_-XAnYwrX';
-        
-        const _supabase = supabase.createClient(URL, KEY);
+        const produtos = [
+            { id: 'fone', categoria: 'audio', nome: 'Fone Bluetooth Sem Fio', preco: 'R$ 21,00', img: 'fonebluetooth.png', desc: 'Tecnologia OWS para som imersivo de alta fidelidade.', link: 'https://pag.ae/81BWYMfun' },
+            { id: 'suporte', categoria: 'games', nome: 'Base Carregador PS5', preco: 'R$ 60,00', img: 'basecarregadorps5.png', desc: 'Carregue até 2 controles DualSense simultaneamente.', link: 'https://pag.ae/81BW-zDQn' },
+            { id: 'controle', categoria: 'games', nome: 'Controle Dualshock 4', preco: 'R$ 70,00', img: 'controleps4.png', desc: 'Alta precisão e resposta rápida para PS4 e PC.', link: 'https://pag.ae/81BW_9A2J' },
+            { id: 'gamesir', categoria: 'games', nome: 'Gamesir G7 SE', preco: 'R$ 300,00', img: 'controlegamesirg7.png', desc: 'Analógicos Hall Effect que nunca dão drift.', link: 'https://pag.ae/81BWZwvr3' },
+            { id: 'tinder1', categoria: 'assinaturas', nome: 'Tinder Gold (1 Mês)', preco: 'R$ 15,00', img: 'tinder.png', desc: 'Acesso Gold completo para turbinar seu perfil.', link: 'https://pag.ae/81C7nSgzm' },
+            { id: 'tinder2', categoria: 'assinaturas', nome: 'Tinder Platinum (1 Mês)', preco: 'R$ 25,00', img: 'tinder1.png', desc: 'Prioridade máxima e todos os recursos liberados.', link: 'https://pag.ae/81C7ked6a' },
+            { id: 'gp1', categoria: 'assinaturas', nome: 'Xbox Game Pass Ultimate', preco: 'R$ 35,00', img: 'gamepass1.png', desc: 'Acesso a centenas de jogos no console e PC.', link: 'https://pag.ae/81C6Wq3zv' },
+            { id: 'gp2', categoria: 'assinaturas', nome: 'Xbox Game Pass Core', preco: 'R$ 20,00', img: 'gamepass3.png', desc: 'Acesso multijogador online e catálogo selecionado.', link: 'https://pag.ae/81C6VHqsR' }
+        ];
 
-        async function carregar() {
-            const status = document.getElementById('statusMsg');
-            
-            try {
-                // Tenta puxar da tabela 'modelos'
-                const { data, error } = await _supabase.from('modelos').select('*');
-                
-                if (error) {
-                    status.innerHTML = "ERRO: " + error.message;
-                    status.style.color = "red";
-                    return;
-                }
+        let produtoSelecionado = null;
 
-                if (data && data.length > 0) {
-                    status.style.display = "none";
-                    document.getElementById('modelGrid').innerHTML = data.map(m => `
-                        <div class="card">
-                            <img src="${m.img_teaser}">
-                            <div style="padding:10px;">
-                                <h3>${m.nome}</h3>
-                                <button onclick="alert('Senha: ${m.senha}')">LIBERAR</button>
-                            </div>
-                        </div>
-                    `).join('');
-                } else {
-                    status.innerHTML = "BANCO CONECTADO, MAS A TABELA ESTÁ VAZIA.<br>Adiciona a 'maya' no Table Editor do Supabase.";
-                }
-            } catch (err) {
-                status.innerHTML = "ERRO DE CONEXÃO: Verifica a internet no Acode.";
+        function renderizar(lista) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = lista.map(p => `
+                <div class="card" onclick="abrirModal('${p.id}')">
+                    <div class="img-box"><img src="${p.img}"></div>
+                    <div class="card-info">
+                        <p>${p.nome}</p>
+                        <b class="price">${p.preco}</b>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function abrirModal(id) {
+            produtoSelecionado = produtos.find(p => p.id === id);
+            document.getElementById('modalImg').src = produtoSelecionado.img;
+            document.getElementById('modalName').innerText = produtoSelecionado.nome;
+            document.getElementById('modalDesc').innerText = produtoSelecionado.desc;
+            document.getElementById('formProduto').value = produtoSelecionado.nome;
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('descModal').style.display = 'flex';
+        }
+
+        function proximoPasso() {
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
+
+        function fecharModal() { document.getElementById('descModal').style.display = 'none'; }
+
+        function buscaCEP(valor) {
+            const cep = valor.replace(/\D/g, '');
+            if (cep !== "" && cep.length === 8) {
+                document.getElementById('rua').value = "...";
+                document.getElementById('bairro').value = "...";
+                document.getElementById('cidade_estado').value = "...";
+
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(res => res.json())
+                    .then(dados => {
+                        if (!("erro" in dados)) {
+                            document.getElementById('rua').value = dados.logradouro;
+                            document.getElementById('bairro').value = dados.bairro;
+                            document.getElementById('cidade_estado').value = dados.localidade + " - " + dados.uf;
+                        } else {
+                            alert("CEP não encontrado.");
+                        }
+                    })
+                    .catch(() => alert("Erro ao buscar CEP."));
             }
         }
 
-        carregar();
+        document.getElementById('purchaseForm').onsubmit = function(e) {
+            e.preventDefault();
+            fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
+            window.open(produtoSelecionado.link, '_blank');
+            window.location.href = "obrigado.html";
+        };
+
+        function filtrarProdutos(cat, el) {
+            document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
+            renderizar(cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat));
+        }
+
+        function buscar() {
+            const t = document.getElementById('searchInput').value.toLowerCase();
+            renderizar(produtos.filter(p => p.nome.toLowerCase().includes(t)));
+        }
+
+        renderizar(produtos);
     </script>
 </body>
 </html>

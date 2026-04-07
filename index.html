@@ -2,266 +2,194 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Orbit White | Geek Store</title>
-
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-    <meta property="og:title" content="Orbit White | Geek Store">
-    <meta property="og:description" content="Ofertas por tempo limitado! Os melhores equipamentos geek com frete grátis.">
-    <meta property="og:url" content="https://www.orbitwhite.com.br/">
-    <meta property="og:image" content="https://www.orbitwhite.com.br/logo.png">
-    <meta property="og:image:secure_url" content="https://www.orbitwhite.com.br/logo.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="300">
-    <meta property="og:image:height" content="300">
-    <meta property="og:type" content="website">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit White | Premium Dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --primary-purple: #6d28d9;   
-            --deep-navy: #0f172a;       
-            --accent-cyan: #22d3ee;   
-            --accent-yellow: #fde047; 
-            --success-green: #22c55e; 
-            --pink-punch: #f472b6;
-            --white: #ffffff;
-            --border-main: 3px solid #000000;
-            --shadow-main: 6px 6px 0px #000000;
+        :root {
+            --preto: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --roxo-glow: #8a2be2;
+            --roxo-neon: #a147ff;
+            --branco: #ffffff;
+            --cinza: #a0a0a0;
+            --border: rgba(255, 255, 255, 0.1);
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; 
+        }
 
         body { 
-            width: 100%; 
-            background-color: #4f46e5;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-            background-attachment: fixed;
-            color: #fff; 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden; 
+            background-color: var(--preto); 
+            color: var(--branco); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% -20%, #2a1052 0%, #050505 60%);
         }
 
-        header { 
-            background: rgba(15, 23, 42, 0.9); 
+        /* Navbar Efeito Vidro */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 10%; position: fixed; width: 100%; top: 0;
+            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--roxo-neon); }
+
+        .btn-nav {
+            padding: 10px 22px; background: var(--roxo-glow); color: white;
+            font-size: 0.9rem; font-weight: 600; border-radius: 8px;
+            text-decoration: none; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        .btn-nav:hover { background: var(--roxo-neon); transform: translateY(-2px); }
+
+        /* Hero Section Premium */
+        header {
+            padding: 180px 10% 80px; text-align: center;
+        }
+        header h1 { 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800;
+            letter-spacing: -2px; line-height: 1; margin-bottom: 20px;
+        }
+        header h1 span {
+            background: linear-gradient(90deg, #fff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p { 
+            font-size: 1.2rem; color: var(--cinza); max-width: 600px; 
+            margin: 0 auto 30px; font-weight: 400;
+        }
+
+        /* Grid de Cards */
+        .secao { padding: 60px 10%; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .card {
+            background: var(--card-bg); padding: 40px; border-radius: 24px;
+            border: 1px solid var(--border); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
-            padding: 15px 20px; 
-            border-bottom: var(--border-main); 
-            position: sticky; top: 0; z-index: 1000; 
         }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
-
-        .logo-text { font-family: 'Bungee', cursive; display: flex; flex-direction: column; align-items: center; line-height: 0.9; cursor: pointer; text-decoration: none; }
-        .logo-text .orbit { font-size: 1.8rem; color: #fff; text-shadow: 3px 3px 0px #000; }
-        .logo-text .white { 
-            font-size: 1.4rem; color: #fff; background: var(--primary-purple); 
-            padding: 4px 15px; border-radius: 8px; border: var(--border-main); 
-            box-shadow: 4px 4px 0px #000; margin-top: 5px; 
+        .card:hover { 
+            transform: translateY(-10px); border-color: var(--roxo-neon);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(138, 43, 226, 0.1);
         }
+        .card h2 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 700; }
+        .card p { color: var(--cinza); font-size: 1rem; }
 
-        .cta-section { text-align: center; padding: 40px 15px 20px; }
-        .cta-section h2 { font-family: 'Bungee'; font-size: 2rem; color: var(--accent-yellow); text-shadow: 4px 4px 0px #000; margin-bottom: 10px; }
-        .cta-section p { font-weight: 900; background: var(--primary-purple); padding: 8px 20px; border-radius: 50px; border: 2px solid #000; display: inline-block; font-size: 0.9rem; box-shadow: 3px 3px 0px #000; }
-
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px 15px; max-width: 800px; margin: 0 auto; }
-        @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+        /* Formulário Elegante */
+        #orcamento-section {
+            background: rgba(15, 15, 15, 0.8); padding: 50px; border-radius: 32px; 
+            border: 1px solid var(--border); max-width: 600px; margin: 0 auto;
+        }
+        #orcamento-section h2 { font-size: 2rem; margin-bottom: 30px; text-align: center; }
         
-        .card { 
-            background: var(--white); border-radius: 25px; border: var(--border-main); 
-            box-shadow: var(--shadow-main); transition: 0.3s; cursor: pointer; overflow: hidden; 
-            display: flex; flex-direction: column;
+        input, select, textarea {
+            width: 100%; padding: 16px; background: rgba(255,255,255,0.05); 
+            border: 1px solid var(--border); color: white; border-radius: 12px; 
+            margin-bottom: 20px; font-size: 1rem; outline: none; transition: 0.3s;
         }
-        
-        /* Box da imagem padronizado */
-        .img-box { 
-            width: 100%; 
-            height: 200px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            background: #fff; 
-            border-bottom: var(--border-main); 
-            overflow: hidden; /* Garante que nada saia do local */
+        input:focus { border-color: var(--roxo-neon); background: rgba(255,255,255,0.08); }
+
+        .btn-enviar {
+            width: 100%; padding: 18px; background: var(--roxo-glow); border: none;
+            color: white; font-size: 1.1rem; font-weight: 700; border-radius: 12px; 
+            cursor: pointer; transition: 0.3s;
         }
+        .btn-enviar:hover { background: var(--roxo-neon); box-shadow: 0 0 25px rgba(138, 43, 226, 0.5); }
 
-        /* AJUSTE ESPECÍFICO PARA A PRIMEIRA FOTO PREENCHER TUDO */
-        .card.fill-img .img-box padding: 0; } /* Remove padding no modo preenchimento */
-        .card.fill-img img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; /* Preenche todo o espaço sem distorcer */
-            max-width: none; 
-            max-height: none;
+        /* Feedbacks */
+        .feedback-card { 
+            background: var(--card-bg); padding: 30px; border-radius: 20px; 
+            border: 1px solid var(--border);
         }
+        .feedback-card p { font-style: italic; color: var(--cinza); margin-bottom: 20px; }
+        .name { color: var(--branco); font-weight: 700; font-size: 1rem; border-left: 3px solid var(--roxo-neon); padding-left: 12px; }
 
-        /* Estilo padrão para outras imagens (com respiro) */
-        .img-box img { max-width: 90%; max-height: 90%; object-fit: contain; }
-
-        .card-info { padding: 15px; text-align: center; background: #fff; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-info p { color: #000; font-weight: 800; font-size: 1rem; margin-bottom: 10px; }
-        .price { font-family: 'Bungee'; font-size: 1.2rem; color: #fff; background: var(--deep-navy); border: 2px solid #000; border-radius: 12px; padding: 8px; display: block; }
-
-        footer { background: var(--deep-navy); padding: 50px 20px; text-align: center; border-top: var(--border-main); margin-top: 60px; }
-        .badge { background: #fff; color: #000; padding: 12px 20px; border-radius: 20px; border: var(--border-main); display: inline-flex; align-items: center; gap: 10px; margin: 8px; font-weight: 900; box-shadow: 4px 4px 0px var(--primary-purple); }
-        
-        .payment-footer { margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .pix-badge { background: #fff; color: #32bcad; padding: 10px 25px; border-radius: 15px; border: var(--border-main); font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; gap: 8px; box-shadow: 4px 4px 0px #000; }
-        
-        .copyright { margin-top: 35px; font-size: 0.8rem; font-weight: 700; opacity: 0.8; letter-spacing: 1px; }
-
-        /* MODAL */
-        .modal { 
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
-            width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); 
-            align-items: center; justify-content: center; backdrop-filter: blur(8px); 
+        /* Botão WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; background: #25d366;
+            color: white; border-radius: 16px; padding: 15px 25px; text-decoration: none;
+            font-weight: 700; z-index: 1001; transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-        .modal-content { 
-            background: #fff; color: #000; padding: 30px; border-radius: 35px; 
-            border: var(--border-main); max-width: 400px; width: 92%; text-align: center; 
-            box-shadow: 12px 12px 0px #000; position: relative;
-        }
-        .modal-input { width: 100%; padding: 15px; border-radius: 15px; border: var(--border-main); margin: 10px 0; font-weight: 700; font-size: 1rem; }
-        .btn-modal { font-family: 'Bungee'; width: 100%; padding: 18px; border-radius: 20px; border: var(--border-main); cursor: pointer; box-shadow: 5px 5px 0px #000; font-size: 1.1rem; color: #fff; margin-top: 15px; }
+        .whatsapp-float:hover { transform: scale(1.05) translateY(-5px); }
 
-        /* WHATSAPP FIXO */
-        .btn-whatsapp-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 3000; text-decoration: none; display: flex; align-items: center; gap: 12px; }
-        .whatsapp-label { font-family: 'Bungee'; background: var(--success-green); color: white; padding: 8px 15px; border-radius: 12px; border: var(--border-main); box-shadow: 4px 4px 0px #000; font-size: 0.8rem; }
-        .btn-whatsapp { width: 60px; height: 60px; background: var(--success-green); color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; border: var(--border-main); box-shadow: 4px 4px 0px #000; }
+        footer { padding: 60px 10%; text-align: center; color: #555; font-size: 0.9rem; border-top: 1px solid var(--border); }
+
+        @media (max-width: 768px) { 
+            header { padding-top: 140px; }
+            header h1 { font-size: 3rem; }
+            .secao { padding: 40px 5%; }
+        }
     </style>
 </head>
 <body>
 
+    <nav>
+        <div class="logo">ORBIT<span>WHITE</span></div>
+        <a href="#orcamento-form" class="btn-nav">Fazer Orçamento</a>
+    </nav>
+
     <header>
-        <div class="nav-container">
-            <div class="logo-text" onclick="location.reload()">
-                <span class="orbit">Orbit</span>
-                <span class="white">White</span>
-            </div>
+        <div class="hero-content">
+            <h1>SITES E APPS <br><span>POR R$ 100</span></h1>
+            <p>Transformamos sua ideia em realidade digital com design de elite e performance extrema.</p>
         </div>
     </header>
 
-    <section class="cta-section">
-        <h2>ENTREGA IMEDIATA</h2>
-        <p><i class="fas fa-bolt"></i> Receba seu código por e-mail e WhatsApp</p>
-    </section>
-
-    <main class="grid" id="productGrid"></main>
-
-    <footer>
-        <div class="badge"><i class="fas fa-shield-alt"></i><span>SITE 100% SEGURO</span></div>
-        
-        <div class="payment-footer">
-            <p style="font-family:'Bungee'; font-size: 0.8rem; color: var(--accent-cyan);">PAGAMENTO VIA</p>
-            <div class="pix-badge">
-                PIX
+    <section class="secao">
+        <div class="grid">
+            <div class="card">
+                <h2>Web Design</h2>
+                <p>Landing pages e portfólios modernos que capturam a atenção do seu cliente instantaneamente.</p>
+            </div>
+            <div class="card" style="border-color: rgba(138, 43, 226, 0.3);">
+                <h2>Mobile Apps</h2>
+                <p>Aplicativos Android rápidos, intuitivos e prontos para escalar o seu negócio.</p>
             </div>
         </div>
+    </section>
 
-        <p class="copyright">© 2026 Orbit White | Todos direitos reservados</p>
+    <section id="orcamento-form" class="secao">
+        <div id="orcamento-section">
+            <h2>Iniciar Projeto</h2>
+            <form action="https://formspree.io/f/xnjbwvkd" method="POST">
+                <input type="text" name="nome" placeholder="Seu Nome completo" required>
+                <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+                <select name="servico">
+                    <option value="site">Landing Page / Site</option>
+                    <option value="app">Aplicativo Mobile</option>
+                </select>
+                <textarea name="mensagem" placeholder="Descreva brevemente sua ideia..." rows="4"></textarea>
+                <button type="submit" class="btn-enviar">Enviar Proposta</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="secao">
+        <div class="grid">
+            <div class="feedback-card">
+                <p>"O resultado final superou minhas expectativas. Design limpo e entrega extremamente rápida."</p>
+                <div class="name">MARCOS SILVA</div>
+            </div>
+            <div class="feedback-card">
+                <p>"Trabalho profissional de verdade. O melhor investimento que fiz para minha marca este ano."</p>
+                <div class="name">ANA SOUZA</div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/SEUNUMERO" class="whatsapp-float">WhatsApp</a>
+
+    <footer>
+        <p>&copy; 2026 ORBIT WHITE | TODOS DIREITOS RESERVADOS</p>
     </footer>
 
-    <a href="https://wa.me/5521983747028" class="btn-whatsapp-wrapper" target="_blank">
-        <span class="whatsapp-label">SUPORTE</span>
-        <div class="btn-whatsapp"><i class="fab fa-whatsapp"></i></div>
-    </a>
-
-    <div id="purchaseModal" class="modal">
-        <div class="modal-content">
-            <h3 id="modalName" style="font-family:'Bungee'; color: var(--primary-purple); margin-bottom:15px;"></h3>
-            <p style="font-weight:700; color: #666; font-size:0.9rem; margin-bottom: 10px;">Preencha os dados para receber seu código:</p>
-            
-            <form id="purchaseForm" action="https://formspree.io/f/xnjbwvkd" method="POST">
-                <input type="hidden" name="Produto" id="formProduto">
-                <input type="email" name="Email" class="modal-input" placeholder="Seu melhor e-mail" required>
-                <input type="tel" name="WhatsApp" class="modal-input" placeholder="Seu WhatsApp (com DDD)" required>
-                
-                <button type="submit" class="btn-modal" style="background:var(--success-green);">PAGAR AGORA</button>
-            </form>
-            
-            <p onclick="fecharModal()" style="margin-top:20px; cursor:pointer; font-weight:900; color:#aaa; text-decoration:underline;">CANCELAR</p>
-        </div>
-    </div>
-
-    <script>
-        // Adicionei a propriedade 'fill: true' no primeiro produto para ativar o modo preenchimento via JS
-        const produtos = [
-            { 
-                id: 'gamepass', 
-                nome: 'Xbox Game Pass Ultimate', 
-                preco: 'R$ 89,00', 
-                img: 'gamepass.png', 
-                link: 'https://pag.ae/81C8YmBcG',
-                fill: true // Ativa o preenchimento total da imagem
-            },
-            { 
-                id: 'xbox25', 
-                nome: 'Gift Card Xbox R$ 25', 
-                preco: 'R$ 23,60', 
-                img: '25xbox.png', 
-                link: 'https://pag.ae/81Eg_7ipm',
-                fill: false
-            }
-        ];
-
-        let produtoSelecionado = null;
-
-        function renderizar() {
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = produtos.map(p => `
-                <div class="card ${p.fill ? 'fill-img' : ''}" onclick="abrirModal('${p.id}')">
-                    <div class="img-box"><img src="${p.img}" alt="${p.nome}"></div>
-                    <div class="card-info">
-                        <p>${p.nome}</p>
-                        <b class="price">${p.preco}</b>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function abrirModal(id) {
-            produtoSelecionado = produtos.find(p => p.id === id);
-            document.getElementById('modalName').innerText = produtoSelecionado.nome;
-            document.getElementById('formProduto').value = produtoSelecionado.nome;
-            document.getElementById('purchaseModal').style.display = 'flex';
-        }
-
-        function fecharModal() { 
-            document.getElementById('purchaseModal').style.display = 'none'; 
-        }
-
-        document.getElementById('purchaseForm').onsubmit = function(e) {
-            e.preventDefault();
-            const form = this;
-            const btn = form.querySelector('button');
-            
-            btn.innerText = "PROCESSANDO...";
-            btn.disabled = true;
-
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            }).then(() => {
-                window.open(produtoSelecionado.link, '_blank');
-                fecharModal();
-                alert("Redirecionando para o pagamento seguro...");
-                btn.innerText = "PAGAR AGORA";
-                btn.disabled = false;
-                form.reset();
-            }).catch(() => {
-                alert("Erro ao processar. Tente novamente.");
-                btn.disabled = false;
-            });
-        };
-
-        renderizar();
-    </script>
 </body>
 </html>

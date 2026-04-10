@@ -2,194 +2,291 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orbit White | Premium Dev</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Orbit White | Tech & Design Elite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --preto: #050505;
-            --card-bg: rgba(20, 20, 20, 0.6);
-            --roxo-glow: #8a2be2;
-            --roxo-neon: #a147ff;
-            --branco: #ffffff;
-            --cinza: #a0a0a0;
-            --border: rgba(255, 255, 255, 0.1);
+            --bg: #030303;
+            --surface: rgba(15, 15, 15, 0.6);
+            --accent: #8a2be2;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --border: rgba(255, 255, 255, 0.06);
+            --glass: blur(12px) saturate(180%);
         }
 
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; 
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body { 
-            background-color: var(--preto); 
-            color: var(--branco); 
-            line-height: 1.6; 
+        html, body {
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% -20%, #2a1052 0%, #050505 60%);
+            width: 100%;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
-        /* Navbar Efeito Vidro */
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 160%;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(138, 43, 226, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(138, 43, 226, 0.08) 0%, transparent 40%),
+                var(--bg);
+            z-index: -1;
+            will-change: transform;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         nav {
+            padding: 20px 8%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 10%; position: fixed; width: 100%; top: 0;
-            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px);
-            z-index: 1000; border-bottom: 1px solid var(--border);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(3, 3, 3, 0.7);
+            backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+            border-bottom: 1px solid var(--border);
         }
-        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; }
-        .logo span { color: var(--roxo-neon); }
-
-        .btn-nav {
-            padding: 10px 22px; background: var(--roxo-glow); color: white;
-            font-size: 0.9rem; font-weight: 600; border-radius: 8px;
-            text-decoration: none; transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
-        }
-        .btn-nav:hover { background: var(--roxo-neon); transform: translateY(-2px); }
-
-        /* Hero Section Premium */
-        header {
-            padding: 180px 10% 80px; text-align: center;
-        }
-        header h1 { 
-            font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800;
-            letter-spacing: -2px; line-height: 1; margin-bottom: 20px;
-        }
-        header h1 span {
-            background: linear-gradient(90deg, #fff, #8a2be2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        header p { 
-            font-size: 1.2rem; color: var(--cinza); max-width: 600px; 
-            margin: 0 auto 30px; font-weight: 400;
-        }
-
-        /* Grid de Cards */
-        .secao { padding: 60px 10%; max-width: 1200px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-        .card {
-            background: var(--card-bg); padding: 40px; border-radius: 24px;
-            border: 1px solid var(--border); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-        }
-        .card:hover { 
-            transform: translateY(-10px); border-color: var(--roxo-neon);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(138, 43, 226, 0.1);
-        }
-        .card h2 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 700; }
-        .card p { color: var(--cinza); font-size: 1rem; }
-
-        /* Formulário Elegante */
-        #orcamento-section {
-            background: rgba(15, 15, 15, 0.8); padding: 50px; border-radius: 32px; 
-            border: 1px solid var(--border); max-width: 600px; margin: 0 auto;
-        }
-        #orcamento-section h2 { font-size: 2rem; margin-bottom: 30px; text-align: center; }
+        .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -1px; text-transform: uppercase; }
+        .logo span { color: var(--accent); }
         
-        input, select, textarea {
-            width: 100%; padding: 16px; background: rgba(255,255,255,0.05); 
-            border: 1px solid var(--border); color: white; border-radius: 12px; 
-            margin-bottom: 20px; font-size: 1rem; outline: none; transition: 0.3s;
+        .btn-nav {
+            padding: 10px 20px; background: rgba(255,255,255,0.05);
+            color: white; text-decoration: none; border-radius: 8px;
+            font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);
+            transition: 0.3s;
         }
-        input:focus { border-color: var(--roxo-neon); background: rgba(255,255,255,0.08); }
+        .btn-nav:hover { background: var(--accent); border-color: var(--accent); }
 
-        .btn-enviar {
-            width: 100%; padding: 18px; background: var(--roxo-glow); border: none;
-            color: white; font-size: 1.1rem; font-weight: 700; border-radius: 12px; 
-            cursor: pointer; transition: 0.3s;
+        .content-wrapper { position: relative; z-index: 10; width: 100%; padding-top: 80px; }
+
+        .hero {
+            padding: 100px 8% 40px;
+            max-width: 1200px; margin: 0 auto;
+            text-align: center;
         }
-        .btn-enviar:hover { background: var(--roxo-neon); box-shadow: 0 0 25px rgba(138, 43, 226, 0.5); }
+        .typing-container { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+        .hero h1 {
+            font-size: clamp(2.5rem, 9vw, 5rem);
+            font-weight: 900; letter-spacing: -3px;
+            line-height: 0.95;
+            white-space: nowrap; overflow: hidden; width: 0;
+            animation: typing 2s steps(15) forwards;
+            background: linear-gradient(180deg, #fff 50%, #888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .cursor {
+            display: inline-block; width: 10px; height: 0.85em;
+            background-color: var(--accent); margin-left: 2px;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        /* Feedbacks */
-        .feedback-card { 
-            background: var(--card-bg); padding: 30px; border-radius: 20px; 
+        .hero p {
+            font-size: 1.25rem; color: var(--text-dim);
+            max-width: 600px; margin: 0 auto 40px;
+            opacity: 0; animation: fadeIn 1s ease forwards 2.2s;
+            line-height: 1.6;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* GRID AJUSTADO: Gap aumentado para evitar colisão no mobile */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            padding: 60px 8%;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .bento-item {
+            background: var(--surface);
+            backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
             border: 1px solid var(--border);
+            padding: 45px; border-radius: 28px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 300px;
         }
-        .feedback-card p { font-style: italic; color: var(--cinza); margin-bottom: 20px; }
-        .name { color: var(--branco); font-weight: 700; font-size: 1rem; border-left: 3px solid var(--roxo-neon); padding-left: 12px; }
-
-        /* Botão WhatsApp */
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background: #25d366;
-            color: white; border-radius: 16px; padding: 15px 25px; text-decoration: none;
-            font-weight: 700; z-index: 1001; transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .bento-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(138, 43, 226, 0.4);
         }
-        .whatsapp-float:hover { transform: scale(1.05) translateY(-5px); }
+        .bento-item h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .bento-item p { color: var(--text-dim); font-size: 1.05rem; line-height: 1.6; }
+        
+        .tag-dev { font-size: 0.75rem; color: #666; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px;}
 
-        footer { padding: 60px 10%; text-align: center; color: #555; font-size: 0.9rem; border-top: 1px solid var(--border); }
+        .pricing-v2 {
+            margin: 100px 8%;
+            padding: 80px 40px;
+            border-radius: 32px;
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            text-align: center;
+            max-width: 1000px; margin-left: auto; margin-right: auto;
+            background-image: radial-gradient(circle at 50% 0%, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+        }
+        /* Correção definitiva do corte do zero */
+        .price-container {
+            display: block;
+            width: 100%;
+            overflow: visible;
+            padding: 20px 0;
+        }
+        .price-v2 { 
+            font-size: clamp(4.5rem, 15vw, 8.5rem);
+            font-weight: 900; 
+            letter-spacing: -2px;
+            line-height: 1; 
+            background: linear-gradient(180deg, #fff 70%, #999);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .price-v2 span { font-size: 2.5rem; vertical-align: middle; color: var(--accent); margin-right: 15px; -webkit-text-fill-color: var(--accent); }
 
-        @media (max-width: 768px) { 
-            header { padding-top: 140px; }
-            header h1 { font-size: 3rem; }
-            .secao { padding: 40px 5%; }
+        .btn-cta {
+            background: var(--text); color: var(--bg);
+            padding: 22px 60px; border-radius: 100px;
+            text-decoration: none; font-weight: 800;
+            display: inline-block; transition: 0.3s;
+            font-size: 1.1rem; margin-top: 20px;
+        }
+        .btn-cta:hover { background: var(--accent); color: white; transform: scale(1.05); }
+
+        .reviews-v2 { padding: 80px 8%; max-width: 1100px; margin: 0 auto; }
+        .rev-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .rev-card {
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 35px; border-radius: 24px;
+        }
+        .rev-header { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 700; color: var(--accent); }
+
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25d366; color: white;
+            padding: 16px 30px; border-radius: 50px;
+            text-decoration: none; font-weight: 700;
+            z-index: 1000; transition: 0.3s;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+
+        footer { padding: 60px 8%; border-top: 1px solid var(--border); display: flex; justify-content: space-between; color: var(--text-dim); font-size: 0.85rem; }
+
+        @media (max-width: 850px) {
+            /* Força o espaçamento vertical quando os itens empilham */
+            .bento-grid { 
+                grid-template-columns: 1fr; 
+                gap: 50px; /* Mais espaço entre Sites e Apps */
+            }
+            .rev-grid { grid-template-columns: 1fr; gap: 20px; }
+            .hero h1 { font-size: 3.2rem; }
+            .price-v2 { font-size: 5.5rem; }
+            .price-v2 span { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
+    <div class="parallax-bg" id="bg"></div>
 
     <nav>
         <div class="logo">ORBIT<span>WHITE</span></div>
-        <a href="#orcamento-form" class="btn-nav">Fazer Orçamento</a>
+        <a href="https://wa.me/+5521983747028" class="btn-nav">Orçamento</a>
     </nav>
 
-    <header>
-        <div class="hero-content">
-            <h1>SITES E APPS <br><span>POR R$ 100</span></h1>
-            <p>Transformamos sua ideia em realidade digital com design de elite e performance extrema.</p>
-        </div>
-    </header>
-
-    <section class="secao">
-        <div class="grid">
-            <div class="card">
-                <h2>Web Design</h2>
-                <p>Landing pages e portfólios modernos que capturam a atenção do seu cliente instantaneamente.</p>
+    <div class="content-wrapper">
+        <header class="hero p-el reveal">
+            <div class="typing-container">
+                <h1>SITES E APPS.<span class="cursor"></span></h1>
             </div>
-            <div class="card" style="border-color: rgba(138, 43, 226, 0.3);">
-                <h2>Mobile Apps</h2>
-                <p>Aplicativos Android rápidos, intuitivos e prontos para escalar o seu negócio.</p>
+            <p>Tenha um site responsivo, e atraente para seu público.</p>
+            <a href="#pricing" class="btn-cta">Iniciar Projeto</a>
+        </header>
+
+        <section class="bento-grid">
+            <div class="bento-item p-el reveal" data-speed="0.08">
+                <div>
+                    <h2>Sites</h2>
+                    <p>Landing pages Responsivas e sites institucionais otimizados para converter visitantes em clientes.</p>
+                </div>
+                <p class="tag-dev">Internet</p>
             </div>
-        </div>
-    </section>
 
-    <section id="orcamento-form" class="secao">
-        <div id="orcamento-section">
-            <h2>Iniciar Projeto</h2>
-            <form action="https://formspree.io/f/xnjbwvkd" method="POST">
-                <input type="text" name="nome" placeholder="Seu Nome completo" required>
-                <input type="email" name="email" placeholder="Seu melhor e-mail" required>
-                <select name="servico">
-                    <option value="site">Landing Page / Site</option>
-                    <option value="app">Aplicativo Mobile</option>
-                </select>
-                <textarea name="mensagem" placeholder="Descreva brevemente sua ideia..." rows="4"></textarea>
-                <button type="submit" class="btn-enviar">Enviar Proposta</button>
-            </form>
-        </div>
-    </section>
-
-    <section class="secao">
-        <div class="grid">
-            <div class="feedback-card">
-                <p>"O resultado final superou minhas expectativas. Design limpo e entrega extremamente rápida."</p>
-                <div class="name">MARCOS SILVA</div>
+            <div class="bento-item p-el reveal" data-speed="0.12" style="background: radial-gradient(circle at top right, rgba(138, 43, 226, 0.1), transparent 60%), var(--surface);">
+                <div>
+                    <h2>Apps</h2>
+                    <p>Tenha seu próprio aplicativo, moderno e funcional, do seu estilo, do seu jeito.</p>
+                </div>
+                <p class="tag-dev">Android & iOS</p>
             </div>
-            <div class="feedback-card">
-                <p>"Trabalho profissional de verdade. O melhor investimento que fiz para minha marca este ano."</p>
-                <div class="name">ANA SOUZA</div>
+        </section>
+
+        <section id="pricing" class="pricing-v2 p-el reveal" data-speed="0.15">
+            <h3 style="color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px;">Investimento</h3>
+            <div class="price-container">
+                <span class="price-v2"><span>R$</span>350</span>
             </div>
-        </div>
-    </section>
+            <p style="color: var(--text-dim); max-width: 450px; margin: 10px auto 30px; line-height: 1.6;">Clique no botão abaixo e escolha entre App ou Site.</p>
+            <a href="https://wa.me/+5521983747028" class="btn-cta">Solicitar no WhatsApp</a>
+        </section>
 
-    <a href="https://wa.me/+5521983747028" class="whatsapp-float">WhatsApp</a>
+        <section class="reviews-v2 reveal p-el" data-speed="0.06">
+            <h3 style="text-align: center; margin-bottom: 50px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Feedbacks Recentes</h3>
+            <div class="rev-grid">
+                <div class="rev-card">
+                    <div class="rev-header"><span>Zona Casual</span><span>★★★★★</span></div>
+                    <p style="font-style: italic; color: #eee; line-height: 1.6;">"Sistema de login e segurança impecáveis. Rodando liso no Supabase."</p>
+                </div>
+                <div class="rev-card">
+                    <div class="rev-header"><span>GameRec</span><span>★★★★★</span></div>
+                    <p style="font-style: italic; color: #eee; line-height: 1.6;">"Interface visualmente incrível e código muito leve. Superou as expectativas."</p>
+                </div>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2026 ORBIT WHITE | TODOS DIREITOS RESERVADOS</p>
-    </footer>
+        <footer>
+            <p>ORBIT WHITE © 2026</p>
+           
+        </footer>
+    </div>
 
+    <a href="https://wa.me/+5521983747028" class="wa-float">Bora conversar?</a>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scroll = window.pageYOffset;
+            document.getElementById('bg').style.transform = `translateY(${scroll * 0.3}px)`;
+            
+            const parallaxElements = document.querySelectorAll('.p-el');
+            parallaxElements.forEach(el => {
+                const speed = el.getAttribute('data-speed') || 0.1;
+                el.style.transform = `translateY(-${scroll * speed}px)`;
+            });
+            reveal();
+        });
+
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.onload = function() { setTimeout(reveal, 100); };
+    </script>
 </body>
 </html>
